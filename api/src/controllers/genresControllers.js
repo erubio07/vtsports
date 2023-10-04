@@ -21,4 +21,30 @@ const createGenre = async (name) => {
   }
 };
 
-module.exports = { getAllGenres, createGenre };
+const updateGenre = async (id, name) => {
+  try {
+    if (!id || !name) throw new Error("all fields are required");
+    const genre = await Genre.findByPk(id);
+    if (!genre) throw new Error("no genres matches the id");
+    const updatedGenre = genre.update({
+      name,
+    });
+    return updateGenre;
+  } catch (error) {
+    throw new Error(error.message);
+  }
+};
+
+const deleteGenre = async (id) => {
+  try {
+    if (!id) throw new Error("all fields are required");
+    const genre = await Genre.findByPk(id);
+    if (!genre) throw new Error("no genres matches the id");
+    await genre.destroy();
+    return "genre deleted succesfully";
+  } catch (error) {
+    throw new Error(error.message);
+  }
+};
+
+module.exports = { getAllGenres, createGenre, updateGenre, deleteGenre };

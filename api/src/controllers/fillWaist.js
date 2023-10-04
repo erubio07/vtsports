@@ -36,3 +36,5 @@ const fillWaist = async () => {
     throw new Error(error.message);
   }
 };
+
+module.exports = fillWaist;
