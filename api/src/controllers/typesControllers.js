@@ -40,4 +40,11 @@ const updateType = async (id, name) => {
   }
 };
 
-module.exports = { getAllTypes, createType, updateType };
+const deleteType = async (id) => {
+  if (!id) throw new Error("id is required");
+  const type = await Type.findByPk(id);
+  await type.destroy();
+  return "type deteled succcessfully";
+};
+
+module.exports = { getAllTypes, createType, updateType, deleteType };

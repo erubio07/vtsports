@@ -2,6 +2,7 @@ const {
   getAllTypes,
   createType,
   updateType,
+  deleteType,
 } = require("../controllers/typesControllers");
 
 const getAllTypesHandlers = async (req, res) => {
@@ -34,4 +35,19 @@ const updatedTypeHandler = async (req, res) => {
   }
 };
 
-module.exports = { getAllTypesHandlers, createTypeHandler, updatedTypeHandler };
+const deleteTypeHandler = async (req, res) => {
+  const { id } = req.params;
+  try {
+    const deteledType = await deleteType(id);
+    res.status(200).json(deleteType);
+  } catch (error) {
+    res.status(400).json({ error: error.message });
+  }
+};
+
+module.exports = {
+  getAllTypesHandlers,
+  createTypeHandler,
+  updatedTypeHandler,
+  deleteTypeHandler,
+};
