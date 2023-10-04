@@ -4,7 +4,7 @@ const types = require("./types");
 
 const router = Router();
 
-router.use("/", genres);
-router.use("/", types);
+router.use("/genres", genres);
+router.use("/types", types);
 
 module.exports = router;
