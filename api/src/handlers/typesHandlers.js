@@ -38,8 +38,8 @@ const updatedTypeHandler = async (req, res) => {
 const deleteTypeHandler = async (req, res) => {
   const { id } = req.params;
   try {
-    const deteledType = await deleteType(id);
-    res.status(200).json(deleteType);
+    const deletedType = await deleteType(id);
+    res.status(200).json(deletedType);
   } catch (error) {
     res.status(400).json({ error: error.message });
   }
