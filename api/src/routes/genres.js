@@ -8,9 +8,9 @@ const {
 
 const router = Router();
 
-router.get("/genres", getAllGenresHandler);
-router.post("/genres", createGenreHandler);
-router.put("/genres/:id", updatedGenreHandler);
+router.get("/", getAllGenresHandler);
+router.post("/", createGenreHandler);
+router.put("/:id", updatedGenreHandler);
 router.delete("/:id", deleteGenreHandler);
 
 module.exports = router;
