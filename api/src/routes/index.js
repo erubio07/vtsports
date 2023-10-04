@@ -1,9 +1,8 @@
 const { Router } = require("express");
+const genres = require("./genres");
 
 const router = Router();
 
-router.use("/", (req, res) => {
-  res.status(200).send("Hello World");
-});
+router.use("/", genres);
 
 module.exports = router;
