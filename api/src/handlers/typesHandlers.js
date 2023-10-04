@@ -28,7 +28,7 @@ const updatedTypeHandler = async (req, res) => {
   const { name } = req.body;
   try {
     const updatedType = await updateType(id, name);
-    res.status(200), json(updatedType);
+    res.status(200).json(updatedType);
   } catch (error) {
     res.status(200).json({ error: error.message });
   }
