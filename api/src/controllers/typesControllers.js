@@ -12,7 +12,7 @@ const getAllTypes = async () => {
 const createType = async (name) => {
   try {
     if (!name) throw new Error("name is required");
-    const newType = await Types.create({
+    const newType = await Type.create({
       name: name,
     });
     return newType;
@@ -43,8 +43,11 @@ const updateType = async (id, name) => {
 const deleteType = async (id) => {
   if (!id) throw new Error("id is required");
   const type = await Type.findByPk(id);
+  if (!type) throw new Error("no type matches the id");
   await type.destroy();
-  return "type deteled succcessfully";
+  return {
+    message: "type deleted successfully",
+  };
 };
 
 module.exports = { getAllTypes, createType, updateType, deleteType };
