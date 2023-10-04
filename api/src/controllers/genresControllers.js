@@ -29,7 +29,7 @@ const updateGenre = async (id, name) => {
     const updatedGenre = genre.update({
       name,
     });
-    return updateGenre;
+    return updatedGenre;
   } catch (error) {
     throw new Error(error.message);
   }
