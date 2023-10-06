@@ -7,7 +7,7 @@ const {
 const getAllProductsHandler = async (req, res) => {
   try {
     const allProducts = await getAllProducts();
-    res.status(200).json({ allProducts });
+    res.status(200).json(allProducts);
   } catch (error) {
     res.status(400).json({ error: error.message });
   }
