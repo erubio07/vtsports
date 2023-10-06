@@ -7,7 +7,7 @@ const {
 
 const getAllWaistHandler = async (req, res) => {
   try {
-    const allWaist = getAllWaist();
+    const allWaist = await getAllWaist();
     res.status(200).json(allWaist);
   } catch (error) {
     res.status(400).json({ error: error.message });
@@ -28,7 +28,7 @@ const updateWaistHandler = async (req, res) => {
   const { id } = req.params;
   const { name } = req.body;
   try {
-    const updatedWaist = updateWaist(id, name);
+    const updatedWaist = await updateWaist(id, name);
     res.status(200).json(updatedWaist);
   } catch (error) {
     res.status(400).json({ error: error.message });
@@ -39,6 +39,7 @@ const deleteWaistHandler = async (req, res) => {
   const { id } = req.params;
   try {
     const deletedWaist = await deleteWaist(id);
+    res.status(200).json(deletedWaist);
   } catch (error) {
     res.status(400).json({ error: error.message });
   }

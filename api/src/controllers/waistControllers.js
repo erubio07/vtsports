@@ -29,7 +29,7 @@ const updateWaist = async (id, name) => {
     const updatedWaist = await waist.update({
       name,
     });
-    return updatedWaist;
+    return "Waist updated successfuly";
   } catch (error) {
     throw new Error(error.message);
   }
