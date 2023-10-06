@@ -9,6 +9,17 @@ const getAllWaist = async () => {
   }
 };
 
+const getWaistById = async (id) => {
+  try {
+    if (!id) throw new Error("all fields are required");
+    const waistById = await Waist.findByPk(id);
+    if (!waistById) throw new Error("no wiats matched the id");
+    return waistById;
+  } catch (error) {
+    throw new Error(error.message);
+  }
+};
+
 const createWaist = async (name) => {
   try {
     if (!name) throw new Error("all fields are required");
@@ -47,4 +58,10 @@ const deleteWaist = async (id) => {
   }
 };
 
-module.exports = { getAllWaist, createWaist, updateWaist, deleteWaist };
+module.exports = {
+  getAllWaist,
+  createWaist,
+  updateWaist,
+  deleteWaist,
+  getWaistById,
+};

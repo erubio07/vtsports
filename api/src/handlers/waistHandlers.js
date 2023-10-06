@@ -3,12 +3,23 @@ const {
   createWaist,
   updateWaist,
   deleteWaist,
+  getWaistById,
 } = require("../controllers/waistControllers");
 
 const getAllWaistHandler = async (req, res) => {
   try {
     const allWaist = await getAllWaist();
     res.status(200).json(allWaist);
+  } catch (error) {
+    res.status(400).json({ error: error.message });
+  }
+};
+
+const getWaistByIdHandler = async (req, res) => {
+  const { id } = req.params;
+  try {
+    const waistById = await getWaistById(id);
+    res.status(200).json(waistById);
   } catch (error) {
     res.status(400).json({ error: error.message });
   }
@@ -50,4 +61,5 @@ module.exports = {
   createWaistHandler,
   updateWaistHandler,
   deleteWaistHandler,
+  getWaistByIdHandler,
 };

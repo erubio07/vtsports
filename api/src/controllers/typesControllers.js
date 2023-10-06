@@ -9,6 +9,17 @@ const getAllTypes = async () => {
   }
 };
 
+const getTypeById = async (id) => {
+  try {
+    if (!id) throw new Error("all fields are required");
+    const typeById = await Type.findByPk(id);
+    if (!typeById) throw new Error("no type matches the id");
+    return typeById;
+  } catch (error) {
+    throw new Error(error.message);
+  }
+};
+
 const createType = async (name) => {
   try {
     if (!name) throw new Error("name is required");
@@ -50,4 +61,10 @@ const deleteType = async (id) => {
   };
 };
 
-module.exports = { getAllTypes, createType, updateType, deleteType };
+module.exports = {
+  getAllTypes,
+  createType,
+  updateType,
+  deleteType,
+  getTypeById,
+};

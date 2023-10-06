@@ -3,12 +3,23 @@ const {
   createGenre,
   updateGenre,
   deleteGenre,
+  getGenresById,
 } = require("../controllers/genresControllers");
 
 const getAllGenresHandler = async (req, res) => {
   try {
     const allGenres = await getAllGenres();
     res.status(200).json(allGenres);
+  } catch (error) {
+    res.status(400).json({ error: error.message });
+  }
+};
+
+const getGenresByIdHandler = async (req, res) => {
+  const { id } = req.params;
+  try {
+    const genreById = await getGenresById(id);
+    res.status(200).json(genreById);
   } catch (error) {
     res.status(400).json({ error: error.message });
   }
@@ -50,4 +61,5 @@ module.exports = {
   createGenreHandler,
   updatedGenreHandler,
   deleteGenreHandler,
+  getGenresByIdHandler,
 };

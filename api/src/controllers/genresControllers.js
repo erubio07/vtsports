@@ -9,6 +9,17 @@ const getAllGenres = async () => {
   }
 };
 
+const getGenresById = async (id) => {
+  try {
+    if (!id) throw new Error("all fields are required");
+    const genreById = await Genre.findByPk(id);
+    if (!genreById) throw new Error("no genres matches the id");
+    return genreById;
+  } catch (error) {
+    throw new Error(error.message);
+  }
+};
+
 const createGenre = async (name) => {
   try {
     if (!name) throw new Error("name is required");
@@ -47,4 +58,10 @@ const deleteGenre = async (id) => {
   }
 };
 
-module.exports = { getAllGenres, createGenre, updateGenre, deleteGenre };
+module.exports = {
+  getAllGenres,
+  createGenre,
+  updateGenre,
+  deleteGenre,
+  getGenresById,
+};
