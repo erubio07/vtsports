@@ -38,9 +38,9 @@ const createProduct = async (
       image,
       price,
     });
-    await newProduct.addGenre(genre);
-    await newProduct.addType(type);
-    await newProduct.addWaist(waist);
+    await newProduct.setGenre(genre);
+    await newProduct.setType(type);
+    await newProduct.setWaist(waist);
     return newProduct;
   } catch (error) {
     throw new Error(error.message);
