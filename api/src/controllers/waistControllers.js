@@ -35,4 +35,16 @@ const updateWaist = async (id, name) => {
   }
 };
 
-module.exports = { getAllWaist, createWaist, updateWaist };
+const deleteWaist = async (id) => {
+  try {
+    if (!id) throw new Error("all fields are required");
+    const waist = await Waist.findByPk(id);
+    if (!waist) throw new Error("no waist matched the id");
+    const deletedWaist = await waist.destroy();
+    return `Waist removed successfuly`;
+  } catch (error) {
+    throw new Error(error.message);
+  }
+};
+
+module.exports = { getAllWaist, createWaist, updateWaist, deleteWaist };

@@ -3,6 +3,7 @@ const {
   getAllWaistHandler,
   createWaistHandler,
   updateWaistHandler,
+  deleteWaistHandler,
 } = require("../handlers/waistHandlers");
 
 const router = Router();
@@ -10,5 +11,6 @@ const router = Router();
 router.get("/", getAllWaistHandler);
 router.post("/", createWaistHandler);
 router.put("/:id", updateWaistHandler);
+router.delete("/:id", deleteWaistHandler);
 
 module.exports = router;
