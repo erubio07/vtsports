@@ -12,7 +12,19 @@ const getAllProducts = async () => {
 const getProductById = async (id) => {
   try {
     if (!id) throw new Error("id is required");
-    const productById = await Product.findByPk(id);
+    const productById = await Product.findByPk(id, {
+      include: [
+        {
+          model: Genre,
+        },
+        {
+          model: Type,
+        },
+        {
+          model: Waist,
+        },
+      ],
+    });
     if (!productById) throw new Error("no products matches the id");
     return productById;
   } catch (error) {
