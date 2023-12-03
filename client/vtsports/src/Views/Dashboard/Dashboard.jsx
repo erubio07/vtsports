@@ -2,7 +2,11 @@ import React from "react";
 import styles from "./Dashboard.module.css";
 
 const Dashboard = () => {
-  return <div>Dashboard</div>;
+  return (
+    <div>
+      <h1> Dashboard Protegido </h1>
+    </div>
+  );
 };
 
 export default Dashboard;

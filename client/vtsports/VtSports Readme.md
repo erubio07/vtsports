@@ -55,56 +55,57 @@ JWT para el sistema de login de usuario.
 ** Estructura de Carpetas **
 
 |
-|___ Client
-	|
-	|___ vtsport
-		|
-		|___ Views
-		|	|
-		|	|___ Home
-		|	|
-		|	|___ Products
-		|	|
-		|	|___ About
-		|	|
-		|	|___ Login
-		|	|
-		|	|___ Dashboard
-		|	|
-		|	|___ CreateProducts
-		|	|
-		|	|___ EditProduct
-		|
-		|___ Components
-		|	|
-		|	|___ Navbar
-		|	|
-		|	|___ Footer
-		|	|
-		|	|___ CardProducts
-		|	|
-		|	|___ EditProfile
-		|	|
-		|	|___ ChangePassword
-		|	|
-		|	|___ DashBoardPanel
-		|	|
-		|	|___ Filter
-		|	|
-		|	|___ ProtectedRoutes
-		|
-		|___ Redux
-		|	|
-		|	|___ actions.js
-		|	|
-		|	|___ reducer.js
-		|	|
-		|	|___ types.js
-		|	|
-		|	|___ store.js
-		|
-		|___ AuthProvider
-
+|**_ Client
+|
+|_** vtsport
+|
+|**_ Views
+| |
+| |_** Home
+| |
+| |**_ Products
+| |
+| |_** About
+| |
+| |**_ Login
+| |
+| |_** Dashboard
+| |
+| |**_ CreateProducts
+| |
+| |_** EditProduct
+|
+|**_ Components
+| |
+| |_** Navbar
+| |
+| |**_ Footer
+| |
+| |_** CardProducts
+| |
+| |**_ EditProfile
+| |
+| |_** ChangePassword
+| |
+| |**_ DashBoardPanel
+| |
+| |_** Filter
+| |
+| |**_ ProtectedRoutes
+| |
+| |_** Slider
+|
+|**_ Redux
+| |
+| |_** actions.js
+| |
+| |**_ reducer.js
+| |
+| |_** types.js
+| |
+| |**_ store.js
+|
+|_** AuthProvider
 
 ** Rutas Libres **
 
