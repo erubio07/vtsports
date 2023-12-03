@@ -1,0 +1,13 @@
+.sliderItem {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.image {
+  width: 30%;
+}
+
+.textContainer {
+  width: 25%;
+}
