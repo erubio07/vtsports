@@ -1,14 +1,36 @@
+@import url("https://fonts.googleapis.com/css2?family=Nosifer&family=Outfit:wght@200;300;400;700&family=Overpass:wght@400;700&display=swap");
+
+/*
 .container {
   display: flex;
   justify-content: space-between;
   align-items: center;
   background-color: #333;
-  padding: 10px 20px; /* Ajusta el espaciado según tus necesidades */
+  padding: 0px 20px; /* Ajusta el espaciado según tus necesidades 
+  height: 80px;
+  font-family: "Outfit", sans-serif;
+  font-size: 1rem;
+  text-transform: uppercase;
+}
+*/
+.container {
+  display: grid;
+  width: 100vw;
+  grid-template-columns: 8fr 2fr 2fr 1fr 1fr;
+  grid-template-rows: 70px;
+  align-items: center;
+  justify-items: end;
+  background-color: #333;
+  height: 70px;
+  font-family: "Outfit", sans-serif;
+  font-size: 1.1rem;
+  text-transform: uppercase;
 }
 
 .logo {
-  width: 100px;
-  height: auto;
+  justify-self: start;
+  width: 130px;
+  height: 130px;
 }
 
 .link {
@@ -39,8 +61,6 @@
 /* Media query para pantallas más pequeñas (por ejemplo, dispositivos móviles) */
 @media (max-width: 768px) {
   .container {
-    flex-direction: column;
-    align-items: flex-start;
   }
 
   .mobileMenuButtonContainer {
