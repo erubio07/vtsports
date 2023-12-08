@@ -2,6 +2,7 @@ const server = require("./src/app");
 const fillGenre = require("./src/controllers/fillGenres");
 const fillType = require("./src/controllers/fillType");
 const fillWaist = require("./src/controllers/fillWaist");
+const fillProduct = require("./src/controllers/fillProducts.js");
 
 const { conn } = require("./src/db.js");
 const port = 3001;
@@ -12,5 +13,6 @@ conn.sync({ force: true }).then(() => {
     fillGenre();
     fillType();
     fillWaist();
+    fillProduct();
   });
 });
