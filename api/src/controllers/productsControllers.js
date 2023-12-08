@@ -14,6 +14,27 @@ const getAllProducts = async () => {
           model: Waist,
         },
       ],
+    });
+    return allProducts;
+  } catch (error) {
+    throw new Error(error.message);
+  }
+};
+
+const getAllProductsAddmin = async () => {
+  try {
+    const allProducts = await Product.findAll({
+      include: [
+        {
+          model: Genre,
+        },
+        {
+          model: Type,
+        },
+        {
+          model: Waist,
+        },
+      ],
       paranoid: false,
     });
     return allProducts;
@@ -85,11 +106,28 @@ const createProduct = async (
 
 const deleteProduct = async (id) => {
   if (!id) throw new Error("id is required");
-  await Product.destroy({
-    where: {
-      id: id,
-    },
-  });
+  try {
+    await Product.destroy({
+      where: {
+        id: id,
+      },
+    });
+  } catch (error) {
+    throw new Error(error.message);
+  }
+};
+
+const restoreProduct = async (id) => {
+  if (!id) throw new Error("id is required");
+  try {
+    await Product.restore({
+      where: {
+        id: id,
+      },
+    });
+  } catch (error) {
+    throw new Error(error.message);
+  }
 };
 
 module.exports = {
@@ -97,4 +135,6 @@ module.exports = {
   getProductById,
   createProduct,
   deleteProduct,
+  restoreProduct,
+  getAllProductsAddmin,
 };
