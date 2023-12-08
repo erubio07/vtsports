@@ -40,8 +40,8 @@ const { Product, Type, Waist, Genre } = sequelize.models;
 // Product.hasMany(Reviews);
 Product.belongsTo(Type);
 Type.hasMany(Product);
-Product.belongsTo(Waist);
-Waist.hasMany(Product);
+Product.belongsToMany(Waist, { through: "products_waist" });
+Waist.belongsToMany(Product, { through: "products_waist" });
 Product.belongsTo(Genre);
 Genre.hasMany(Product);
 
