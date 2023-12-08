@@ -2,6 +2,7 @@ const {
   getAllProducts,
   getProductById,
   createProduct,
+  deleteProduct,
 } = require("../controllers/productsControllers");
 
 const getAllProductsHandler = async (req, res) => {
@@ -24,7 +25,7 @@ const getProductByIdHandler = async (req, res) => {
 };
 
 const createProductHandler = async (req, res) => {
-  const { name, description, image, price, type, genre, waist } = req.body;
+  const { name, description, image, price, type, genre, waists } = req.body;
   try {
     const newProduct = await createProduct(
       name,
@@ -33,9 +34,19 @@ const createProductHandler = async (req, res) => {
       price,
       type,
       genre,
-      waist
+      waists
     );
-    res.status(201).json(newProduct);
+    res.status(201).send("created succesfully");
+  } catch (error) {
+    res.status(400).json({ error: error.message });
+  }
+};
+
+const deleteProductHandler = async (req, res) => {
+  const { id } = req.params;
+  try {
+    await deleteProduct(id);
+    res.status(200).send("product deleted succesfully");
   } catch (error) {
     res.status(400).json({ error: error.message });
   }
@@ -45,4 +56,5 @@ module.exports = {
   getAllProductsHandler,
   getProductByIdHandler,
   createProductHandler,
+  deleteProductHandler,
 };

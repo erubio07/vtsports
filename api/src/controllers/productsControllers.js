@@ -2,7 +2,20 @@ const { Product, Genre, Type, Waist } = require("../db");
 
 const getAllProducts = async () => {
   try {
-    const allProducts = await Product.findAll();
+    const allProducts = await Product.findAll({
+      include: [
+        {
+          model: Genre,
+        },
+        {
+          model: Type,
+        },
+        {
+          model: Waist,
+        },
+      ],
+      paranoid: false,
+    });
     return allProducts;
   } catch (error) {
     throw new Error(error.message);
@@ -39,24 +52,49 @@ const createProduct = async (
   price,
   type,
   genre,
-  waist
+  waists
 ) => {
   try {
-    if (!name || !description || !image || !price || !type || !genre || !waist)
+    if (!name || !description || !image || !price || !type || !genre || !waists)
       throw new Error("all fields are required");
     const newProduct = await Product.create({
       name,
       description,
       image,
       price,
+      type,
+      genre,
+      waists,
     });
     await newProduct.setGenre(genre);
     await newProduct.setType(type);
-    await newProduct.setWaist(waist);
-    return newProduct;
+    await newProduct.addWaist(waists);
+    return {
+      id: newProduct.id,
+      name: newProduct.name,
+      image: newProduct.image,
+      price: newProduct.price,
+      type: type,
+      genre: genre,
+      waists: waists,
+    };
   } catch (error) {
     throw new Error(error.message);
   }
 };
 
-module.exports = { getAllProducts, getProductById, createProduct };
+const deleteProduct = async (id) => {
+  if (!id) throw new Error("id is required");
+  await Product.destroy({
+    where: {
+      id: id,
+    },
+  });
+};
+
+module.exports = {
+  getAllProducts,
+  getProductById,
+  createProduct,
+  deleteProduct,
+};
