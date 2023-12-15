@@ -24,8 +24,8 @@ const HomeSLider = () => {
             className={styles.image}
           />
           <div className={styles.textContainer}>
-            <h1>Título</h1>
-            <p>Descripción de imagen 1</p>
+            <h1>¡SENTITE COMO EN CASA!</h1>
+            <p>¡CAMPEON!</p>
           </div>
         </div>
         <div className={styles.sliderItem}>
@@ -35,8 +35,8 @@ const HomeSLider = () => {
             className={styles.image}
           />
           <div className={styles.textContainer}>
-            <h1>Título de la imagen 2</h1>
-            <p>Descripción de la imagen 2</p>
+            <h1>ENTENDEMOS TU PASION</h1>
+            <p>¡Por eso estamos aqui!</p>
           </div>
         </div>
         <div className={styles.sliderItem}>
@@ -46,8 +46,8 @@ const HomeSLider = () => {
             className={styles.image}
           />
           <div className={styles.textContainer}>
-            <h1>Título de la imagen 3</h1>
-            <p>Descripción de la imagen 3</p>
+            <h1>¡RINDE CON ESTILO!</h1>
+            <p>¡COMPRA AHORA!</p>
           </div>
         </div>
       </Slider>
