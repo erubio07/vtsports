@@ -35,6 +35,9 @@ const Products = () => {
               </p>
             </div>
             <p className={styles.productPrice}>$ {p.price}</p>
+            <button onClick={() => navigate(`/products/${p.id}`)}>
+              Detalles
+            </button>
           </div>
         ))}
       </div>

@@ -1,4 +1,4 @@
-import { GET_ALL_PRODUCTS } from "./types";
+import { GET_ALL_PRODUCTS, GET_PRODUCT_DETAIL } from "./types";
 import axios from "axios";
 
 export const getAllProducts = () => {
@@ -7,6 +7,16 @@ export const getAllProducts = () => {
     return dispatch({
       type: GET_ALL_PRODUCTS,
       payload: products.data,
+    });
+  };
+};
+
+export const getProductDetail = (id) => {
+  return async function (dispatch) {
+    let product = await axios.get(`http://localhost:3001/products/${id}`);
+    return dispatch({
+      type: GET_PRODUCT_DETAIL,
+      payload: product.data,
     });
   };
 };
