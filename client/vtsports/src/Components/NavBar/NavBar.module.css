@@ -1,14 +1,32 @@
+@import url("https://fonts.googleapis.com/css2?family=Nosifer&family=Outfit:wght@200;300;400;700&family=Overpass:wght@400;700&display=swap");
+* {
+  margin: 0;
+  padding: 0;
+}
+
 .container {
-  display: flex;
-  justify-content: space-between;
+  display: grid;
+  width: 100%;
+  grid-template-columns: 1fr 5fr 2fr 2fr 1fr;
+  grid-template-rows: 70px;
   align-items: center;
-  background-color: #333;
-  padding: 10px 20px; /* Ajusta el espaciado según tus necesidades */
+  justify-items: end;
+  height: 70px;
+  font-family: "Outfit", sans-serif;
+  font-size: 1.1rem;
+  text-transform: uppercase;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 1000;
+  background: rgba(88, 88, 88, 0.2);
 }
 
 .logo {
-  width: 100px;
-  height: auto;
+  justify-self: start;
+  padding-left: 20px;
+  width: 130px;
+  height: 130px;
 }
 
 .link {
@@ -18,7 +36,7 @@
   transition: color 0.3s ease;
 
   &:hover {
-    color: #00bcd4;
+    color: #ffe206;
   }
 }
 
@@ -39,8 +57,6 @@
 /* Media query para pantallas más pequeñas (por ejemplo, dispositivos móviles) */
 @media (max-width: 768px) {
   .container {
-    flex-direction: column;
-    align-items: flex-start;
   }
 
   .mobileMenuButtonContainer {

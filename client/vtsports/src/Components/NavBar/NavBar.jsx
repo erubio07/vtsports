@@ -4,14 +4,15 @@ import styles from "./NavBar.module.css";
 
 function Navbar() {
   return (
+
+
+
     <div className={styles.container}>
-      <div>
-        <img
-          src="https://res.cloudinary.com/dytke2vlw/image/upload/v1701527722/vtsport/yb2owexc1s5bfmrqpd0c.png"
-          alt="logo VtSports"
-          className={styles.logo}
-        />
-      </div>
+      <img
+        src="https://res.cloudinary.com/dytke2vlw/image/upload/v1701527722/vtsport/yb2owexc1s5bfmrqpd0c.png"
+        alt="logo VtSports"
+        className={styles.logo}
+      />
       <NavLink className={styles.link} to="/">
         Home
       </NavLink>
@@ -25,6 +26,7 @@ function Navbar() {
         Login
       </NavLink>
     </div>
+
   );
 }
 
