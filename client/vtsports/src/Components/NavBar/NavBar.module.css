@@ -7,7 +7,7 @@
 .container {
   display: grid;
   width: 100%;
-  grid-template-columns: 1fr 5fr 2fr 2fr 1fr;
+  grid-template-columns: 2fr 3.8fr 1.6fr 2fr 1fr;
   grid-template-rows: 70px;
   align-items: center;
   justify-items: end;
@@ -32,7 +32,7 @@
 .link {
   color: #fff;
   text-decoration: none;
-  margin: 0 50px; /* Ajusta el espaciado entre los enlaces */
+  margin: 0 40px; /* Ajusta el espaciado entre los enlaces */
   transition: color 0.3s ease;
 
   &:hover {
