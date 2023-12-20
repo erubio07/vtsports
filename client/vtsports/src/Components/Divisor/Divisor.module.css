@@ -8,9 +8,8 @@
   justify-content: center;
   flex-wrap: wrap;
   padding: 20px 0px;
-  margin-top: 20px;
+  margin-top: 30px;
   background: rgba(239, 213, 12, 0.898);
-  overflow: hidden;
   gap: 10px;
 }
 .item {

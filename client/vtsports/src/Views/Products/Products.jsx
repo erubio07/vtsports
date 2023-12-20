@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { getAllProducts } from "../../Redux/actions";
 import Pagination from "../../Components/Pagination/Pagination";
-
+//import HomeSLider from "../../Components/Slider/HomeSlider";
 const Products = () => {
   const dispatch = useDispatch();
   const products = useSelector((state) => state.products);
@@ -25,6 +25,7 @@ const Products = () => {
 
   return (
     <div>
+
       <div className={styles.container}>
         {productsFilter
           .map((p) => (
@@ -47,16 +48,18 @@ const Products = () => {
                 Detalles
               </button>
             </div>
-          ))
-          .slice(firstIndex, lastIndex)}
+          )).slice(firstIndex, lastIndex)}
       </div>
-      <Pagination
-        itemsPerPage={itemsPerPage}
-        currentPage={currentPage}
-        setCurrentPage={setCurrentPage}
-        totalProducts={totalProducts}
-      />
+      <div className={styles.paginacion}>
+        <Pagination
+          itemsPerPage={itemsPerPage}
+          currentPage={currentPage}
+          setCurrentPage={setCurrentPage}
+          totalProducts={totalProducts}
+        />
+      </div>
     </div>
+
   );
 };
 

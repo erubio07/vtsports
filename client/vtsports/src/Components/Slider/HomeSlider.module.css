@@ -1,11 +1,11 @@
-* {
-  overflow: hidden;
-}
 .sliderItem {
   display: flex;
   align-items: center;
   justify-content: space-between;
   position: relative;
+}
+ul {
+  overflow: hidden;
 }
 .sliderItem::before {
   content: "";
