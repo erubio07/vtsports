@@ -1,0 +1,32 @@
+* {
+  text-decoration: none;
+}
+.divisor {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  padding: 20px 0px;
+  margin-top: 20px;
+  background: rgba(239, 213, 12, 0.898);
+  overflow: hidden;
+  gap: 10px;
+}
+.item {
+  width: 300px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.title {
+  color: white;
+  font-size: 1.1rem;
+  font-weight: 500;
+  width: 130px;
+}
+picture img {
+  align-items: center;
+  min-width: 60px;
+}
