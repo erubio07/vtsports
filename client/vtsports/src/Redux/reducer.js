@@ -1,9 +1,14 @@
-import { GET_ALL_PRODUCTS, GET_PRODUCT_DETAIL } from "./types";
+import {
+  GET_ALL_PRODUCTS,
+  GET_PRODUCT_DETAIL,
+  GET_PRODUCTS_RANDOM,
+} from "./types";
 
 const initialState = {
   products: [],
   productsFilter: [],
   productDetail: {},
+  randomProducts: [],
 };
 
 function rootReducer(state = initialState, action) {
@@ -18,6 +23,11 @@ function rootReducer(state = initialState, action) {
       return {
         ...state,
         productDetail: action.payload,
+      };
+    case GET_PRODUCTS_RANDOM:
+      return {
+        ...state,
+        randomProducts: action.payload,
       };
     default:
       return state;
