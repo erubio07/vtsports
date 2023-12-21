@@ -6,11 +6,13 @@ const {
   deleteProductHandler,
   restoreProductHandler,
   getAllProductsAdminHandler,
+  getProductsRandomHandler,
 } = require("../handlers/productsHandlers");
 
 const router = Router();
 
 router.get("/", getAllProductsHandler);
+router.get("/rand", getProductsRandomHandler);
 router.get("/admin", getAllProductsAdminHandler);
 router.get("/:id", getProductByIdHandler);
 router.post("/", createProductHandler);

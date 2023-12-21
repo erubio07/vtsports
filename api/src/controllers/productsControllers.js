@@ -1,3 +1,4 @@
+const { Sequelize } = require("sequelize");
 const { Product, Genre, Type, Waist } = require("../db");
 
 const getAllProducts = async () => {
@@ -130,6 +131,18 @@ const restoreProduct = async (id) => {
   }
 };
 
+const getRamdomProducts = async () => {
+  try {
+    const randomProducts = await Product.findAll({
+      order: [Sequelize.literal("RANDOM()")],
+      limit: 6,
+    });
+    return randomProducts;
+  } catch (error) {
+    throw new Error(error.message);
+  }
+};
+
 module.exports = {
   getAllProducts,
   getProductById,
@@ -137,4 +150,5 @@ module.exports = {
   deleteProduct,
   restoreProduct,
   getAllProductsAddmin,
+  getRamdomProducts,
 };

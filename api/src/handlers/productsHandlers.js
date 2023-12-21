@@ -5,6 +5,7 @@ const {
   deleteProduct,
   restoreProduct,
   getAllProductsAddmin,
+  getRamdomProducts,
 } = require("../controllers/productsControllers");
 
 const getAllProductsHandler = async (req, res) => {
@@ -73,6 +74,15 @@ const restoreProductHandler = async (req, res) => {
   }
 };
 
+const getProductsRandomHandler = async (req, res) => {
+  try {
+    const products = await getRamdomProducts();
+    res.status(200).json(products);
+  } catch (error) {
+    res.status(400).json({ error: error.message });
+  }
+};
+
 module.exports = {
   getAllProductsHandler,
   getProductByIdHandler,
@@ -80,4 +90,5 @@ module.exports = {
   deleteProductHandler,
   restoreProductHandler,
   getAllProductsAdminHandler,
+  getProductsRandomHandler,
 };
