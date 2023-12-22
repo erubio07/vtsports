@@ -1,5 +1,7 @@
 import React from "react";
 import Slider from "react-slick";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
 
 const Carrousel = ({ randomProducts }) => {
   console.log(randomProducts);
@@ -19,6 +21,8 @@ const Carrousel = ({ randomProducts }) => {
         {randomProducts.map((p) => (
           <div key={p.id}>
             <img src={p.image} alt={p.name} />
+            <h4>{p.name}</h4>
+            <p>{p.price}</p>
           </div>
         ))}
       </Slider>
