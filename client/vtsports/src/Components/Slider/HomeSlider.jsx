@@ -6,7 +6,7 @@ import styles from "./HomeSlider.module.css";
 
 const HomeSLider = () => {
   const settings = {
-    dots: true,
+    dots: false,
     infinite: true,
     speed: 2000,
     slidesToShow: 1,
