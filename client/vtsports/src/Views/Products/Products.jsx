@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { getAllProducts } from "../../Redux/actions";
 import Pagination from "../../Components/Pagination/Pagination";
+import ReactLoading from "react-loading";
 //import HomeSLider from "../../Components/Slider/HomeSlider";
 const Products = () => {
   const dispatch = useDispatch();
@@ -25,30 +26,43 @@ const Products = () => {
 
   return (
     <div>
-
       <div className={styles.container}>
-        {productsFilter
-          .map((p) => (
-            <div key={p.id} className={styles.productCard}>
-              <img src={p.image} alt={p.name} className={styles.productImage} />
-              <h2 className={styles.productName}>{p.name}</h2>
-              {/* <p className={styles.productDescription}>{p.description}</p> */}
-              <div className={styles.productDetails}>
-                <p>
-                  <strong>Material:</strong> {p.Type.name}
-                </p>
+        {!productsFilter || productsFilter.length === 0 ? (
+          <ReactLoading
+            type={"bars"}
+            color={"#03fc4e"}
+            height={100}
+            width={100}
+          />
+        ) : (
+          productsFilter
+            .map((p) => (
+              <div key={p.id} className={styles.productCard}>
+                <img
+                  src={p.image}
+                  alt={p.name}
+                  className={styles.productImage}
+                />
+                <h2 className={styles.productName}>{p && p.name}</h2>
+                {/* <p className={styles.productDescription}>{p.description}</p> */}
+                <div className={styles.productDetails}>
+                  <p>
+                    <strong>Material:</strong> {p && p.Type.name}
+                  </p>
 
-                <p>
-                  <strong>Talles:</strong>{" "}
-                  {p.Waists.map((w) => w.name).join(", ")}
-                </p>
+                  <p>
+                    <strong>Talles:</strong>{" "}
+                    {p.Waists.map((w) => w.name).join(", ")}
+                  </p>
+                </div>
+                <p className={styles.productPrice}>$ {p.price}</p>
+                <button onClick={() => navigate(`/products/${p.id}`)}>
+                  Detalles
+                </button>
               </div>
-              <p className={styles.productPrice}>$ {p.price}</p>
-              <button onClick={() => navigate(`/products/${p.id}`)}>
-                Detalles
-              </button>
-            </div>
-          )).slice(firstIndex, lastIndex)}
+            ))
+            .slice(firstIndex, lastIndex)
+        )}
       </div>
       <div className={styles.paginacion}>
         <Pagination
@@ -59,7 +73,6 @@ const Products = () => {
         />
       </div>
     </div>
-
   );
 };
 
