@@ -12,7 +12,7 @@
 .imageContainer {
   width: 100%;
   height: 0;
-  padding-bottom: 75%; /* Proporción 4:3 (ajusta según la relación de aspecto deseada) */
+  padding-bottom: 50%; /* Proporción 4:3 (ajusta según la relación de aspecto deseada) */
   position: relative;
   overflow: hidden;
 }
@@ -20,7 +20,7 @@
 .productImage {
   width: 100%;
   height: 100%;
-  object-fit: contain; /* Ajusta la imagen para que cubra completamente su contenedor */
+  object-fit: fill; /* Ajusta la imagen para que cubra completamente su contenedor */
   position: absolute;
   top: 0;
   left: 0;
