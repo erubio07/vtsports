@@ -6,6 +6,7 @@ import Carrousel from "../../Components/Carrousel/Carrousel";
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getRandomProducts } from "../../Redux/actions";
+import ReactLoading from "react-loading";
 const Home = () => {
   const dispatch = useDispatch();
   const randomProducts = useSelector((state) => state.randomProducts);
@@ -18,7 +19,18 @@ const Home = () => {
     <div>
       <HomeSLider />
       <Divisor />
-      <Carrousel randomProducts={randomProducts} />
+      {!randomProducts || randomProducts.length === 0 ? (
+        <div>
+          <ReactLoading
+            type={"spin"}
+            color={"#03fc4e"}
+            height={100}
+            width={100}
+          />
+        </div>
+      ) : (
+        <Carrousel randomProducts={randomProducts} />
+      )}
     </div>
   );
 };

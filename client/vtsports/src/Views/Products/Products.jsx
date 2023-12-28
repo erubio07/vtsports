@@ -28,12 +28,14 @@ const Products = () => {
     <div>
       <div className={styles.container}>
         {!productsFilter || productsFilter.length === 0 ? (
-          <ReactLoading
-            type={"bars"}
-            color={"#03fc4e"}
-            height={100}
-            width={100}
-          />
+          <div className={styles.loaderContainer}>
+            <ReactLoading
+              type={"spin"}
+              color={"#03fc4e"}
+              height={100}
+              width={100}
+            />
+          </div>
         ) : (
           productsFilter
             .map((p) => (
