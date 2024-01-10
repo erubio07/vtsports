@@ -6,8 +6,8 @@ import { useNavigate } from "react-router-dom";
 import { getAllProducts } from "../../Redux/actions";
 import Pagination from "../../Components/Pagination/Pagination";
 import ReactLoading from "react-loading";
-
 import HomeSLider from "../../Components/Slider/HomeSlider";
+import Filter from "../../Components/Filter/Filter";
 const Products = () => {
   const dispatch = useDispatch();
   const products = useSelector((state) => state.products);
@@ -28,6 +28,7 @@ const Products = () => {
   return (
     <div>
       <HomeSLider />
+      <Filter />
       <div className={styles.container}>
         {!productsFilter || productsFilter.length === 0 ? (
           <div className={styles.loaderContainer}>
