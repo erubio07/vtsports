@@ -46,8 +46,8 @@
 
 /* Imagen del producto */
 .productImage {
-  max-width: 100%; /* Asegurar que la imagen no exceda el tamaño del contenedor */
-  max-height: 180px;
+  max-width: 286px; /* Asegurar que la imagen no exceda el tamaño del contenedor */
+  max-height: 250px;
   height: auto;
 }
 
