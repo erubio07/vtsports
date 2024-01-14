@@ -3,7 +3,12 @@ import styles from "./Products.module.css";
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-import { getAllProducts } from "../../Redux/actions";
+import {
+  getAllProducts,
+  filterByGenre,
+  filterByWaist,
+  sortByPrice,
+} from "../../Redux/actions";
 import Pagination from "../../Components/Pagination/Pagination";
 import ReactLoading from "react-loading";
 import HomeSLider from "../../Components/Slider/HomeSlider";
@@ -19,8 +24,10 @@ const Products = () => {
   const dispatch = useDispatch();
   const products = useSelector((state) => state.products);
   const productsFilter = useSelector((state) => state.productsFilter);
-  console.log(products);
-  // console.log(productsFilter);
+  const filterMessage = useSelector((state) => state.filterMessage);
+  console.log(filterMessage);
+  // console.log(products);
+  console.log(productsFilter);
   // const navigate = useNavigate();
   const totalProducts = products.length;
   const [itemsPerPage, setItemsPerPage] = useState(12);
@@ -29,7 +36,23 @@ const Products = () => {
   const firstIndex = lastIndex - itemsPerPage;
   const [show, setShow] = useState(false);
   const [productModal, setProductModal] = useState(null);
-  console.log(productModal);
+  // console.log(productModal);
+  const forceUpdate = React.useReducer((bool) => !bool)[1]; //fureza la actualizacion del estado
+
+  const handleFIlterByGenre = (e) => {
+    dispatch(filterByGenre(e.target.value));
+    setCurrentPage(1);
+  };
+
+  const handleFilterByWaist = (e) => {
+    dispatch(filterByWaist(e.target.value));
+    setCurrentPage(1);
+  };
+
+  const handleSortByPrice = (e) => {
+    dispatch(sortByPrice(e.target.value));
+    forceUpdate();
+  };
 
   const handleClose = () => setShow(false);
   const handleShow = (p) => {
@@ -44,7 +67,12 @@ const Products = () => {
   return (
     <div>
       <HomeSLider />
-      <Filter />
+      <Filter
+        handleFIlterByGenre={handleFIlterByGenre}
+        handleFilterByWaist={handleFilterByWaist}
+        handleSortByPrice={handleSortByPrice}
+      />
+
       <div className={styles.container}>
         {!productsFilter || productsFilter.length === 0 ? (
           <div className={styles.loaderContainer}>
@@ -67,6 +95,9 @@ const Products = () => {
                 <Card.Body>
                   <Card.Title>{p.name}</Card.Title>
                   <Card.Text>
+                    <p>
+                      <strong>Género:</strong> {p && p.Genre.name}
+                    </p>
                     <p>
                       <strong>Material:</strong> {p && p.Type.name}
                     </p>
