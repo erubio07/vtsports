@@ -100,7 +100,7 @@ const Products = () => {
                     className={styles.productImage}
                   />
                   <Card.Body>
-                    <Card.Title>{p.name}</Card.Title>
+                    <Card.Title>{p && p.name}</Card.Title>
                     <Card.Text>
                       <p>
                         <strong>Género:</strong> {p && p.Genre.name}
@@ -110,7 +110,7 @@ const Products = () => {
                       </p>
                       <p>
                         <strong>Talles:</strong>{" "}
-                        {p.Waists.map((w) => w.name).join(", ")}
+                        {p.Waists.map((w) => w && w.name).join(", ")}
                       </p>
                       <p className={styles.productPrice}>$ {p.price}</p>
                     </Card.Text>
