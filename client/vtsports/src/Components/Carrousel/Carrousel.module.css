@@ -20,7 +20,7 @@
 .productImage {
   width: 100%;
   height: 100%;
-  object-fit: fill; /* Ajusta la imagen para que cubra completamente su contenedor */
+  object-fit: contain; /* Ajusta la imagen para que cubra completamente su contenedor */
   position: absolute;
   top: 0;
   left: 0;

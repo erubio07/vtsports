@@ -32,9 +32,10 @@
   border: 1px solid #ddd;
   border-radius: 10px;
   padding: 16px;
-  height: 350px;
+  height: 310px; /* Reducir la altura */
+  width: 200px; /* Añadir un ancho fijo */
   margin: 15px;
-  max-width: 200px;
+  margin-bottom: 20px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   transition: box-shadow 0.3s ease-in;
 }
@@ -45,7 +46,8 @@
 
 /* Imagen del producto */
 .productImage {
-  max-width: 50%;
+  max-width: 286px; /* Asegurar que la imagen no exceda el tamaño del contenedor */
+  max-height: 250px;
   height: auto;
 }
 
@@ -62,7 +64,7 @@
 
 /* Estilos para el material y los talles */
 .productDetails {
-  margin-top: 10px;
+  margin-top: 6px;
 }
 
 .productDetails h3 {
@@ -75,7 +77,62 @@
 
 /* Estilos para el precio */
 .productPrice {
-  font-size: 1.2em;
+  font-size: 1.1em;
   font-weight: bold;
   color: #007bff;
+}
+
+.button {
+  margin-top: 6px; /* Agregar espacio entre el precio y el botón */
+  padding: 4px 8px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+/* Estilos para pantallas móviles */
+@media only screen and (max-width: 600px) {
+  .container {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto;
+    top: 0; /* Ajustar según sea necesario */
+    position: static; /* Ajustar según sea necesario */
+  }
+
+  .loaderContainer {
+    height: 100%; /* O ajustar según sea necesario */
+  }
+
+  .paginacion {
+    height: auto;
+  }
+
+  .productCard {
+    width: 100%; /* O ajustar según sea necesario */
+    height: auto; /* O ajustar según sea necesario */
+  }
+}
+
+/* Estilos para pantallas Full HD y superiores */
+@media only screen and (min-width: 1920px) {
+  .container {
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: repeat(4, 1fr);
+  }
+
+  .loaderContainer {
+    height: 100vh;
+    position: fixed;
+  }
+
+  .paginacion {
+    height: 110px;
+  }
+
+  .productCard {
+    width: 200px;
+    height: 310px;
+  }
 }
