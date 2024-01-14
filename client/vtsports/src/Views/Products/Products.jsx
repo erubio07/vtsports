@@ -152,7 +152,9 @@ const Products = () => {
                       <p>
                         <strong>Talles:</strong>{" "}
                         {productModal &&
-                          productModal.Waists.map((w) => w.name).join(", ")}
+                          productModal.Waists.map((w) => w && w.name).join(
+                            ", "
+                          )}
                       </p>
                       <p className={styles.productPrice}>
                         $ {productModal && productModal.price}
