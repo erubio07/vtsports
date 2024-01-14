@@ -47,6 +47,7 @@ function rootReducer(state = initialState, action) {
           ...state,
           products: state.products,
           productsFilter: state.products,
+          filterMessage: "",
         };
       } else {
         const data = state.products.filter(
@@ -57,6 +58,10 @@ function rootReducer(state = initialState, action) {
           ...state,
           products: state.products,
           productsFilter: data,
+          filterMessage:
+            data.length === 0
+              ? "No se encontraron productos con el género seleccionado."
+              : "",
         };
       }
     case FILTER_BY_WAIST:
