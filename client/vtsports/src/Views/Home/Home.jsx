@@ -7,6 +7,7 @@ import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getRandomProducts } from "../../Redux/actions";
 import ReactLoading from "react-loading";
+import Footer from "../../Components/Footer/Footer";
 const Home = () => {
   const dispatch = useDispatch();
   const randomProducts = useSelector((state) => state.randomProducts);
@@ -31,6 +32,7 @@ const Home = () => {
       ) : (
         <Carrousel randomProducts={randomProducts} />
       )}
+      <Footer />
     </div>
   );
 };
