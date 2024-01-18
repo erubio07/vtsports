@@ -11,7 +11,7 @@ import axios from "axios";
 
 export const getAllProducts = () => {
   return async function (dispatch) {
-    let products = await axios.get("http://localhost:3001/products");
+    let products = await axios.get("https://vtsports.onrender.com/products");
     return dispatch({
       type: GET_ALL_PRODUCTS,
       payload: products.data,
@@ -21,7 +21,7 @@ export const getAllProducts = () => {
 
 export const getProductDetail = (id) => {
   return async function (dispatch) {
-    let product = await axios.get(`http://localhost:3001/products/${id}`);
+    let product = await axios.get(`https://vtsports.onrender.com/products/${id}`);
     return dispatch({
       type: GET_PRODUCT_DETAIL,
       payload: product.data,
@@ -31,7 +31,7 @@ export const getProductDetail = (id) => {
 
 export const getRandomProducts = () => {
   return async function (dispatch) {
-    let products = await axios.get("http://localhost:3001/products/rand");
+    let products = await axios.get("https://vtsports.onrender.com/products/rand");
     return dispatch({
       type: GET_PRODUCTS_RANDOM,
       payload: products.data,
@@ -49,7 +49,7 @@ export const filterByGenre = (genre) => {
 
 export const getAllWaist = () => {
   return async function (dispatch) {
-    let waist = await axios.get("http://localhost:3001/waist");
+    let waist = await axios.get("https://vtsports.onrender.com/waist");
     // console.log(waist);
     return dispatch({
       type: GET_ALL_WAIST,
