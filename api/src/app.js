@@ -2,8 +2,6 @@ const express = require("express");
 const morgan = require("morgan");
 const cors = require("cors");
 const router = require("./routes/index");
-const local = "http://localhost:3000"
-const code = "https://turbo-yodel-wqwv465j54gc5xj4-3000.app.github.dev"
 
 const server = express();
 
