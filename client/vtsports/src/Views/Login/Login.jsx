@@ -1,27 +1,61 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import {useNavigate} from "react-router-dom"
 import Button from 'react-bootstrap/Button';
-import Form from 'react-bootstrap/Form';
 import styles from "./Login.module.css";
+import {useAuth} from "../../AuthProvider/AuthProvider"
 
 const Login = () => {
+  const [username, setUsername] = useState("");
+  console.log(username);
+  const [password, setPassword] = useState("");
+  console.log(password);
+  const auth = useAuth();
+  const navigate = useNavigate()
+  const user = "erubio";
+  const pass = 1234;
+
+  const handleUsername = (e) => {
+    setUsername(e.target.value)
+  }
+
+  const handlePassword = (e) => {
+    setPassword(e.target.value)
+  }
+
+  const handleLogin = (e) => {
+    e.preventDefault();
+    try {
+      if(!username || !password){
+        alert("Todos los campos son necesarios")
+      }
+      if(username === user && password === pass){
+        auth.setIsAuthenticated(true)
+        navigate("/dashboard")
+      }
+    } catch (error) {
+      console.log(error.message);
+    }
+  }
+
   return <div className={styles.formContainer}>
 
   <div className={styles.container}>
-    <Form>
-      <Form.Group className="mb-3" controlId="formBasicEmail">
-        <Form.Label>Username</Form.Label>
-        <Form.Control type="email" placeholder="Enter username" />
-      </Form.Group>
+  <form className={styles.form} onSubmit = {(e) => handleLogin(e)}>
+  <label for="username" className={styles.label}>Username:</label>
+  <div className={styles.inputContainer}>
 
-      <Form.Group className="mb-3" controlId="formBasicPassword">
-        <Form.Label>Password</Form.Label>
-        <Form.Control type="password" placeholder="Password" />
-      </Form.Group>
-      <Button variant="primary" type="submit">
-        Sing In
-      </Button>
-    </Form>
-  </div>;
+<input type="text" id="username" name="user_name" placeholder="Username" className={styles.input}/>
+  </div>
+<label for="password" className={styles.label}>Password:</label>
+<div className={styles.inputContainer}>
+
+<input type="password" id="password" name="password" placeholder="Password" className={styles.input}/>
+</div>
+<Button variant="primary" >
+    Sing In
+</Button>
+  </form>
+  </div>
   </div>
 };
 
