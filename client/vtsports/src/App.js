@@ -24,7 +24,7 @@ function App() {
           <Route exact path="/products/:id" element={<DetailProducts />} />
           <Route exact path="/login" element={<Login />} />
           <Route
-            path="/dashboard"
+            path="/dashboard/*"
             element={<ProtectedRoutes element={<Dashboard />} />}
           />
           <Route
