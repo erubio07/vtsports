@@ -6,6 +6,7 @@ import {
   GET_ALL_WAIST,
   FILTER_BY_WAIST,
   SORT_BY_PRICE,
+  GET_PRODUCTS_ADMIN
 } from "./types";
 import axios from "axios";
 
@@ -14,6 +15,16 @@ export const getAllProducts = () => {
     let products = await axios.get("https://vtsports.onrender.com/products");
     return dispatch({
       type: GET_ALL_PRODUCTS,
+      payload: products.data,
+    });
+  };
+};
+
+export const getProductsAdmin = () => {
+  return async function (dispatch) {
+    let products = await axios.get("https://vtsports.onrender.com/products/admin");
+    return dispatch({
+      type: GET_PRODUCTS_ADMIN,
       payload: products.data,
     });
   };

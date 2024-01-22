@@ -6,11 +6,14 @@ import {
   GET_ALL_WAIST,
   FILTER_BY_WAIST,
   SORT_BY_PRICE,
+  GET_PRODUCTS_ADMIN
 } from "./types";
 
 const initialState = {
   products: [],
   productsFilter: [],
+  productsAdmin: [],
+  productsFilterAdmin: [],
   productDetail: {},
   randomProducts: [],
   waist: [],
@@ -24,6 +27,12 @@ function rootReducer(state = initialState, action) {
         ...state,
         products: action.payload,
         productsFilter: action.payload,
+      };
+    case GET_PRODUCTS_ADMIN:
+      return {
+        ...state,
+        productsAdmin: action.payload,
+        productsFilterAdmin: action.payload,
       };
     case GET_PRODUCT_DETAIL:
       return {
