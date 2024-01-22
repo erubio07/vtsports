@@ -1,6 +1,7 @@
 import React, {useEffect} from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {getProductsAdmin} from "../../Redux/actions"
+import styles from "./ProductsAdmin.module.css"
 
 const ProductsAdmin = () => {
   const dispatch = useDispatch();
@@ -14,34 +15,34 @@ const ProductsAdmin = () => {
     return (
       
   
-      <div>
-       <table>
-        <thead>
+      <div className={styles.tableContainer}>
+       <table className={styles.table}>
+        <thead className={styles.thead}>
        <tr>
-          <th>ID</th>
-          <th>Nombre</th>
-          <th>Descripción</th>
-          <th>Tipo</th>
-          <th>Talles</th>
-          <th>Imagen</th>
-          <th>Estado</th>
-          <th>Editar</th>
-          <th>Modif. Estado</th>
+          <th className={styles.th}>ID</th>
+          <th className={styles.th}>Nombre</th>
+          <th className={styles.th}>Descripción</th>
+          <th className={styles.th}>Tipo</th>
+          <th className={styles.th}>Talles</th>
+          <th className={styles.th}>Imagen</th>
+          <th className={styles.th}>Estado</th>
+          <th className={styles.th}>Editar</th>
+          <th className={styles.th}>Modif. Estado</th>
         </tr>
         </thead>
-        <tbody>
+        <tbody className={styles.tbody}>
         {productsAdmin && productsAdmin.map((p) => (
           <tr key={p.id}>
-            <td>{p.id}</td>
-            <td>{p.name}</td>
-            <td>{p.description}</td>
-            <td>{p.Type.name}</td>
-            <td>{p.Genre.name}</td>
-            <td>{" "}{p.Waists && p.Waists.map((w) => w && w.name).join(", ")}</td>
-            <td>
+            <td className={styles.td}>{p.id}</td>
+            <td className={styles.td}>{p.name}</td>
+            <td className={styles.td}>{p.description}</td>
+            <td className={styles.td}>{p.Type.name}</td>
+            <td className={styles.td}>{p.Genre.name}</td>
+            <td className={styles.td}>{" "}{p.Waists && p.Waists.map((w) => w && w.name).join(", ")}</td>
+            <td className={styles.td}>
               <img
-                src={p.imagen}
-                alt={p.nombre}
+                src={p.image}
+                alt={p.name}
                 style={{ maxWidth: '20px', maxHeight: '20px' }}
               />
             </td>

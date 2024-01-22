@@ -19,6 +19,7 @@ const Dashboard = () => {
       <SideBar handleOption={handleOption}/>
       
       <div className={styles.content}>
+      {option === "" && <h2>Bienvenido al Panel de Usuario</h2>}
       {option === "products" && <ProductsAdmin/>}
       {option === "createProduct" && <CreateProducts/>}
       {option === "editUser" && <EditUser/>}

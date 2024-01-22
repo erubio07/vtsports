@@ -10,6 +10,8 @@
     align-items: center;
     justify-content: center;
     padding: 20px;
-    background-color: #f2f2f2;
     overflow-y: auto;
+    box-sizing: border-box;
+    margin-top: 80px; /* Ajusta el margen superior para evitar solapamiento con la barra de navegación */
+    margin-left: 220px; /* Ajusta el margen izquierdo para evitar solapamiento con la barra lateral */
   }
