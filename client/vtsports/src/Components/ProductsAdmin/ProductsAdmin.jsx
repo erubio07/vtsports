@@ -22,6 +22,7 @@ const ProductsAdmin = () => {
           <th className={styles.th}>ID</th>
           <th className={styles.th}>Nombre</th>
           <th className={styles.th}>Descripción</th>
+          <th className={styles.th}>Género</th>
           <th className={styles.th}>Tipo</th>
           <th className={styles.th}>Talles</th>
           <th className={styles.th}>Imagen</th>
@@ -36,8 +37,8 @@ const ProductsAdmin = () => {
             <td className={styles.td}>{p.id}</td>
             <td className={styles.td}>{p.name}</td>
             <td className={styles.td}>{p.description}</td>
-            <td className={styles.td}>{p.Type.name}</td>
             <td className={styles.td}>{p.Genre.name}</td>
+            <td className={styles.td}>{p.Type.name}</td>
             <td className={styles.td}>{" "}{p.Waists && p.Waists.map((w) => w && w.name).join(", ")}</td>
             <td className={styles.td}>
               <img

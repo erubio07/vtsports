@@ -1,12 +1,13 @@
 .tableContainer {
     overflow-x: auto;  /* Permite el desplazamiento horizontal si el contenido es demasiado ancho */
+    margin-top: 20px;
   }
   
 .table {
     width: 100%;
-    border-collapse: collapse;
-    margin-top: 20px; /* Puedes ajustar el margen según sea necesario */
-    font-size: 14px;
+    margin-top: 1250px;
+    
+    font-size: 12px;
   }
   
 .td {
