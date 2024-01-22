@@ -1,10 +1,15 @@
 import React from "react";
 
 const ProductsAdmin = () => {
-    return <div>
+    return (
+      
+  
+      <div>
         <h1> Products Admin </h1>
-    </div>
-    
-}
-
-export default ProductsAdmin;
+        
+      </div>
+      
+    );
+  };
+  
+  export default ProductsAdmin;;
