@@ -6,7 +6,9 @@ import {
   GET_ALL_WAIST,
   FILTER_BY_WAIST,
   SORT_BY_PRICE,
-  GET_PRODUCTS_ADMIN
+  GET_PRODUCTS_ADMIN,
+  GET_ALL_GENRES,
+  GET_ALL_TYPES
 } from "./types";
 import axios from "axios";
 
@@ -82,5 +84,26 @@ export const sortByPrice = (value) => {
   return {
     type: SORT_BY_PRICE,
     payload: value,
+  };
+};
+
+export const getAllGenres = () => {
+  return async function (dispatch){
+    let genres = await axios.get("https://vtsports.onrender.com/genres");
+    return dispatch({
+      type: GET_ALL_GENRES,
+      payload: genres.data
+    });
+  };
+};
+
+export const getAllTypes = () => {
+  return async function(dispatch){
+    let types = await axios.get("https://vtsports.onrender.com/types");
+    // console.log(types);
+    return dispatch({
+      type: GET_ALL_TYPES,
+      payload: types.data,
+    });
   };
 };

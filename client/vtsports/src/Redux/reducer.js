@@ -6,7 +6,9 @@ import {
   GET_ALL_WAIST,
   FILTER_BY_WAIST,
   SORT_BY_PRICE,
-  GET_PRODUCTS_ADMIN
+  GET_PRODUCTS_ADMIN,
+  GET_ALL_GENRES,
+  GET_ALL_TYPES
 } from "./types";
 
 const initialState = {
@@ -17,6 +19,8 @@ const initialState = {
   productDetail: {},
   randomProducts: [],
   waist: [],
+  genres: [],
+  types: [],
   filterMessage: "",
 };
 
@@ -124,6 +128,16 @@ function rootReducer(state = initialState, action) {
         ...state,
         productsFilter: sortedProducts,
       };
+    case GET_ALL_GENRES:
+      return {
+        ...state,
+        genres: action.payload,
+      }
+    case GET_ALL_TYPES:
+      return{
+        ...state,
+        types: action.payload,
+      }
     default:
       return state;
   }
