@@ -13,7 +13,7 @@
 .td {
     padding: 8px;
     border: 1px solid #ddd;
-    text-align: left;
+    text-align: center;
   }
   
 .th {
@@ -30,4 +30,11 @@
 .tbody tr:nth-child(even) {
     background-color: #f9f9f9;  /* Alternamos colores de fondo para mejorar la legibilidad */
     
+  }
+
+  .button {
+    border: none;
+    background: none;
+    padding: 0;
+    cursor: pointer;
   }

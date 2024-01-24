@@ -2,6 +2,9 @@ import React, {useEffect} from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {getProductsAdmin} from "../../Redux/actions"
 import styles from "./ProductsAdmin.module.css"
+import { FaRegEdit } from "react-icons/fa";
+import { AiFillDelete } from "react-icons/ai";
+import { FaTrashRestore } from "react-icons/fa";
 
 const ProductsAdmin = () => {
   const dispatch = useDispatch();
@@ -52,6 +55,22 @@ const ProductsAdmin = () => {
                 <span>No disponible</span>
               ) : (
                 <span>Disponible</span>
+              )}
+            </td>
+            <td className={styles.td}>
+              <button className={styles.button}>
+              <FaRegEdit style={{width: "20px", height: "20px"}}/>
+              </button>
+            </td>
+            <td className={styles.td}>
+              {p.deletedAt ? (
+                <button className={styles.button}>
+                  <FaTrashRestore style={{width: "20px", height: "20px"}}/>
+                </button>
+              ) : (
+                <button className={styles.button}>
+                  <AiFillDelete style={{width: "20px", height: "20px"}}/>
+                </button>
               )}
             </td>
           </tr>
