@@ -44,11 +44,8 @@ const CreateProducts = () => {
         <label>Género: </label>
         <input type="text" name="genre" value={input.genre} placeholder="Género" />
         <label>Talles: </label>
-        <div>
-          <ul>
-            
-          </ul>
-        </div>
+        {/* Tanto para Material, Género, Talles en lugar de poner un input tengo que
+        poner un select */}
       </form>
     </div>
   );
