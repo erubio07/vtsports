@@ -3,6 +3,7 @@ import styles from "./CreateProducts.module.css";
 import { useSelector, useDispatch } from "react-redux";
 import {getAllGenres, getAllWaist, getAllTypes} from "../../Redux/actions";
 import Button from 'react-bootstrap/Button';
+import axios from "axios";
 
 const CreateProducts = () => {
   const dispacth = useDispatch();
@@ -23,6 +24,9 @@ const CreateProducts = () => {
   })
 
   console.log(input);
+
+  const preset_key = "ml_default";
+  const cloud_name = "dytke2vlw";
 
   const handleChange = (e) => {
     setInput ({
@@ -59,6 +63,23 @@ const CreateProducts = () => {
     });
   };
 
+  const handleImage = (e) => {
+    const file = e.target.files[0];
+    const formData = new FormData();
+    formData.append("file", file);
+    formData.append("upload_preset", preset_key);
+    axios
+      .post(
+        `https://api.cloudinary.com/v1_1/${cloud_name}/image/upload`,
+        formData
+      )
+      .then((res) => setInput({
+        ...input,
+        image: res.data.secure_url
+      }))
+      .catch((err) => console.log(err));
+  }
+
   useEffect(() => {
     dispacth(getAllGenres());
     dispacth(getAllWaist());
@@ -74,7 +95,13 @@ const CreateProducts = () => {
         <label className={styles.label}>Descripción: </label>
         <input className={styles.input} type="text" name="description" value={input.description} placeholder="Descripción" onChange={handleChange}/>
         <label className={styles.label}>Imagen: </label>
-        <input className={styles.input} type="file" name="image" />
+        <input className={styles.input} type="file" name="image" onChange={handleImage}/>
+        {input.image && (
+          <div className={styles.thumbnailContainer}>
+            <label className={styles.label}>Preview:</label>
+            <img src={input.image} alt="Preview" className={styles.img}/>
+          </div>
+        )}
         <label className={styles.label}>Precio: </label>
         <input className={styles.input} type="text" name="price" value={input.price} placeholder="Precio" onChange={handleChange}/>
         {/* De acá para abajo van Select */}

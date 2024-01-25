@@ -43,7 +43,7 @@
     margin-bottom: 5px;
   }
   
-  .selectedWaistsButton {
+.selectedWaistsButton {
     margin-left: 5px;
     padding: 5px;
     background-color: red;
@@ -52,4 +52,15 @@
     border-radius: 25%; /* Agregamos esto para hacerlo redondo */
     cursor: pointer;
   }
+
+.thumbnailContainer {
+    display: flex;
+    align-items: center;
+    margin-top: 10px;
+  }
   
+.img {
+    width: 100px; /* Ajusta el ancho de la miniatura según tus necesidades */
+    height: auto;
+    margin-right: 10px;
+  }  
