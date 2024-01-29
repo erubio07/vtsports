@@ -93,7 +93,7 @@ const Products = () => {
             )}
             {productsFilter
               .map((p) => (
-                <Card className={styles.card}>
+                <Card className={styles.card} key={p.id}>
                   <Card.Img
                     variant="top"
                     src={p.image}

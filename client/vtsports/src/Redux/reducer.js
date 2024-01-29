@@ -8,7 +8,8 @@ import {
   SORT_BY_PRICE,
   GET_PRODUCTS_ADMIN,
   GET_ALL_GENRES,
-  GET_ALL_TYPES
+  GET_ALL_TYPES,
+  CREATE_PRODUCT,
 } from "./types";
 
 const initialState = {
@@ -132,12 +133,16 @@ function rootReducer(state = initialState, action) {
       return {
         ...state,
         genres: action.payload,
-      }
+      };
     case GET_ALL_TYPES:
-      return{
+      return {
         ...state,
         types: action.payload,
-      }
+      };
+    case CREATE_PRODUCT:
+      return {
+        ...state,
+      };
     default:
       return state;
   }

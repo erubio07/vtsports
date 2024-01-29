@@ -1,86 +1,148 @@
-import React, {useEffect} from "react";
+import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import {getProductsAdmin} from "../../Redux/actions"
-import styles from "./ProductsAdmin.module.css"
+import { getProductsAdmin } from "../../Redux/actions";
+import axios from "axios";
+import styles from "./ProductsAdmin.module.css";
 import { FaRegEdit } from "react-icons/fa";
 import { AiFillDelete } from "react-icons/ai";
 import { FaTrashRestore } from "react-icons/fa";
+import Swal from "sweetalert2";
 
 const ProductsAdmin = () => {
   const dispatch = useDispatch();
   const productsAdmin = useSelector((state) => state.productsFilterAdmin);
   console.log(productsAdmin);
 
+  const handleDelete = (id) => {
+    Swal.fire({
+      title: "Seguro quieres eliminar el producto",
+      text: "Podrás revertir este cambio desde la opción Modificar Estado",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Sí, Borrar",
+    }).then(async (result) => {
+      if (result.isConfirmed) {
+        await axios.delete(`http://localhost:3001/products/${id}`);
+        Swal.fire({
+          title: "Borrado!",
+          text: "Producto borrado con éxito!",
+          icon: "success",
+        });
+      }
+      setTimeout(() => {
+        dispatch(getProductsAdmin());
+      }, "2000");
+    });
+  };
+
+  const handleRestore = (id) => {
+    Swal.fire({
+      title: "Seguro quieres restaurar el producto",
+      text: "Podrás revertir este cambio desde la opción Modificar Estado",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Sí, Restaurar",
+    }).then(async (result) => {
+      if (result.isConfirmed) {
+        await axios.put(`http://localhost:3001/products/${id}`);
+        Swal.fire({
+          title: "Restaurado!",
+          text: "Producto restaurado con éxito!",
+          icon: "success",
+        });
+      }
+      setTimeout(() => {
+        dispatch(getProductsAdmin());
+      }, "2000");
+    });
+  };
+
   useEffect(() => {
-    dispatch(getProductsAdmin())
-  }, [dispatch])
-  
-    return (
-      
-  
-      <div className={styles.tableContainer}>
-       <table className={styles.table}>
+    dispatch(getProductsAdmin());
+  }, [dispatch]);
+
+  return (
+    <div className={styles.tableContainer}>
+      <table className={styles.table}>
         <thead className={styles.thead}>
-       <tr>
-          <th className={styles.th}>ID</th>
-          <th className={styles.th}>Nombre</th>
-          <th className={styles.th}>Descripción</th>
-          <th className={styles.th}>Género</th>
-          <th className={styles.th}>Tipo</th>
-          <th className={styles.th}>Talles</th>
-          <th className={styles.th}>Imagen</th>
-          <th className={styles.th}>Estado</th>
-          <th className={styles.th}>Editar</th>
-          <th className={styles.th}>Modif. Estado</th>
-        </tr>
+          <tr>
+            <th className={styles.th}>ID</th>
+            <th className={styles.th}>Nombre</th>
+            <th className={styles.th}>Descripción</th>
+            <th className={styles.th}>Género</th>
+            <th className={styles.th}>Tipo</th>
+            <th className={styles.th}>Talles</th>
+            <th className={styles.th}>Imagen</th>
+            <th className={styles.th}>Estado</th>
+            <th className={styles.th}>Editar</th>
+            <th className={styles.th}>Modif. Estado</th>
+          </tr>
         </thead>
         <tbody className={styles.tbody}>
-        {productsAdmin && productsAdmin.map((p) => (
-          <tr key={p.id}>
-            <td className={styles.td}>{p.id}</td>
-            <td className={styles.td}>{p.name}</td>
-            <td className={styles.td}>{p.description}</td>
-            <td className={styles.td}>{p.Genre.name}</td>
-            <td className={styles.td}>{p.Type.name}</td>
-            <td className={styles.td}>{" "}{p.Waists && p.Waists.map((w) => w && w.name).join(", ")}</td>
-            <td className={styles.td}>
-              <img
-                src={p.image}
-                alt={p.name}
-                style={{ maxWidth: '20px', maxHeight: '20px' }}
-              />
-            </td>
-            <td>
-              {p.deletedAt ? (
-                <span>No disponible</span>
-              ) : (
-                <span>Disponible</span>
-              )}
-            </td>
-            <td className={styles.td}>
-              <button className={styles.button}>
-              <FaRegEdit style={{width: "20px", height: "20px"}}/>
-              </button>
-            </td>
-            <td className={styles.td}>
-              {p.deletedAt ? (
-                <button className={styles.button}>
-                  <FaTrashRestore style={{width: "20px", height: "20px"}}/>
-                </button>
-              ) : (
-                <button className={styles.button}>
-                  <AiFillDelete style={{width: "20px", height: "20px"}}/>
-                </button>
-              )}
-            </td>
-          </tr>
-        ))}
+          {productsAdmin &&
+            productsAdmin.map((p) => (
+              <tr key={p.id}>
+                <td className={styles.td}>{p.id}</td>
+                <td className={styles.td}>{p.name}</td>
+                <td className={styles.td}>{p.description}</td>
+                <td className={styles.td}>{p.Genre.name}</td>
+                <td className={styles.td}>{p.Type.name}</td>
+                <td className={styles.td}>
+                  {" "}
+                  {p.Waists && p.Waists.map((w) => w && w.name).join(", ")}
+                </td>
+                <td className={styles.td}>
+                  <img
+                    src={p.image}
+                    alt={p.name}
+                    style={{ maxWidth: "20px", maxHeight: "20px" }}
+                  />
+                </td>
+                <td>
+                  {p.deletedAt ? (
+                    <span>No disponible</span>
+                  ) : (
+                    <span>Disponible</span>
+                  )}
+                </td>
+                <td className={styles.td}>
+                  <button className={styles.button}>
+                    <FaRegEdit style={{ width: "20px", height: "20px" }} />
+                  </button>
+                </td>
+                <td className={styles.td}>
+                  {p.deletedAt ? (
+                    <button
+                      className={styles.button}
+                      onClick={() => {
+                        handleRestore(p.id);
+                      }}
+                    >
+                      <FaTrashRestore
+                        style={{ width: "20px", height: "20px" }}
+                      />
+                    </button>
+                  ) : (
+                    <button
+                      className={styles.button}
+                      onClick={() => {
+                        handleDelete(p.id);
+                      }}
+                    >
+                      <AiFillDelete style={{ width: "20px", height: "20px" }} />
+                    </button>
+                  )}
+                </td>
+              </tr>
+            ))}
         </tbody>
-       </table>
-        
-      </div>
-      
-    );
-  };
-  
-  export default ProductsAdmin;
+      </table>
+    </div>
+  );
+};
+
+export default ProductsAdmin;
