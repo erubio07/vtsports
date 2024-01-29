@@ -88,7 +88,7 @@ const CreateProducts = () => {
       .catch((err) => console.log(err));
   };
 
-  const handleCreateProduct = (e) => {
+  const handleCreateProduct = async (e) => {
     e.preventDefault();
     if (
       !input.name ||
@@ -106,7 +106,7 @@ const CreateProducts = () => {
         footer: "Todo los campos deben estar completos",
       });
     }
-    dispacth(createProduct(input));
+    await dispacth(createProduct(input));
     setInput({
       name: "",
       description: "",
@@ -114,7 +114,7 @@ const CreateProducts = () => {
       price: "",
       type: "",
       genre: "",
-      waists: "",
+      waists: [],
     });
     Swal.fire({
       icon: "success",
@@ -183,7 +183,7 @@ const CreateProducts = () => {
         <select className={styles.select} onChange={handleTypes}>
           <option value="vacio">-</option>
           {types.map((t) => (
-            <option value={t.name} key={t.id}>
+            <option value={t.id} key={t.id}>
               {t.name}
             </option>
           ))}
@@ -192,7 +192,7 @@ const CreateProducts = () => {
         <select className={styles.select} onChange={handleGenre}>
           <option value="vacio">-</option>
           {genres.map((g) => (
-            <option value={g.name} key={g.id}>
+            <option value={g.id} key={g.id}>
               {g.name}
             </option>
           ))}
@@ -201,7 +201,7 @@ const CreateProducts = () => {
         <select className={styles.select} onChange={handleWaists}>
           <option value="vacio">-</option>
           {waist.map((w) => (
-            <option value={w.name} key={w.id}>
+            <option value={w.id} key={w.id}>
               {w.name}
             </option>
           ))}
