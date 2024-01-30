@@ -1,17 +1,28 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getProductsAdmin } from "../../Redux/actions";
 import axios from "axios";
+import Modal from "react-bootstrap/Modal";
+import Button from "react-bootstrap/Button";
 import styles from "./ProductsAdmin.module.css";
 import { FaRegEdit } from "react-icons/fa";
 import { AiFillDelete } from "react-icons/ai";
 import { FaTrashRestore } from "react-icons/fa";
 import Swal from "sweetalert2";
+import EditProducts from "../Edit Products/EditProducts";
 
 const ProductsAdmin = () => {
   const dispatch = useDispatch();
   const productsAdmin = useSelector((state) => state.productsFilterAdmin);
   console.log(productsAdmin);
+  const [show, setShow] = useState(false);
+  const [productModal, setProductModal] = useState(null);
+
+  const handleClose = () => setShow(false);
+  const handleShow = (p) => {
+    setProductModal(p);
+    setShow(true);
+  };
 
   const handleDelete = (id) => {
     Swal.fire({
@@ -110,7 +121,10 @@ const ProductsAdmin = () => {
                   )}
                 </td>
                 <td className={styles.td}>
-                  <button className={styles.button}>
+                  <button
+                    className={styles.button}
+                    onClick={() => handleShow(p)}
+                  >
                     <FaRegEdit style={{ width: "20px", height: "20px" }} />
                   </button>
                 </td>
@@ -140,6 +154,22 @@ const ProductsAdmin = () => {
               </tr>
             ))}
         </tbody>
+        <Modal show={show} onHide={handleClose}>
+          <Modal.Header closeButton>
+            <Modal.Title>Editar Producto</Modal.Title>
+          </Modal.Header>
+          <Modal.Body>
+            <EditProducts productModal={productModal} />
+          </Modal.Body>
+          <Modal.Footer>
+            <Button variant="secondary" onClick={handleClose}>
+              Cerrar
+            </Button>
+            <Button variant="primary" onClick={handleClose}>
+              Guardar Cambios
+            </Button>
+          </Modal.Footer>
+        </Modal>
       </table>
     </div>
   );

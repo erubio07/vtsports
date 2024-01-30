@@ -102,9 +102,9 @@ const CreateProducts = () => {
       Swal.fire({
         icon: "error",
         title: "Oops...",
-        text: "Algo ha salido mal!",
-        footer: "Todo los campos deben estar completos",
+        text: "Todos los campos deben estar completos!",
       });
+      return;
     }
     await dispacth(createProduct(input));
     setInput({
@@ -119,7 +119,7 @@ const CreateProducts = () => {
     Swal.fire({
       icon: "success",
       title: "OK",
-      text: "Actividad creada con éxito",
+      text: "Producto creado con éxito",
     });
   };
 
