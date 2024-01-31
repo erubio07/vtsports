@@ -6,6 +6,7 @@ const {
   restoreProduct,
   getAllProductsAddmin,
   getRamdomProducts,
+  updateProduct,
 } = require("../controllers/productsControllers");
 
 const getAllProductsHandler = async (req, res) => {
@@ -83,6 +84,25 @@ const getProductsRandomHandler = async (req, res) => {
   }
 };
 
+const updateProductHandler = async (req, res) => {
+  const { id, name, description, image, price, type, genre, waists } = req.body;
+  try {
+    const productUpdated = await updateProduct(
+      id,
+      name,
+      description,
+      image,
+      price,
+      type,
+      genre,
+      waists
+    );
+    res.status(200).json(productUpdated);
+  } catch (error) {
+    res.status(400).json({ error: error.message });
+  }
+};
+
 module.exports = {
   getAllProductsHandler,
   getProductByIdHandler,
@@ -91,4 +111,5 @@ module.exports = {
   restoreProductHandler,
   getAllProductsAdminHandler,
   getProductsRandomHandler,
+  updateProductHandler,
 };

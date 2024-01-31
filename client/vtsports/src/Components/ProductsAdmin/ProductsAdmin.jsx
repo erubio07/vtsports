@@ -165,9 +165,6 @@ const ProductsAdmin = () => {
             <Button variant="secondary" onClick={handleClose}>
               Cerrar
             </Button>
-            <Button variant="primary" onClick={handleClose}>
-              Guardar Cambios
-            </Button>
           </Modal.Footer>
         </Modal>
       </table>
