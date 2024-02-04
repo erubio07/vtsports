@@ -15,7 +15,7 @@ const router = Router();
 router.get("/", getAllProductsHandler);
 router.get("/rand", getProductsRandomHandler);
 router.get("/admin", getAllProductsAdminHandler);
-router.post("/", updateProductHandler);
+router.put("/", updateProductHandler);
 router.get("/:id", getProductByIdHandler);
 router.post("/", createProductHandler);
 router.delete("/:id", deleteProductHandler);

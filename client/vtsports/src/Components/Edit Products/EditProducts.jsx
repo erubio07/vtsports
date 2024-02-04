@@ -4,9 +4,11 @@ import { getAllGenres, getAllWaist, getAllTypes } from "../../Redux/actions";
 import axios from "axios";
 import Button from "react-bootstrap/Button";
 import styles from "./EditProducts.module.css";
+import Swal from "sweetalert2";
 
 const EditProducts = ({ productModal }) => {
-  console.log(productModal);
+  // console.log(productModal);
+  const id = productModal.id;
 
   const dispacth = useDispatch();
   const genres = useSelector((state) => state.genres);
@@ -20,23 +22,34 @@ const EditProducts = ({ productModal }) => {
     description: "",
     image: "",
     price: "",
-    type: "",
-    genre: "",
+    type: null,
+    genre: null,
     waists: [],
   });
 
   console.log(input);
 
-  const getData = () => {
+  const getData = async () => {
+    let data = await axios.get(`http://localhost:3001/products/${id}`);
+    let productData = data.data;
+    // console.log(productData);
     setInput({
-      ...input,
-      name: productModal.name,
-      description: productModal.description,
-      image: productModal.image,
-      price: productModal.price,
-      type: productModal.Type.id,
-      genre: productModal.Genre.id,
-      waists: productModal.Waists.map((i) => i.id || []),
+      name: productData.name,
+      description: productData.description,
+      image: productData.image,
+      price: productData.price,
+      type: {
+        id: productData.Type.id,
+        name: productData.Type.name,
+      },
+      genre: {
+        id: productData.Genre.id,
+        name: productData.Genre.name,
+      },
+      waists: productData.Waists.map((w) => ({
+        id: w.id,
+        name: w.name,
+      })),
     });
   };
   const preset_key = "ml_default";
@@ -64,10 +77,16 @@ const EditProducts = ({ productModal }) => {
   };
 
   const handleWaists = (e) => {
-    setInput({
-      ...input,
-      waists: [...input.waists, e.target.value],
-    });
+    const selectedWaistId = parseInt(e.target.value, 10); // Convertir a número
+    console.log(selectedWaistId);
+    const selectedWaist = waist.find((w) => w.id === selectedWaistId);
+
+    if (selectedWaist) {
+      setInput({
+        ...input,
+        waists: [...input.waists, selectedWaist],
+      });
+    }
   };
 
   const onClose = (w) => {
@@ -96,6 +115,51 @@ const EditProducts = ({ productModal }) => {
       .catch((err) => console.log(err));
   };
 
+  const handleUpdateProduct = async (e) => {
+    e.preventDefault();
+    try {
+      if (
+        !input.name ||
+        !input.description ||
+        !input.image ||
+        !input.price ||
+        !input.type ||
+        !input.genre ||
+        !input.waists
+      ) {
+        Swal.fire({
+          icon: "error",
+          title: "Oops...",
+          text: "Todos los campos deben estar completos!",
+        });
+        return;
+      }
+      const productData = {
+        ...input,
+        waists: input.waists.map((waist) => waist.id),
+      };
+      console.log(productData);
+
+      await axios.put("http://localhost:3001/products", productData);
+      setInput({
+        name: "",
+        description: "",
+        image: "",
+        price: "",
+        type: "",
+        genre: "",
+        waists: [],
+      });
+      Swal.fire({
+        icon: "success",
+        title: "OK",
+        text: "Producto creado con éxito",
+      });
+    } catch (error) {
+      console.error("Error al actualizar el producto:", error);
+    }
+  };
+
   useEffect(() => {
     dispacth(getAllGenres());
     dispacth(getAllWaist());
@@ -105,7 +169,7 @@ const EditProducts = ({ productModal }) => {
 
   return (
     <div>
-      <form className={styles.form}>
+      <form className={styles.form} onSubmit={(e) => handleUpdateProduct(e)}>
         <label className={styles.label}>Nombre: </label>
         <input
           className={styles.input}
@@ -149,7 +213,7 @@ const EditProducts = ({ productModal }) => {
         {/* De acá para abajo van Select */}
         <label className={styles.label}>Material: </label>
         <select className={styles.select} onChange={handleTypes}>
-          <option value="vacio">-</option>
+          <option value={input.type.id}>{input.type.name}</option>
           {types.map((t) => (
             <option value={t.id} key={t.id}>
               {t.name}
@@ -158,7 +222,7 @@ const EditProducts = ({ productModal }) => {
         </select>
         <label className={styles.label}>Género: </label>
         <select className={styles.select} onChange={handleGenre}>
-          <option value="vacio">-</option>
+          <option value={input.genre.id}>{input.genre.name}</option>
           {genres.map((g) => (
             <option value={g.id} key={g.id}>
               {g.name}
@@ -178,8 +242,8 @@ const EditProducts = ({ productModal }) => {
           <ul className={styles.selectedWaists}>
             <li className={styles.selectedWaistsItem}>
               {input.waists.map((w) => (
-                <div key={w}>
-                  {w}
+                <div key={w.id}>
+                  {w.name}
                   <button
                     className={styles.selectedWaistsButton}
                     onClick={() => onClose(w)}

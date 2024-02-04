@@ -56,10 +56,16 @@ const CreateProducts = () => {
   };
 
   const handleWaists = (e) => {
-    setInput({
-      ...input,
-      waists: [...input.waists, e.target.value],
-    });
+    const selectedWaistId = parseInt(e.target.value, 10); // Convertir a número
+    console.log(selectedWaistId);
+    const selectedWaist = waist.find((w) => w.id === selectedWaistId);
+
+    if (selectedWaist) {
+      setInput({
+        ...input,
+        waists: [...input.waists, selectedWaist],
+      });
+    }
   };
 
   const onClose = (w) => {
@@ -106,7 +112,12 @@ const CreateProducts = () => {
       });
       return;
     }
-    await dispacth(createProduct(input));
+    const productData = {
+      ...input,
+      waists: input.waists.map((waist) => waist.id),
+    };
+
+    await dispacth(createProduct(productData));
     setInput({
       name: "",
       description: "",
@@ -210,8 +221,8 @@ const CreateProducts = () => {
           <ul className={styles.selectedWaists}>
             <li className={styles.selectedWaistsItem}>
               {input.waists.map((w) => (
-                <div key={w}>
-                  {w}
+                <div key={w.id}>
+                  {w.name}
                   <button
                     className={styles.selectedWaistsButton}
                     onClick={() => onClose(w)}
