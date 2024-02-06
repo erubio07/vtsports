@@ -7,12 +7,13 @@ import styles from "./EditProducts.module.css";
 import Swal from "sweetalert2";
 
 const EditProducts = ({ productModal }) => {
-  // console.log(productModal);
+  console.log("componente montado");
+  console.log(productModal);
   const id = productModal.id;
-
+  console.log(id);
   const dispacth = useDispatch();
   const genres = useSelector((state) => state.genres);
-  // console.log(genres);
+  console.log(genres);
   const waist = useSelector((state) => state.waist);
   // console.log(waist);
   const types = useSelector((state) => state.types);
@@ -30,28 +31,33 @@ const EditProducts = ({ productModal }) => {
   console.log(input);
 
   const getData = async () => {
-    let data = await axios.get(`http://localhost:3001/products/${id}`);
-    let productData = data.data;
-    // console.log(productData);
-    setInput({
-      name: productData.name,
-      description: productData.description,
-      image: productData.image,
-      price: productData.price,
-      type: {
-        id: productData.Type.id,
-        name: productData.Type.name,
-      },
-      genre: {
-        id: productData.Genre.id,
-        name: productData.Genre.name,
-      },
-      waists: productData.Waists.map((w) => ({
-        id: w.id,
-        name: w.name,
-      })),
-    });
+    try {
+      const data = await axios.get(`http://localhost:3001/products/${id}`);
+      const dataProduct = data.data;
+      console.log(dataProduct);
+      setInput({
+        name: dataProduct.name,
+        description: dataProduct.description,
+        image: dataProduct.image,
+        price: dataProduct.price,
+        type: {
+          id: dataProduct.Type.id,
+          name: dataProduct.Type.name,
+        },
+        genre: {
+          id: dataProduct.Genre.id,
+          name: dataProduct.Genre.name,
+        },
+        waists: dataProduct.Waists.map((w) => ({
+          id: w.id,
+          name: w.name,
+        })),
+      });
+    } catch (error) {
+      console.log("error en get data;", error.message);
+    }
   };
+
   const preset_key = "ml_default";
   const cloud_name = "dytke2vlw";
 
@@ -63,6 +69,7 @@ const EditProducts = ({ productModal }) => {
   };
 
   const handleTypes = (e) => {
+    // console.log(e.target.value);
     setInput({
       ...input,
       type: e.target.value,
@@ -161,10 +168,11 @@ const EditProducts = ({ productModal }) => {
   };
 
   useEffect(() => {
+    console.log("useEffect cargado");
+    getData();
     dispacth(getAllGenres());
     dispacth(getAllWaist());
     dispacth(getAllTypes());
-    getData();
   }, [dispacth]);
 
   return (
@@ -213,7 +221,9 @@ const EditProducts = ({ productModal }) => {
         {/* De acá para abajo van Select */}
         <label className={styles.label}>Material: </label>
         <select className={styles.select} onChange={handleTypes}>
-          <option value={input.type.id}>{input.type.name}</option>
+          <option value={input.type ? input.type.id : "-"}>
+            {input.type ? input.type.name : "-"}
+          </option>
           {types.map((t) => (
             <option value={t.id} key={t.id}>
               {t.name}
@@ -222,7 +232,9 @@ const EditProducts = ({ productModal }) => {
         </select>
         <label className={styles.label}>Género: </label>
         <select className={styles.select} onChange={handleGenre}>
-          <option value={input.genre.id}>{input.genre.name}</option>
+          <option value={input.genre ? input.genre.id : "-"}>
+            {input.genre ? input.genre.name : "-"}
+          </option>
           {genres.map((g) => (
             <option value={g.id} key={g.id}>
               {g.name}
