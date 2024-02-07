@@ -162,10 +162,12 @@ const EditProducts = ({ productModal }) => {
       const productData = {
         ...input,
         waists: input.waists.map((waist) => waist.id),
+        type: input.type.id,
+        genre: input.genre.id,
       };
-      console.log(productData);
+      console.log("estos datos se envial back:", productData);
 
-      await axios.put("http://localhost:3001/products", productData);
+      await axios.put(`http://localhost:3001/products/${id}`, productData);
       setInput({
         name: "",
         description: "",
