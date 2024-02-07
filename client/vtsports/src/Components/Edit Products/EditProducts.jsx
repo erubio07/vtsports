@@ -19,6 +19,7 @@ const EditProducts = ({ productModal }) => {
   const types = useSelector((state) => state.types);
   // console.log(types);
   const [input, setInput] = useState({
+    id: null,
     name: "",
     description: "",
     image: "",
@@ -36,6 +37,7 @@ const EditProducts = ({ productModal }) => {
       const dataProduct = data.data;
       console.log(dataProduct);
       setInput({
+        id: dataProduct.id,
         name: dataProduct.name,
         description: dataProduct.description,
         image: dataProduct.image,
@@ -167,8 +169,9 @@ const EditProducts = ({ productModal }) => {
       };
       console.log("estos datos se envial back:", productData);
 
-      await axios.put(`http://localhost:3001/products/${id}`, productData);
+      await axios.put("http://localhost:3001/products", productData);
       setInput({
+        id: null,
         name: "",
         description: "",
         image: "",
@@ -180,7 +183,7 @@ const EditProducts = ({ productModal }) => {
       Swal.fire({
         icon: "success",
         title: "OK",
-        text: "Producto creado con éxito",
+        text: "Producto Modificado con éxito",
       });
     } catch (error) {
       console.error("Error al actualizar el producto:", error);
