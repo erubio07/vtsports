@@ -70,17 +70,35 @@ const EditProducts = ({ productModal }) => {
 
   const handleTypes = (e) => {
     // console.log(e.target.value);
-    setInput({
-      ...input,
-      type: e.target.value,
-    });
+    const selectedTypeId = parseInt(e.target.value, 10); // Convertir a número
+    console.log(selectedTypeId);
+    const selectedType = types.find((w) => w.id === selectedTypeId);
+    console.log(selectedType);
+    if (selectedType) {
+      setInput({
+        ...input,
+        type: {
+          id: selectedType.id,
+          name: selectedType.name,
+        },
+      });
+    }
   };
 
   const handleGenre = (e) => {
-    setInput({
-      ...input,
-      genre: e.target.value,
-    });
+    const selectedGenreId = parseInt(e.target.value, 10); // Convertir a número
+    console.log(selectedGenreId);
+    const selectedGenre = genres.find((w) => w.id === selectedGenreId);
+    console.log(selectedGenre);
+    if (selectedGenre) {
+      setInput({
+        ...input,
+        genre: {
+          id: selectedGenre.id,
+          name: selectedGenre.name,
+        },
+      });
+    }
   };
 
   const handleWaists = (e) => {
