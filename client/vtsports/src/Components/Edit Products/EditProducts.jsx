@@ -6,8 +6,9 @@ import Button from "react-bootstrap/Button";
 import styles from "./EditProducts.module.css";
 import Swal from "sweetalert2";
 
-const EditProducts = ({ productModal }) => {
+const EditProducts = ({ productModal, setShow }) => {
   console.log("componente montado");
+  console.log(setShow);
   console.log(productModal);
   const id = productModal.id;
   console.log(id);
@@ -119,7 +120,7 @@ const EditProducts = ({ productModal }) => {
   const onClose = (w) => {
     setInput({
       ...input,
-      waists: input.waists.filter((i) => i !== w),
+      waists: input.waists.filter((waist) => waist.id !== w.id),
     });
   };
 
@@ -168,7 +169,7 @@ const EditProducts = ({ productModal }) => {
         showCancelButton: true,
         confirmButtonColor: "#3085d6",
         cancelButtonColor: "#d33",
-        confirmButtonText: "Yes, delete it!",
+        confirmButtonText: "Sí, Modificar!",
       }).then(async (result) => {
         if (result.isConfirmed) {
           const productData = {
@@ -184,6 +185,7 @@ const EditProducts = ({ productModal }) => {
             text: "Producto modificado con éxito!",
             icon: "success",
           });
+          setShow(false);
         }
       });
     } catch (error) {

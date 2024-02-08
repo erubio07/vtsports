@@ -159,7 +159,7 @@ const ProductsAdmin = () => {
             <Modal.Title>Editar Producto</Modal.Title>
           </Modal.Header>
           <Modal.Body>
-            <EditProducts productModal={productModal} />
+            <EditProducts productModal={productModal} setShow={setShow} />
           </Modal.Body>
           <Modal.Footer>
             <Button variant="secondary" onClick={handleClose}>
