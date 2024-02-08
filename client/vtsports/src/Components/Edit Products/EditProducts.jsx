@@ -142,10 +142,11 @@ const EditProducts = ({ productModal }) => {
       .catch((err) => console.log(err));
   };
 
-  const handleUpdateProduct = async (e) => {
+  const handleUpdateProduct = (e) => {
     e.preventDefault();
     try {
       if (
+        !input.id ||
         !input.name ||
         !input.description ||
         !input.image ||
@@ -161,29 +162,29 @@ const EditProducts = ({ productModal }) => {
         });
         return;
       }
-      const productData = {
-        ...input,
-        waists: input.waists.map((waist) => waist.id),
-        type: input.type.id,
-        genre: input.genre.id,
-      };
-      console.log("estos datos se envial back:", productData);
-
-      await axios.put("http://localhost:3001/products", productData);
-      setInput({
-        id: null,
-        name: "",
-        description: "",
-        image: "",
-        price: "",
-        type: "",
-        genre: "",
-        waists: [],
-      });
       Swal.fire({
-        icon: "success",
-        title: "OK",
-        text: "Producto Modificado con éxito",
+        title: "Seguro quieres modificar el producto?",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Yes, delete it!",
+      }).then(async (result) => {
+        if (result.isConfirmed) {
+          const productData = {
+            ...input,
+            waists: input.waists.map((waist) => waist.id),
+            type: input.type.id,
+            genre: input.genre.id,
+          };
+          console.log("estos datos se envian al back:", productData);
+          await axios.put("http://localhost:3001/products", productData);
+          Swal.fire({
+            title: "Modificado!",
+            text: "Producto modificado con éxito!",
+            icon: "success",
+          });
+        }
       });
     } catch (error) {
       console.error("Error al actualizar el producto:", error);
