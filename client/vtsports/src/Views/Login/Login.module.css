@@ -1,0 +1,51 @@
+.formContainer{
+    display: flex;
+    justify-content: center;
+    align-items: center; /* Añade esta línea para centrar verticalmente */
+  height: 100vh; /* Ajusta la altura para ocupar toda la pantalla */
+  background-image: url('https://res.cloudinary.com/dytke2vlw/image/upload/v1701527722/vtsport/e67nfk32rwbwskakjd7s.png'); /* Reemplaza 'URL_DE_TU_IMAGEN' con la URL de tu imagen */
+  background-size: cover; /* Ajusta la propiedad background-size para cubrir toda la pantalla */
+  background-position: center;
+}
+.container{
+    display: flex;
+    align-items:center;
+    justify-content:center;
+    margin-top:50px;
+    width:300px;
+    height:300px;
+    
+    
+    opacity:0.8;
+}
+
+.label {
+    font-size: 14px;
+  }
+  
+  .inputContainer {
+    display: inline;
+    align-items: center;
+    margin-left: 30px;
+  }
+  
+  .input {
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+
+  .form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    width: 300px;
+    align-items: center;
+    margin: auto;
+    margin-top: 10px;
+    font-weight: bold;
+    color:black;
+    background-color: rgba(255, 255, 255, 0.9);
+    padding: 20px;
+    border-radius: 10px;
+  }

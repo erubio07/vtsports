@@ -143,6 +143,45 @@ const getRamdomProducts = async () => {
   }
 };
 
+const updateProduct = async (
+  id,
+  name,
+  description,
+  image,
+  price,
+  type,
+  genre,
+  waists
+) => {
+  try {
+    let product = await Product.findByPk(id);
+    let updateProduct = await product.update({
+      name,
+      description,
+      image,
+      price,
+      type,
+      genre,
+      waists,
+    });
+    await updateProduct.setGenre(genre);
+    await updateProduct.setType(type);
+    await updateProduct.addWaist(waists);
+    return {
+      id: updateProduct.id,
+      name: updateProduct.name,
+      description: updateProduct.description,
+      image: updateProduct.image,
+      price: updateProduct.price,
+      type: type,
+      genre: genre,
+      waists: waists,
+    };
+  } catch (error) {
+    throw new Error(error.message);
+  }
+};
+
 module.exports = {
   getAllProducts,
   getProductById,
@@ -151,4 +190,5 @@ module.exports = {
   restoreProduct,
   getAllProductsAddmin,
   getRamdomProducts,
+  updateProduct,
 };

@@ -1,0 +1,60 @@
+.form {
+  display: flex;
+  flex-direction: column;
+  margin-top: 20px;
+}
+
+.label {
+  margin-top: 10px;
+  font-weight: bold;
+}
+
+.input {
+  margin-top: 5px;
+  padding: 8px;
+  width: 100%;
+}
+
+.select {
+  margin-top: 5px;
+  padding: 8px;
+  width: 100%;
+}
+
+.button {
+  margin-top: 5px;
+}
+
+.selectedWaists {
+  margin-top: 5px;
+  list-style: none;
+  padding: 0;
+}
+
+.selectedWaistsItem {
+  display: flex;
+  align-items: center;
+  margin-bottom: 5px;
+}
+
+.selectedWaistsButton {
+  margin-left: 5px;
+  padding: 5px;
+  background-color: red;
+  color: white;
+  border: none;
+  border-radius: 25%; /* Agregamos esto para hacerlo redondo */
+  cursor: pointer;
+}
+
+.thumbnailContainer {
+  display: flex;
+  align-items: center;
+  margin-top: 10px;
+}
+
+.img {
+  width: 100px; /* Ajusta el ancho de la miniatura según tus necesidades */
+  height: auto;
+  margin-right: 10px;
+}

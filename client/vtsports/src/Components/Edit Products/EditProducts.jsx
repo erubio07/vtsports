@@ -1,35 +1,65 @@
 import React, { useState, useEffect } from "react";
-import styles from "./CreateProducts.module.css";
 import { useSelector, useDispatch } from "react-redux";
-import {
-  getAllGenres,
-  getAllWaist,
-  getAllTypes,
-  createProduct,
-} from "../../Redux/actions";
-import Button from "react-bootstrap/Button";
+import { getAllGenres, getAllWaist, getAllTypes } from "../../Redux/actions";
 import axios from "axios";
+import Button from "react-bootstrap/Button";
+import styles from "./EditProducts.module.css";
 import Swal from "sweetalert2";
 
-const CreateProducts = () => {
+const EditProducts = ({ productModal, setShow }) => {
+  console.log("componente montado");
+  console.log(setShow);
+  console.log(productModal);
+  const id = productModal.id;
+  console.log(id);
   const dispacth = useDispatch();
   const genres = useSelector((state) => state.genres);
-  // console.log(genres);
+  console.log(genres);
   const waist = useSelector((state) => state.waist);
   // console.log(waist);
   const types = useSelector((state) => state.types);
   // console.log(types);
   const [input, setInput] = useState({
+    id: null,
     name: "",
     description: "",
     image: "",
     price: "",
-    type: "",
-    genre: "",
+    type: null,
+    genre: null,
     waists: [],
   });
 
   console.log(input);
+
+  const getData = async () => {
+    try {
+      const data = await axios.get(`http://localhost:3001/products/${id}`);
+      const dataProduct = data.data;
+      console.log(dataProduct);
+      setInput({
+        id: dataProduct.id,
+        name: dataProduct.name,
+        description: dataProduct.description,
+        image: dataProduct.image,
+        price: dataProduct.price,
+        type: {
+          id: dataProduct.Type.id,
+          name: dataProduct.Type.name,
+        },
+        genre: {
+          id: dataProduct.Genre.id,
+          name: dataProduct.Genre.name,
+        },
+        waists: dataProduct.Waists.map((w) => ({
+          id: w.id,
+          name: w.name,
+        })),
+      });
+    } catch (error) {
+      console.log("error en get data;", error.message);
+    }
+  };
 
   const preset_key = "ml_default";
   const cloud_name = "dytke2vlw";
@@ -42,17 +72,36 @@ const CreateProducts = () => {
   };
 
   const handleTypes = (e) => {
-    setInput({
-      ...input,
-      type: e.target.value,
-    });
+    // console.log(e.target.value);
+    const selectedTypeId = parseInt(e.target.value, 10); // Convertir a número
+    console.log(selectedTypeId);
+    const selectedType = types.find((w) => w.id === selectedTypeId);
+    console.log(selectedType);
+    if (selectedType) {
+      setInput({
+        ...input,
+        type: {
+          id: selectedType.id,
+          name: selectedType.name,
+        },
+      });
+    }
   };
 
   const handleGenre = (e) => {
-    setInput({
-      ...input,
-      genre: e.target.value,
-    });
+    const selectedGenreId = parseInt(e.target.value, 10); // Convertir a número
+    console.log(selectedGenreId);
+    const selectedGenre = genres.find((w) => w.id === selectedGenreId);
+    console.log(selectedGenre);
+    if (selectedGenre) {
+      setInput({
+        ...input,
+        genre: {
+          id: selectedGenre.id,
+          name: selectedGenre.name,
+        },
+      });
+    }
   };
 
   const handleWaists = (e) => {
@@ -71,7 +120,7 @@ const CreateProducts = () => {
   const onClose = (w) => {
     setInput({
       ...input,
-      waists: input.waists.filter((i) => i !== w),
+      waists: input.waists.filter((waist) => waist.id !== w.id),
     });
   };
 
@@ -94,61 +143,67 @@ const CreateProducts = () => {
       .catch((err) => console.log(err));
   };
 
-  const handleCreateProduct = async (e) => {
+  const handleUpdateProduct = (e) => {
     e.preventDefault();
-    if (
-      !input.name ||
-      !input.description ||
-      !input.image ||
-      !input.price ||
-      !input.type ||
-      !input.genre ||
-      !input.waists
-    ) {
+    try {
+      if (
+        !input.id ||
+        !input.name ||
+        !input.description ||
+        !input.image ||
+        !input.price ||
+        !input.type ||
+        !input.genre ||
+        !input.waists
+      ) {
+        Swal.fire({
+          icon: "error",
+          title: "Oops...",
+          text: "Todos los campos deben estar completos!",
+        });
+        return;
+      }
       Swal.fire({
-        icon: "error",
-        title: "Oops...",
-        text: "Todos los campos deben estar completos!",
+        title: "Seguro quieres modificar el producto?",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Sí, Modificar!",
+      }).then(async (result) => {
+        if (result.isConfirmed) {
+          const productData = {
+            ...input,
+            waists: input.waists.map((waist) => waist.id),
+            type: input.type.id,
+            genre: input.genre.id,
+          };
+          console.log("estos datos se envian al back:", productData);
+          await axios.put("http://localhost:3001/products", productData);
+          Swal.fire({
+            title: "Modificado!",
+            text: "Producto modificado con éxito!",
+            icon: "success",
+          });
+          setShow(false);
+        }
       });
-      return;
+    } catch (error) {
+      console.error("Error al actualizar el producto:", error);
     }
-    const productData = {
-      ...input,
-      waists: input.waists.map((waist) => waist.id),
-    };
-
-    await dispacth(createProduct(productData));
-    setInput({
-      name: "",
-      description: "",
-      image: "",
-      price: "",
-      type: "",
-      genre: "",
-      waists: [],
-    });
-    Swal.fire({
-      icon: "success",
-      title: "OK",
-      text: "Producto creado con éxito",
-    });
   };
 
   useEffect(() => {
+    console.log("useEffect cargado");
+    getData();
     dispacth(getAllGenres());
     dispacth(getAllWaist());
     dispacth(getAllTypes());
   }, [dispacth]);
 
   return (
-    <div className={styles.container}>
-      <h3> Crear Nuevo Producto </h3>
-      <form
-        className={styles.form}
-        onSubmit={(e) => {
-          handleCreateProduct(e);
-        }}
-      >
+    <div>
+      <form className={styles.form} onSubmit={(e) => handleUpdateProduct(e)}>
         <label className={styles.label}>Nombre: </label>
         <input
           className={styles.input}
@@ -192,7 +247,9 @@ const CreateProducts = () => {
         {/* De acá para abajo van Select */}
         <label className={styles.label}>Material: </label>
         <select className={styles.select} onChange={handleTypes}>
-          <option value="vacio">-</option>
+          <option value={input.type ? input.type.id : "-"}>
+            {input.type ? input.type.name : "-"}
+          </option>
           {types.map((t) => (
             <option value={t.id} key={t.id}>
               {t.name}
@@ -201,7 +258,9 @@ const CreateProducts = () => {
         </select>
         <label className={styles.label}>Género: </label>
         <select className={styles.select} onChange={handleGenre}>
-          <option value="vacio">-</option>
+          <option value={input.genre ? input.genre.id : "-"}>
+            {input.genre ? input.genre.name : "-"}
+          </option>
           {genres.map((g) => (
             <option value={g.id} key={g.id}>
               {g.name}
@@ -236,11 +295,11 @@ const CreateProducts = () => {
           </ul>
         </div>
         <Button type="submit" variant="primary" className={styles.button}>
-          Crear Producto
+          Editar Producto
         </Button>
       </form>
     </div>
   );
 };
 
-export default CreateProducts;
+export default EditProducts;

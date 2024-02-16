@@ -1,5 +1,4 @@
 import React from "react";
-import styles from "./Products.module.css";
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
@@ -13,14 +12,16 @@ import Pagination from "../../Components/Pagination/Pagination";
 import ReactLoading from "react-loading";
 import HomeSLider from "../../Components/Slider/HomeSlider";
 import Filter from "../../Components/Filter/Filter";
+import Modal from "react-bootstrap/Modal";
 import Button from "react-bootstrap/Button";
 import Card from "react-bootstrap/Card";
-import Modal from "react-bootstrap/Modal";
 import Col from "react-bootstrap/Col";
 import Container from "react-bootstrap/Container";
 import Image from "react-bootstrap/Image";
 import Row from "react-bootstrap/Row";
 import Badge from "react-bootstrap/Badge";
+import styles from "./Products.module.css";
+
 const Products = () => {
   const dispatch = useDispatch();
   const products = useSelector((state) => state.products);
@@ -93,7 +94,7 @@ const Products = () => {
             )}
             {productsFilter
               .map((p) => (
-                <Card style={{ width: "18rem", marginBottom: "30px" }}>
+                <Card className={styles.card} key={p.id}>
                   <Card.Img
                     variant="top"
                     src={p.image}
@@ -123,6 +124,7 @@ const Products = () => {
                     onHide={handleClose}
                     aria-labelledby="contained-modal-title-vcenter"
                     centered
+                    className={styles.modal}
                   >
                     <Modal.Header closeButton>
                       <Modal.Title>

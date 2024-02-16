@@ -5,3 +5,7 @@ export const FILTER_BY_GENRE = "FILTER_BY_GENRE";
 export const GET_ALL_WAIST = "GET_ALL_WAIST";
 export const FILTER_BY_WAIST = "FILTER_BY_WAIST";
 export const SORT_BY_PRICE = "SORT_BY_PRICE";
+export const GET_PRODUCTS_ADMIN = "GET_PRODUCTS_ADMIN";
+export const GET_ALL_GENRES = "GET_ALL_GENRES";
+export const GET_ALL_TYPES = "GET_ALL_TYPES";
+export const CREATE_PRODUCT = "CREATE_PRODUCT";
