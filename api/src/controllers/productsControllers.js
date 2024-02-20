@@ -164,9 +164,10 @@ const updateProduct = async (
       genre,
       waists,
     });
+    console.log(updateProduct);
     await updateProduct.setGenre(genre);
     await updateProduct.setType(type);
-    await updateProduct.addWaist(waists);
+    await updateProduct.setWaists(waists);
     return {
       id: updateProduct.id,
       name: updateProduct.name,
