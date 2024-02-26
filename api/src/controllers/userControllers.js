@@ -24,7 +24,32 @@ const getUserById = async (id) => {
         }
     } catch (error) {
         throw new Eror(error.message);
-    }
-}
+    };
+};
 
-module.exports = {getAllUser}
+const createUser = async (name, surname, mail, image,username,password) => {
+    try {
+        const userExists = await Uer.findOne({
+            where: {
+                username: username
+            }
+        });
+        if(userExists){
+            throw new Error("user already exists");
+        } else {
+            const newUser = await User.create({
+                name,
+                surname,
+                mail,
+                image,
+                username,
+                password
+            });
+            return newUser;
+        }
+    } catch (error) {
+        throw new Error(error.message);
+    };
+};
+
+module.exports = {getAllUser, getUserById, createUser}
