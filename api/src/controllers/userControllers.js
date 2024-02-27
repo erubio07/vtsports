@@ -22,7 +22,7 @@ const getUserById = async (id) => {
 
 const createUser = async (name, surname, mail, image,username,password) => {
     try {
-        const userExists = await Uer.findOne({
+        const userExists = await User.findOne({
             where: {
                 username: username
             }
