@@ -11,6 +11,6 @@ router.use("/genres", genres);
 router.use("/types", types);
 router.use("/waist", waists);
 router.use("/products", products);
-reouter.use("/user", users);
+router.use("/user", users);
 
 module.exports = router;

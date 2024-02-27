@@ -14,14 +14,7 @@ const getUserById = async (id) => {
     try {
         const user = await User.findByPk(id);
         console.log(user);
-        return {
-            user.id,
-            user.name,
-            user.surname,
-            user.mail,
-            user.username,
-            user.image
-        }
+        return newUser;
     } catch (error) {
         throw new Eror(error.message);
     };

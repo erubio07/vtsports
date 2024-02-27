@@ -6,6 +6,7 @@ const fillUser = async () => {
             name: "Ezequiel",
             surname: "Rubio",
             mail: "erubio07@gmail.com",
+            image:"Este es el mail de la imagen de perfil",
             username: "erubio07",
             password: "2423122621"
         });
