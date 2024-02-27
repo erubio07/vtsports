@@ -2,9 +2,9 @@ require("dotenv").config();
 const { Sequelize } = require("sequelize");
 const fs = require("fs");
 const path = require("path");
-// const { DB_DEPLOY } = process.env;
+const { DB_DEPLOY } = process.env;
 
-const sequelize = new Sequelize("postgresql://erubio07:DJ9z3GFvhVdO@ep-small-poetry-57455562.us-east-2.aws.neon.tech/neondb?sslmode=require", {
+const sequelize = new Sequelize(DB_DEPLOY, {
   logging: false, // set to console.log to see the raw SQL queries
   native: false, // lets Sequelize know we can use pg-native for ~30% more speed
 });
