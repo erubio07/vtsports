@@ -6,7 +6,7 @@ const fillProduct = require("./src/controllers/fillProducts.js");
 const fillUser = require("./src/controllers/FillUser.js");
 
 const { conn } = require("./src/db.js");
-const port = 3001;
+const port = process.env.PORT ?? 3001;
 
 conn.sync({ force: true }).then(() => {
   server.listen(port, () => {
