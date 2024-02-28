@@ -3,7 +3,9 @@ const {User} = require("../db");
 
 const getAllUser = async () => {
     try {
-        const allUsers = await User.findAll();
+        const allUsers = await User.findAll({
+            paranoid: false,
+        });
         return allUsers;
     } catch (error) {
         throw new Error(error.message);
@@ -52,4 +54,30 @@ const createUser = async (name, surname, mail, image,username,password) => {
     };
 };
 
-module.exports = {getAllUser, getUserById, createUser}
+const deleteUser = async (id) => {
+    if(!id)throw new Error("debe especificar un id válido");
+    try {
+        await User.destroy({
+            where: {
+                id: id,
+            }
+        })
+    } catch (error) {
+        throw new Error(error.message);
+    };
+};
+
+const restoreUser = async (id) => {
+    if(!id) throw new Error("debe especificar un id válido");
+    try {
+        await User.restore({
+            where: {
+                id: id,
+            },
+        });
+    } catch (error) {
+        throw new Error(error.message);
+    };
+};
+
+module.exports = {getAllUser, getUserById, createUser, deleteUser, restoreUser}

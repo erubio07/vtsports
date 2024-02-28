@@ -1,4 +1,4 @@
-const {getAllUser, getUserById, createUser} = require("../controllers/userControllers");
+const {getAllUser, getUserById, createUser, deleteUser, restoreUser} = require("../controllers/userControllers");
 
 const getAllUserHandler = async (req, res) => {
     try {
@@ -27,6 +27,26 @@ const createUserHandler = async(req, res) => {
     } catch (error) {
         res.status(400).json({error:error.message});
     };
-}
+};
 
-module.exports = {getAllUserHandler, getUserByIdHandler, createUserHandler}
+const deleteUserHandler = async (req, res) => {
+    const {id} = req.body;
+    try {
+        await deleteUser(id);
+        res.status(200).send("Usuario eliminado correctamente");
+    } catch (error) {
+        res.status(400).json({error:error.message});
+    };
+};
+
+const restoreUserHandler = async (req, res) => {
+    const {id} = req.body;
+    try {
+        await restoreUser(id);
+        res.status(200).send("usuario restaurado exitosamente");
+    } catch (error) {
+        res.status(400).json({error:error.message});
+    };
+};
+
+module.exports = {getAllUserHandler, getUserByIdHandler, createUserHandler, deleteUserHandler, restoreUserHandler}

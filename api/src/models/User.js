@@ -40,6 +40,7 @@ module.exports = (sequelize) => {
         },
         {
             timestamps: false,
+            paranoid: true,
         }
     );
     User.beforeCreate(async (user, options) => {
