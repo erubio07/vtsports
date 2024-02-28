@@ -5,13 +5,13 @@ const jwt = require("jsonwebtoken");
 require("dotenv").config();
 
 const generateAccessToken = (user) => {
-    return jwt.sing({id: user.id}, process.env.ACCES_TOKEN, {
+    return jwt.sign({id: user.id}, process.env.ACCES_TOKEN, {
         expiresIn: 1800000,
     });
 };
 
 const generateRefreshToken = (user) => {
-    return jwt.sing({id: user.id}, process.env.REFRESH_TOKEN);
+    return jwt.sign({id: user.id}, process.env.REFRESH_TOKEN);
 };
 
 const login = async (username, password) => {
