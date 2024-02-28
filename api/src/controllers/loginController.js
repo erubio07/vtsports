@@ -46,4 +46,4 @@ const login = async (username, password) => {
     };
 };
 
-module.exports = login;
+module.exports = {login};
