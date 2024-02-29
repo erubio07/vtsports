@@ -14,8 +14,9 @@ const getAllUser = async () => {
 
 const getUserById = async (id) => {
     try {
-        const user = await User.findByPk(id);
-        console.log(user);
+        const user = await User.findByPk(id, {
+            paranoid: false,
+        });
         return {
             id: user.id,
             name: user.name,
@@ -25,7 +26,7 @@ const getUserById = async (id) => {
             username: user.username,
         };
     } catch (error) {
-        throw new Eror(error.message);
+        throw new Error(error.message);
     };
 };
 
