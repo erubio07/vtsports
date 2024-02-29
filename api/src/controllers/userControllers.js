@@ -24,6 +24,7 @@ const getUserById = async (id) => {
             mail: user.mail,
             image: user.image,
             username: user.username,
+            isAdmin: user.isAdmin,
             deletedAt: user.deletedAt,
         };
     } catch (error) {
@@ -49,7 +50,8 @@ const createUser = async (id, name, surname, mail, image,username,password) => {
                     mail,
                     image,
                     username,
-                    password
+                    password,
+                    isAdmin
                 });
                 return newUser;
             }
