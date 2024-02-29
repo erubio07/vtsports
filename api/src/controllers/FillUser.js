@@ -8,7 +8,8 @@ const fillUser = async () => {
             mail: "erubio07@gmail.com",
             image:"Este es el mail de la imagen de perfil",
             username: "erubio07",
-            password: "2423122621"
+            password: "2423122621",
+            isAdmin: true,
         });
     } catch (error) {
         throw new Error(error.message);

@@ -24,32 +24,38 @@ const getUserById = async (id) => {
             mail: user.mail,
             image: user.image,
             username: user.username,
+            deletedAt: user.deletedAt,
         };
     } catch (error) {
         throw new Error(error.message);
     };
 };
 
-const createUser = async (name, surname, mail, image,username,password) => {
+const createUser = async (id, name, surname, mail, image,username,password) => {
     try {
-        const userExists = await User.findOne({
-            where: {
-                username: username
-            }
-        });
-        if(userExists){
-            throw new Error("user already exists");
-        } else {
-            const newUser = await User.create({
-                name,
-                surname,
-                mail,
-                image,
-                username,
-                password
+        const userAdmin = await User.findByPk(id);
+        if(userAdmin.isAdmin){
+            const userExists = await User.findOne({
+                where: {
+                    username: username
+                }
             });
-            return newUser;
-        }
+            if(userExists){
+                throw new Error("user already exists");
+            } else {
+                const newUser = await User.create({
+                    name,
+                    surname,
+                    mail,
+                    image,
+                    username,
+                    password
+                });
+                return newUser;
+            }
+        }else{
+            throw new Error("usuario no autorizado");
+        };
     } catch (error) {
         throw new Error(error.message);
     };
