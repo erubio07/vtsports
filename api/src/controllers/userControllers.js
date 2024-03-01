@@ -89,4 +89,37 @@ const restoreUser = async (id) => {
     };
 };
 
-module.exports = {getAllUser, getUserById, createUser, deleteUser, restoreUser}
+const updateUser = async (id, name, surname, mail, image) => {
+    if(!id) throw new Error("se debe especificar un id");
+    try {
+        const user = await User.findByPk(id);
+        if(user){
+            let userUpdate = await user.update({
+                name,
+                surname,
+                mail,
+                image
+            });
+            return userUpdate;
+        };
+    } catch (error) {
+        throw new Error(error.message);
+    };
+};
+
+const updateUserToAdmin = async (id) => {
+if(!id) throw new Error("se debe especificar un id");
+try {
+    const user = await User.findByPk(id);
+    if(user){
+        let admin = await user.update({
+            isAdmin: true,
+        });
+        return admin;
+    };
+} catch (error) {
+    throw new Error(error.message);
+    };
+};
+
+module.exports = {getAllUser, getUserById, createUser, deleteUser, restoreUser, updateUser, updateUserToAdmin}

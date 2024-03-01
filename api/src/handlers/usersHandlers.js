@@ -1,4 +1,4 @@
-const {getAllUser, getUserById, createUser, deleteUser, restoreUser} = require("../controllers/userControllers");
+const {getAllUser, getUserById, createUser, deleteUser, restoreUser, updateUser, updateUserToAdmin} = require("../controllers/userControllers");
 
 const getAllUserHandler = async (req, res) => {
     try {
@@ -49,4 +49,23 @@ const restoreUserHandler = async (req, res) => {
     };
 };
 
-module.exports = {getAllUserHandler, getUserByIdHandler, createUserHandler, deleteUserHandler, restoreUserHandler}
+const updateUserHandler = async (req, res) => {
+    const {id, name, surname, mail, image} = req.body;
+    try {
+        const userUpdated = await updateUser(id, name, surname, mail, image);
+        res.status(200).json(userUpdated);
+    } catch (error) {
+        res.status(400).json({error:error.message});
+    };
+};
+
+const updateUserToAdminHandler = async (req, res) => {
+    const {id} = req.body;
+    try {
+        await updateUserToAdmin(id);
+        res.status(200).send("usuario ahora es admin");
+    } catch (error) {
+        res.status(400).json({erro:error.message});
+    };
+}
+module.exports = {getAllUserHandler, getUserByIdHandler, createUserHandler, deleteUserHandler, restoreUserHandler, updateUserHandler, updateUserToAdminHandler}
