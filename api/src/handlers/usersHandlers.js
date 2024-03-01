@@ -20,9 +20,9 @@ const getUserByIdHandler = async (req, res) => {
 };
 
 const createUserHandler = async(req, res) => {
-    const {id, name, surname, mail, image, username, password} = req.body;
+    const {id, name, surname, mail, image, username, password, isAdmin} = req.body;
     try {
-        const newUser = await createUser(id, name, surname, mail, image, username, password);
+        const newUser = await createUser(id, name, surname, mail, image, username, password, isAdmin);
         res.status(200).json(newUser);
     } catch (error) {
         res.status(400).json({error:error.message});

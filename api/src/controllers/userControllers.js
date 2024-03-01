@@ -32,7 +32,7 @@ const getUserById = async (id) => {
     };
 };
 
-const createUser = async (id, name, surname, mail, image,username,password) => {
+const createUser = async (id, name, surname, mail, image,username,password, isAdmin) => {
     try {
         const userAdmin = await User.findByPk(id);
         if(userAdmin.isAdmin){
