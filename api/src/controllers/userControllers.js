@@ -113,7 +113,7 @@ try {
     const user = await User.findByPk(id);
     if(user){
         let admin = await user.update({
-            isAdmin: true,
+            isAdmin: !user.isAdmin,
         });
         return admin;
     };
