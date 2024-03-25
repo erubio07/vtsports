@@ -10,7 +10,7 @@ server.use(cors());
 server.use(morgan("dev"));
 
 server.use((req, res, next) => {
-  res.header("Access-Control-Allow-Origin", "http://localhost:3000"); //Autorizo recibir solicitudes de este dominio
+  res.header("Access-Control-Allow-Origin", "https://vtsports-dev-dxex.3.us-1.fl0.io"); //Autorizo recibir solicitudes de este dominio
   res.header("Access-Control-Allow-Credentials", true); //Autorizo recibir solicitudes que incluyan el encabezado con credenciales
   res.header(
     "Access-Control-Allow-Headers",
