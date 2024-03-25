@@ -93,6 +93,7 @@ const updateUser = async (id, name, surname, mail, image) => {
     if(!id) throw new Error("se debe especificar un id");
     try {
         const user = await User.findByPk(id);
+        if(!user) throw new Error("no hay usuarios para el id especificado")
         if(user){
             let userUpdate = await user.update({
                 name,
