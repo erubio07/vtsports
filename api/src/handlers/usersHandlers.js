@@ -62,8 +62,8 @@ const updateUserHandler = async (req, res) => {
 const updateUserToAdminHandler = async (req, res) => {
     const {id} = req.body;
     try {
-        await updateUserToAdmin(id);
-        res.status(200).send("usuario ahora es admin");
+        let userAdmin = await updateUserToAdmin(id);
+        res.status(200).json(userAdmin);
     } catch (error) {
         res.status(400).json({erro:error.message});
     };
