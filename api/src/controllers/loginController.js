@@ -37,6 +37,7 @@ const login = async (username, password) => {
                         mail: user.mail,
                         image: user.image,
                         username: user.username,
+                        isAdmin: user.isAdmin,
                     }
                 };
             };
