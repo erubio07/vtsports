@@ -10,7 +10,7 @@ server.use(cors());
 server.use(morgan("dev"));
 
 server.use((req, res, next) => {
-  res.header("Access-Control-Allow-Origin", "https://legendary-space-system-vjxp54r75pqhw6x7-3000.app.github.dev"); //Autorizo recibir solicitudes de este dominio
+  res.header("Access-Control-Allow-Origin", "http://legendary-space-system-vjxp54r75pqhw6x7-3000.app.github.dev/"); //Autorizo recibir solicitudes de este dominio
   res.header("Access-Control-Allow-Credentials", true); //Autorizo recibir solicitudes que incluyan el encabezado con credenciales
   res.header(
     "Access-Control-Allow-Headers",
