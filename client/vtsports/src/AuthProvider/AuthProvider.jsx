@@ -1,6 +1,6 @@
 import { useContext, createContext, useState, useEffect } from "react";
 import React from "react";
-import jwt_decode from "jwt-decode";
+import { jwtDecode } from "jwt-decode";
 
 const AuthContext = createContext({
   isAuthenticated: false,
@@ -8,12 +8,13 @@ const AuthContext = createContext({
 
 export const AuthProvider = ({ children }) => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [userId, setUserId] = useState(null)
   const inactivity = 15 * 60 * 1000;
 
   useEffect(() => {
     const accessToken = localStorage.getItem("accessToken");
     if (accessToken) {
-      const decodedToken = jwt_decode(accessToken);
+      const decodedToken = jwtDecode(accessToken);
       setUserId(decodedToken.id);
       // console.log(decodedToken);
       const currentTime = Date.now() / 1000;
