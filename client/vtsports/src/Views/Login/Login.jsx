@@ -3,6 +3,8 @@ import { useNavigate } from "react-router-dom";
 import Button from "react-bootstrap/Button";
 import styles from "./Login.module.css";
 import { useAuth } from "../../AuthProvider/AuthProvider";
+import { useDispatch, useSelector } from "react-redux";
+import axios from "axios";
 
 const Login = () => {
   const [username, setUsername] = useState("");
@@ -11,8 +13,6 @@ const Login = () => {
   console.log(password);
   const auth = useAuth();
   const navigate = useNavigate();
-  const user = "erubio";
-  const pass = "123456";
 
   const handleUsername = (e) => {
     setUsername(e.target.value);
@@ -22,18 +22,31 @@ const Login = () => {
     setPassword(e.target.value);
   };
 
-  const handleLogin = (e) => {
+  const handleLogin = async (e) => {
     e.preventDefault();
     try {
       if (!username || !password) {
         alert("Todos los campos son necesarios");
       }
-      if (username !== user || password !== pass) {
-        alert("Alguno de los datos ingresados son incorrectos");
-      }
-      if (username === user && password === pass) {
-        auth.setIsAuthenticated(true);
-        navigate("/dashboard");
+      if(username && password){
+        const data = await axios.post("https://vtsports-dev-dxex.3.us-1.fl0.io/login", {
+          username,
+          password,
+        });
+        // console.log(data);
+        const userData = data.data;
+        // console.log(userData);
+        if(data.status === 200){
+          const {accessToken, refreshToken} = userData;
+          localStorage.setItem("accessToken", accessToken);
+          localStorage.setItem("refreshToken", refreshToken);
+          localStorage.setItem("userName", userData.user.username);
+          localStorage.setItem("userId", userData.user.id);
+          localStorage.setItem("name", userData.user.name);
+          console.log(localStorage);
+          auth.setIsAuthenticated(true);
+          navigate("/dashboard")
+        }
       }
     } catch (error) {
       console.log(error.message);

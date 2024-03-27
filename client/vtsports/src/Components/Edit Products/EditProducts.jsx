@@ -34,7 +34,7 @@ const EditProducts = ({ productModal, setShow }) => {
 
   const getData = async () => {
     try {
-      const data = await axios.get(`http://localhost:3001/products/${id}`);
+      const data = await axios.get(`https://vtsports-dev-dxex.3.us-1.fl0.io/products/${id}`);
       const dataProduct = data.data;
       console.log(dataProduct);
       setInput({
@@ -179,7 +179,7 @@ const EditProducts = ({ productModal, setShow }) => {
             genre: input.genre.id,
           };
           console.log("estos datos se envian al back:", productData);
-          await axios.put("http://localhost:3001/products", productData);
+          await axios.put("https://vtsports-dev-dxex.3.us-1.fl0.io", productData);
           Swal.fire({
             title: "Modificado!",
             text: "Producto modificado con éxito!",

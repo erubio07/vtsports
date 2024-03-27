@@ -1,8 +1,11 @@
 import React from "react";
 import { Link } from 'react-router-dom';
+import { useAuth } from "../../AuthProvider/AuthProvider";
 import styles from "./SideBar.module.css"
 
 const Sidebar = ({handleOption}) => {
+  const auth = useAuth();
+
     return (
       <nav className={styles.sidebar}>
         <ul className={styles.ul}>
@@ -19,7 +22,7 @@ const Sidebar = ({handleOption}) => {
             <Link to="/dashboard/change-password" className={styles.a}>Cambiar Contraseña</Link>
           </li>
           <li className={styles.li}>
-            <Link to="/dashboard/logout" className={styles.a}>Logout</Link>
+            <Link onClick = { () => auth.logOut()} className={styles.a}>Logout</Link>
           </li>
         </ul>
       </nav>
