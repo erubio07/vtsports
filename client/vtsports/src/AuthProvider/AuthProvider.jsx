@@ -8,17 +8,18 @@ const AuthContext = createContext({
 
 export const AuthProvider = ({ children }) => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
-  const [userId, setUserId] = useState(null)
+  const [userId, setUserId] = useState(null);
   const inactivity = 15 * 60 * 1000;
 
   useEffect(() => {
     const accessToken = localStorage.getItem("accessToken");
+    console.log(accessToken);
     if (accessToken) {
       const decodedToken = jwtDecode(accessToken);
       setUserId(decodedToken.id);
-      // console.log(decodedToken);
+      console.log(decodedToken);
       const currentTime = Date.now() / 1000;
-      // console.log(currentTime);
+      console.log(currentTime);
 
       if (decodedToken.exp < currentTime) {
         localStorage.removeItem("accessToken");
@@ -80,6 +81,7 @@ export const AuthProvider = ({ children }) => {
       value={{
         isAuthenticated,
         setIsAuthenticated,
+        logOut,
       }}
     >
       {children}

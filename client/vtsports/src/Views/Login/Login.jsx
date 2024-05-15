@@ -8,9 +8,9 @@ import axios from "axios";
 
 const Login = () => {
   const [username, setUsername] = useState("");
-  console.log(username);
+  // console.log(username);
   const [password, setPassword] = useState("");
-  console.log(password);
+  // console.log(password);
   const auth = useAuth();
   const navigate = useNavigate();
 
@@ -29,7 +29,7 @@ const Login = () => {
         alert("Todos los campos son necesarios");
       }
       if(username && password){
-        const data = await axios.post("https://vtsports-dev-dxex.3.us-1.fl0.io/login", {
+        const data = await axios.post("http://localhost:3001/login", {
           username,
           password,
         });
