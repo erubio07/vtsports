@@ -10,6 +10,7 @@ import {
   GET_ALL_GENRES,
   GET_ALL_TYPES,
   CREATE_PRODUCT,
+  GET_USER_BY_ID,
 } from "./types";
 
 const initialState = {
@@ -22,6 +23,7 @@ const initialState = {
   waist: [],
   genres: [],
   types: [],
+  user: [],
   filterMessage: "",
 };
 
@@ -143,6 +145,11 @@ function rootReducer(state = initialState, action) {
       return {
         ...state,
       };
+    case GET_USER_BY_ID:
+      return {
+        ...state,
+        user: action.payload,
+      }
     default:
       return state;
   }

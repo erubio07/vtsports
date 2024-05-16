@@ -10,12 +10,13 @@ import {
   GET_ALL_GENRES,
   GET_ALL_TYPES,
   CREATE_PRODUCT,
+  GET_USER_BY_ID
 } from "./types";
 import axios from "axios";
 
 export const getAllProducts = () => {
   return async function (dispatch) {
-    let products = await axios.get("https://vtsports-dev-dxex.3.us-1.fl0.io/products");
+    let products = await axios.get("https://vtsports.onrender.com/products");
     return dispatch({
       type: GET_ALL_PRODUCTS,
       payload: products.data,
@@ -25,7 +26,7 @@ export const getAllProducts = () => {
 
 export const getProductsAdmin = () => {
   return async function (dispatch) {
-    let products = await axios.get("https://vtsports-dev-dxex.3.us-1.fl0.io/products/admin");
+    let products = await axios.get("https://vtsports.onrender.com/products/admin");
     return dispatch({
       type: GET_PRODUCTS_ADMIN,
       payload: products.data,
@@ -35,7 +36,7 @@ export const getProductsAdmin = () => {
 
 export const getProductDetail = (id) => {
   return async function (dispatch) {
-    let product = await axios.get(`https://vtsports-dev-dxex.3.us-1.fl0.io/products/${id}`);
+    let product = await axios.get(`https://vtsports.onrender.com/products/${id}`);
     return dispatch({
       type: GET_PRODUCT_DETAIL,
       payload: product.data,
@@ -45,7 +46,7 @@ export const getProductDetail = (id) => {
 
 export const getRandomProducts = () => {
   return async function (dispatch) {
-    let products = await axios.get("https://vtsports-dev-dxex.3.us-1.fl0.io/products/rand");
+    let products = await axios.get("https://vtsports.onrender.com/products/rand");
     return dispatch({
       type: GET_PRODUCTS_RANDOM,
       payload: products.data,
@@ -63,7 +64,7 @@ export const filterByGenre = (genre) => {
 
 export const getAllWaist = () => {
   return async function (dispatch) {
-    let waist = await axios.get("https://vtsports-dev-dxex.3.us-1.fl0.io/waist");
+    let waist = await axios.get("https://vtsports.onrender.com/waist");
     // console.log(waist);
     return dispatch({
       type: GET_ALL_WAIST,
@@ -90,7 +91,7 @@ export const sortByPrice = (value) => {
 
 export const getAllGenres = () => {
   return async function (dispatch) {
-    let genres = await axios.get("https://vtsports-dev-dxex.3.us-1.fl0.io/genres");
+    let genres = await axios.get("https://vtsports.onrender.com/genres");
     return dispatch({
       type: GET_ALL_GENRES,
       payload: genres.data,
@@ -100,7 +101,7 @@ export const getAllGenres = () => {
 
 export const getAllTypes = () => {
   return async function (dispatch) {
-    let types = await axios.get("https://vtsports-dev-dxex.3.us-1.fl0.io/types");
+    let types = await axios.get("https://vtsports.onrender.com/types");
     // console.log(types);
     return dispatch({
       type: GET_ALL_TYPES,
@@ -112,7 +113,19 @@ export const getAllTypes = () => {
 export const createProduct = (info) => {
   console.log(info);
   return async function (dispatch) {
-    let activity = await axios.post("https://vtsports-dev-dxex.3.us-1.fl0.io/products", info);
+    let activity = await axios.post("https://vtsports.onrender.com/products", info);
     return activity;
+  };
+};
+
+export const getUserById = (id) => {
+  console.log(id);
+  return async function (dispatch) {
+    let user = await axios.post("https://vtsports.onrender.com/user/id", {id});
+    console.log(user);
+    return dispatch({
+      type: GET_USER_BY_ID,
+      payload: user.data,
+    });
   };
 };
