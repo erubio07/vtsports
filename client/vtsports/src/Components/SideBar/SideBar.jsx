@@ -19,7 +19,7 @@ const Sidebar = ({handleOption}) => {
             <Link  className={styles.a} onClick = { () => handleOption("editUser")}>Editar Datos del Usuario</Link>
           </li>
           <li className={styles.li}>
-            <Link to="/dashboard/change-password" className={styles.a}>Cambiar Contraseña</Link>
+            <Link className={styles.a} onClick = { () => handleOption("createUser")}>Crear Usuario</Link>
           </li>
           <li className={styles.li}>
             <Link onClick = { () => auth.logOut()} className={styles.a}>Logout</Link>

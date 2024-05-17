@@ -44,6 +44,7 @@ export const AuthProvider = ({ children }) => {
         localStorage.removeItem("refreshToken");
         localStorage.removeItem("userId");
         localStorage.removeItem("isAuthenticated");
+        dispacth(clearUser());
         setIsAuthenticated(false);
       } else {
         setIsAuthenticated(true);
@@ -71,6 +72,7 @@ export const AuthProvider = ({ children }) => {
         localStorage.removeItem("refreshToken");
         localStorage.removeItem("userId");
         localStorage.removeItem("isAuthenticated");
+        dispacth(clearUser());
         setIsAuthenticated(false);
       }
     }, 1000);

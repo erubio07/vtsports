@@ -24,7 +24,7 @@ const initialState = {
   waist: [],
   genres: [],
   types: [],
-  user: [],
+  user: {},
   filterMessage: "",
 };
 

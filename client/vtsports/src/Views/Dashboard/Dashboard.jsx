@@ -6,6 +6,7 @@ import SideBar from "../../Components/SideBar/SideBar.jsx"
 import ProductsAdmin from "../../Components/ProductsAdmin/ProductsAdmin.jsx"
 import CreateProducts from "../../Components/CreateProducts/CreateProducts.jsx"
 import EditUser from "../../Components/EditUser/EditUser.jsx"
+import CreateUser from "../../Components/CreateUser/CreateUser.jsx"
 
 const Dashboard = () => {
   const [option, setOption] = useState("");
@@ -29,6 +30,7 @@ const Dashboard = () => {
       {option === "products" && <ProductsAdmin/>}
       {option === "createProduct" && <CreateProducts/>}
       {option === "editUser" && <EditUser/>}
+      {option === "createUser" && <CreateUser/>}
       </div>
       
     </div>

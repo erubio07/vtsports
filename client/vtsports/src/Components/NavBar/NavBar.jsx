@@ -39,10 +39,10 @@ function Navbar() {
       <NavLink className={styles.link} to="/about">
         Sobre Nosotros
       </NavLink>
-      {!user && (
-      <NavLink className={styles.link} to="/login">
-        Login
-      </NavLink>
+      {!user.isAdmin && (
+        <NavLink className={styles.link} to="/login">
+          Login
+        </NavLink>
       )}
     </div>
   );
