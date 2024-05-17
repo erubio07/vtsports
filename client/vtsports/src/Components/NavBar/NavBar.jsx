@@ -16,7 +16,7 @@ function Navbar() {
 
       dispacth(getUserById(id))
     }
-  }, []);
+  }, [id]);
 
   return (
     <div className={styles.container}>
@@ -25,6 +25,11 @@ function Navbar() {
         alt="logo VtSports"
         className={styles.logo}
       />
+      {user.isAdmin && (
+        <NavLink className={styles.link} to="/dashboard">
+          Dashboard
+        </NavLink>
+      )}
       <NavLink className={styles.link} to="/">
         Home
       </NavLink>
@@ -34,11 +39,12 @@ function Navbar() {
       <NavLink className={styles.link} to="/about">
         Sobre Nosotros
       </NavLink>
+      {!user && (
       <NavLink className={styles.link} to="/login">
         Login
       </NavLink>
+      )}
     </div>
-
   );
 }
 

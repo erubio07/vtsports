@@ -10,7 +10,8 @@ import {
   GET_ALL_GENRES,
   GET_ALL_TYPES,
   CREATE_PRODUCT,
-  GET_USER_BY_ID
+  GET_USER_BY_ID,
+  CLEAR_USER
 } from "./types";
 import axios from "axios";
 
@@ -128,4 +129,10 @@ export const getUserById = (id) => {
       payload: user.data,
     });
   };
+};
+
+export const clearUser = () => {
+ return {
+  type: CLEAR_USER,
+ }
 };

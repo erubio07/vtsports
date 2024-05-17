@@ -1,6 +1,8 @@
 import { useContext, createContext, useState, useEffect } from "react";
 import React from "react";
 import { jwtDecode } from "jwt-decode";
+import { clearUser } from "../Redux/actions";
+import { useDispatch } from "react-redux";
 
 console.log(localStorage);
 
@@ -10,6 +12,7 @@ const AuthContext = createContext({
 });
 
 export const AuthProvider = ({ children }) => {
+  const dispacth = useDispatch();
   const [isAuthenticated, setIsAuthenticated] = useState(() => {
     // Intenta obtener el estado de autenticación del localStorage al inicio
     const storedAuth = localStorage.getItem("isAuthenticated");
@@ -86,6 +89,7 @@ export const AuthProvider = ({ children }) => {
     localStorage.removeItem("userId");
     localStorage.removeItem("userName");
     localStorage.removeItem("name");
+    dispacth(clearUser());
 
     setIsAuthenticated(false);
     setUserId(null);

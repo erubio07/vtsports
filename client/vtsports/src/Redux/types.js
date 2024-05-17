@@ -10,3 +10,4 @@ export const GET_ALL_GENRES = "GET_ALL_GENRES";
 export const GET_ALL_TYPES = "GET_ALL_TYPES";
 export const CREATE_PRODUCT = "CREATE_PRODUCT";
 export const GET_USER_BY_ID = "GET_USER_BY_ID";
+export const CLEAR_USER = "CLEAR_USER";
