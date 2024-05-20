@@ -23,6 +23,9 @@ const Sidebar = ({handleOption}) => {
           {user.isAdmin && <li className={styles.li}>
             <Link className={styles.a} onClick = { () => handleOption("createUser")}>Crear Usuario</Link>
           </li>}
+          {user.isAdmin && <li className={styles.li}>
+            <Link className={styles.a} onClick = { () => handleOption("viewUsers")}>Ver Usuarios</Link>
+          </li>}
           <li className={styles.li}>
             <Link onClick = { () => auth.logOut()} className={styles.a}>Logout</Link>
           </li>

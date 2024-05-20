@@ -11,3 +11,4 @@ export const GET_ALL_TYPES = "GET_ALL_TYPES";
 export const CREATE_PRODUCT = "CREATE_PRODUCT";
 export const GET_USER_BY_ID = "GET_USER_BY_ID";
 export const CLEAR_USER = "CLEAR_USER";
+export const GET_ALL_USER = "GET_ALL_USER";

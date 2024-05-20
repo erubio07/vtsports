@@ -11,7 +11,8 @@ import {
   GET_ALL_TYPES,
   CREATE_PRODUCT,
   GET_USER_BY_ID,
-  CLEAR_USER
+  CLEAR_USER,
+  GET_ALL_USER
 } from "./types";
 import axios from "axios";
 
@@ -144,3 +145,13 @@ export const createUser = (info) => {
     return newUser;
   };
 };
+
+export const getAllUser = () => {
+  return async function (dispatch){
+    let users = await axios.get("https://vtsports.onrender.com/user");
+    return dispatch ({
+      type: GET_ALL_USER,
+      payload: users.data
+    })
+  }
+}

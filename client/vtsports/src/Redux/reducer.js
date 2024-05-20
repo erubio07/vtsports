@@ -12,6 +12,7 @@ import {
   CREATE_PRODUCT,
   GET_USER_BY_ID,
   CLEAR_USER,
+  GET_ALL_USER
 } from "./types";
 
 const initialState = {
@@ -25,6 +26,7 @@ const initialState = {
   genres: [],
   types: [],
   user: {},
+  userList: [],
   filterMessage: "",
 };
 
@@ -156,6 +158,11 @@ function rootReducer(state = initialState, action) {
         ...state,
         user: {}
       };
+    case GET_ALL_USER:
+      return{
+        ...state,
+        userList: action.payload,
+      }
     default:
       return state;
   }
