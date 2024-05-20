@@ -51,21 +51,30 @@ const CreateUser = () => {
             return;
           }
       };
-      await dispatch(createUser(input));
-      setInput({
-        name: "",
-        surname: "",
-        mail: "",
-        image: "",
-        username: "",
-        password: "",
-        isAdmin: false,
-      });
-      Swal.fire({
-        icon: "success",
-        title: "OK",
-        text: "Usuario creado con éxito",
-      });
+      try {
+        
+        await dispatch(createUser(input));
+        setInput({
+          name: "",
+          surname: "",
+          mail: "",
+          image: "",
+          username: "",
+          password: "",
+          isAdmin: false,
+        });
+        Swal.fire({
+          icon: "success",
+          title: "OK",
+          text: "Usuario creado con éxito",
+        });
+      } catch (error) {
+        Swal.fire({
+          icon: "error",
+          title: "Error",
+          text: error.response.data.error || "Algo salió mal. Por favor, inténtalo de nuevo.",
+        });
+      }
     };
 
     return(
