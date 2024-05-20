@@ -25,7 +25,7 @@ function Navbar() {
         alt="logo VtSports"
         className={styles.logo}
       />
-      {user.isAdmin && (
+      {user.id && (
         <NavLink className={styles.link} to="/dashboard">
           Dashboard
         </NavLink>
@@ -39,7 +39,7 @@ function Navbar() {
       <NavLink className={styles.link} to="/about">
         Sobre Nosotros
       </NavLink>
-      {!user.isAdmin && (
+      {!user.id && (
         <NavLink className={styles.link} to="/login">
           Login
         </NavLink>

@@ -136,3 +136,11 @@ export const clearUser = () => {
   type: CLEAR_USER,
  }
 };
+
+export const createUser = (info) => {
+  console.log(info);
+  return async function (dispatch){
+    let newUser = await axios.post("https://vtsports.onrender.com/user", info);
+    return newUser;
+  };
+};

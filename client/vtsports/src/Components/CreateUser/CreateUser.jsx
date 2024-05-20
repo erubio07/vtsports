@@ -1,10 +1,16 @@
 import React, {useState} from "react";
 import Button from "react-bootstrap/Button";
 import styles from "./CreateUser.module.css";
-import axios from "axios";
+import {createUser, getUserById} from "../../Redux/actions";
+import { useSelector, useDispatch } from "react-redux";
+import Swal from "sweetalert2";
 
 const CreateUser = () => {
+    const dispatch = useDispatch();
+    const user = useSelector((state) => state.user)
+    console.log(user);
     const [input, setInput] = useState({
+        id: user.id,
         name: "",
         surname: "",
         mail: "",
@@ -12,7 +18,8 @@ const CreateUser = () => {
         username: "",
         password: "",
         isAdmin: false
-    })
+    });
+    console.log(input);
 
     const handleChange = (e) => {
         setInput({
@@ -21,12 +28,53 @@ const CreateUser = () => {
         });
       };
 
+    const handleIsAdmin = (e) => {
+      setInput({
+        ...input,
+        isAdmin: e.target.checked,
+      })
+    }
+
+    const handleCreateUser = async (e) => {
+      e.preventDefault();
+      if(!input.name || 
+        !input.surname || 
+        !input.mail || 
+        !input.username || 
+        !input.password ){
+          {
+            Swal.fire({
+              icon: "error",
+              title: "Oops...",
+              text: "Todos los campos obligatorios deben estar completos!",
+            });
+            return;
+          }
+      };
+      await dispatch(createUser(input));
+      setInput({
+        name: "",
+        surname: "",
+        mail: "",
+        image: "",
+        username: "",
+        password: "",
+        isAdmin: false,
+      });
+      Swal.fire({
+        icon: "success",
+        title: "OK",
+        text: "Usuario creado con éxito",
+      });
+    };
+
     return(
         <div>
             <div className={styles.container}>
       <h3> Crear Nuevo Usuario </h3>
       <form
         className={styles.form}
+        onSubmit={ (e) => {handleCreateUser(e)}}
       >
         <label className={styles.label}>Nombre: </label>
         <input
@@ -41,7 +89,7 @@ const CreateUser = () => {
         <input
           className={styles.input}
           type="text"
-          name="description"
+          name="surname"
           value={input.surname}
           placeholder="Apellido"
           onChange={handleChange}
@@ -62,7 +110,7 @@ const CreateUser = () => {
         <input
           className={styles.input}
           type="text"
-          name="price"
+          name="mail"
           value={input.mail}
           placeholder="Mail"
           onChange={handleChange}
@@ -71,7 +119,7 @@ const CreateUser = () => {
         <input
           className={styles.input}
           type="text"
-          name="price"
+          name="username"
           value={input.username}
           placeholder="Usuario"
           onChange={handleChange}
@@ -79,12 +127,20 @@ const CreateUser = () => {
         <label className={styles.label}>Contraseña: </label>
         <input
           className={styles.input}
-          type="text"
-          name="price"
+          type="password"
+          name="password"
           value={input.password}
           placeholder="Contraseña"
           onChange={handleChange}
         />
+        <label className={styles.label}>Admin: </label>
+          <input
+            className={styles.input}
+            type="checkbox"
+            name="isAdmin"
+            checked={input.isAdmin}
+            onChange={handleIsAdmin}
+          />
         <Button type="submit" variant="primary" className={styles.button}>
           Crear Usuario
         </Button>
