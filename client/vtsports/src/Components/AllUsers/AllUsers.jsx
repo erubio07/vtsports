@@ -6,12 +6,38 @@ import { FaTrashRestore } from "react-icons/fa";
 import { FaCircleUser } from "react-icons/fa6";
 import { MdOutlineAdminPanelSettings } from "react-icons/md";
 import { MdAdminPanelSettings } from "react-icons/md";
+import axios from "axios";
 import styles from "./AllUsers.module.css"
+import Swal from "sweetalert2";
 
 const AllUsers = () => {
 const dispatch = useDispatch();
 const users = useSelector((state) => state.userList);
 console.log(users);
+
+const handleUserDelete = (id) => {
+  Swal.fire({
+    title: "Seguro quieres eliminar el usuario",
+    text: "Podrás revertir este cambio desde la opción Modificar Estado",
+    icon: "warning",
+    showCancelButton: true,
+    confirmButtonColor: "#3085d6",
+    cancelButtonColor: "#d33",
+    confirmButtonText: "Sí, Borrar",
+  }).then(async (result) => {
+    if (result.isConfirmed) {
+      await axios.delete("https://vtsports.onrender.com/user", {data: {id}});
+      Swal.fire({
+        title: "Borrado!",
+        text: "Producto borrado con éxito!",
+        icon: "success",
+      });
+    }
+    setTimeout(() => {
+      dispatch(getAllUser());
+    }, "2000");
+  });
+};
 
 useEffect(() => {
     dispatch(getAllUser());
@@ -74,6 +100,9 @@ useEffect(() => {
                   ) : (
                     <button
                       className={styles.button}
+                      onClick={() => {
+                        handleUserDelete(u.id);
+                      }}
                     >
                       <AiFillDelete style={{ width: "20px", height: "20px" }} />
                     </button>

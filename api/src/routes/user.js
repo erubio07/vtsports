@@ -6,8 +6,8 @@ const router = Router();
 router.get("/", getAllUserHandler);
 router.post("/", createUserHandler);
 router.post("/id", getUserByIdHandler);
-router.delete("/id", deleteUserHandler);
-router.put("/id", restoreUserHandler);
+router.delete("/:id", deleteUserHandler);
+router.put("/:id", restoreUserHandler);
 router.put("/update", updateUserHandler);
 router.put("/update/admin", updateUserToAdminHandler);
 

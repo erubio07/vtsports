@@ -30,7 +30,7 @@ const createUserHandler = async(req, res) => {
 };
 
 const deleteUserHandler = async (req, res) => {
-    const {id} = req.body;
+    const {id} = req.params;
     try {
         await deleteUser(id);
         res.status(200).send("Usuario eliminado correctamente");
@@ -40,7 +40,7 @@ const deleteUserHandler = async (req, res) => {
 };
 
 const restoreUserHandler = async (req, res) => {
-    const {id} = req.body;
+    const {id} = req.params;
     try {
         await restoreUser(id);
         res.status(200).send("usuario restaurado exitosamente");
