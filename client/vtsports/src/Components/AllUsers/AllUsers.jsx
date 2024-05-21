@@ -26,10 +26,10 @@ const handleUserDelete = (id) => {
     confirmButtonText: "Sí, Borrar",
   }).then(async (result) => {
     if (result.isConfirmed) {
-      await axios.delete("https://vtsports.onrender.com/user", {data: {id}});
+      await axios.delete(`https://vtsports.onrender.com/user/${id}`);
       Swal.fire({
         title: "Borrado!",
-        text: "Producto borrado con éxito!",
+        text: "Usuario borrado con éxito!",
         icon: "success",
       });
     }
@@ -38,6 +38,54 @@ const handleUserDelete = (id) => {
     }, "2000");
   });
 };
+
+const handleUserRestore = (id) => {
+  Swal.fire({
+    title: "Seguro quieres restaurar el usuario",
+    text: "Podrás revertir este cambio desde la opción Modificar Estado",
+    icon: "warning",
+    showCancelButton: true,
+    confirmButtonColor: "#3085d6",
+    cancelButtonColor: "#d33",
+    confirmButtonText: "Sí, Restaurar",
+  }).then(async (result) => {
+    if (result.isConfirmed) {
+      await axios.put(`https://vtsports.onrender.com/user/${id}`);
+      Swal.fire({
+        title: "Restaurado!",
+        text: "Usuario restaurado con éxito!",
+        icon: "success",
+      });
+    }
+    setTimeout(() => {
+      dispatch(getAllUser());
+    }, "2000");
+  });
+}
+
+const handleAdminUpdate = (id) => {
+  Swal.fire({
+    title: "Seguro quieres dar/quitar privilegios de administrador al usuario?",
+    text: "Podrás revertir este cambio desde la opción Modif. Admin.",
+    icon: "warning",
+    showCancelButton: true,
+    confirmButtonColor: "#3085d6",
+    cancelButtonColor: "#d33",
+    confirmButtonText: "Sí, Modificar",
+  }).then(async (result) => {
+    if (result.isConfirmed) {
+      await axios.put("https://vtsports.onrender.com/user/update/admin", {id});
+      Swal.fire({
+        title: "Modificado!",
+        text: "Usuario modificado con éxito!",
+        icon: "success",
+      });
+    }
+    setTimeout(() => {
+      dispatch(getAllUser());
+    }, "2000");
+  });
+}
 
 useEffect(() => {
     dispatch(getAllUser());
@@ -92,6 +140,9 @@ useEffect(() => {
                   {u.deletedAt ? (
                     <button
                       className={styles.button}
+                      onClick={ () => {
+                        handleUserRestore(u.id)
+                      }}
                     >
                       <FaTrashRestore
                         style={{ width: "20px", height: "20px" }}
@@ -119,6 +170,9 @@ useEffect(() => {
                   {u.isAdmin ? (
                     <button
                       className={styles.button}
+                      onClick={() => {
+                        handleAdminUpdate(u.id)
+                      }}
                     >
                       <MdOutlineAdminPanelSettings
                         style={{ width: "20px", height: "20px" }}
@@ -127,6 +181,9 @@ useEffect(() => {
                   ) : (
                     <button
                       className={styles.button}
+                      onClick={() => {
+                        handleAdminUpdate(u.id)
+                      }}
                     >
                       <MdAdminPanelSettings style={{ width: "20px", height: "20px" }} />
                     </button>
