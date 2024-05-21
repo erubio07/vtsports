@@ -41,3 +41,15 @@
     padding: 0;
     cursor: pointer;
   }
+
+  .userImage {
+    width: 40px;  /* Ajusta este valor según el tamaño deseado */
+    height: 40px; /* Ajusta este valor según el tamaño deseado */
+    border-radius: 50%; /* Esto hará que la imagen sea circular */
+    object-fit: cover;  /* Esto asegurará que la imagen se recorte adecuadamente */
+}
+
+.userIcon {
+    width: 40px;
+    height: 40px;
+}
