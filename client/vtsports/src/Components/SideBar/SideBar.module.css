@@ -48,3 +48,16 @@
   .a:hover {
     text-decoration: underline; /* Agrega subrayado al pasar el ratón sobre el enlace */
   }
+
+  .profile {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 20px; /* Añadir espacio debajo de la imagen de perfil */
+  }
+  
+  .profileImage, .profileIcon {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+  }
