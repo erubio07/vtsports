@@ -4,6 +4,7 @@ import styles from "./CreateUser.module.css";
 import {createUser, getUserById} from "../../Redux/actions";
 import { useSelector, useDispatch } from "react-redux";
 import Swal from "sweetalert2";
+import axios from "axios";
 
 const CreateUser = () => {
     const dispatch = useDispatch();
@@ -34,6 +35,28 @@ const CreateUser = () => {
         isAdmin: e.target.checked,
       })
     }
+
+  const preset_key = "ml_default";
+  const cloud_name = "dytke2vlw";
+
+  const handleImage = (e) => {
+    const file = e.target.files[0];
+    const formData = new FormData();
+    formData.append("file", file);
+    formData.append("upload_preset", preset_key);
+    axios
+      .post(
+        `https://api.cloudinary.com/v1_1/${cloud_name}/image/upload`,
+        formData
+      )
+      .then((res) =>
+        setInput({
+          ...input,
+          image: res.data.secure_url,
+        })
+      )
+      .catch((err) => console.log(err));
+  };
 
     const handleCreateUser = async (e) => {
       e.preventDefault();
@@ -108,6 +131,7 @@ const CreateUser = () => {
           className={styles.input}
           type="file"
           name="image"
+          onChange={handleImage}
         />
         {input.image && (
           <div className={styles.thumbnailContainer}>
