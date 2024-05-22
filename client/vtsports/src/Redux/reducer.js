@@ -12,7 +12,8 @@ import {
   CREATE_PRODUCT,
   GET_USER_BY_ID,
   CLEAR_USER,
-  GET_ALL_USER
+  GET_ALL_USER,
+  EDIT_USER
 } from "./types";
 
 const initialState = {
@@ -162,6 +163,11 @@ function rootReducer(state = initialState, action) {
       return{
         ...state,
         userList: action.payload,
+      }
+    case EDIT_USER:
+      return {
+        ...state,
+        user: action.payload,
       }
     default:
       return state;

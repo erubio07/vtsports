@@ -12,7 +12,8 @@ import {
   CREATE_PRODUCT,
   GET_USER_BY_ID,
   CLEAR_USER,
-  GET_ALL_USER
+  GET_ALL_USER,
+  EDIT_USER
 } from "./types";
 import axios from "axios";
 
@@ -139,10 +140,21 @@ export const clearUser = () => {
 };
 
 export const createUser = (info) => {
-  console.log(info);
+  // console.log(info);
   return async function (dispatch){
     let newUser = await axios.post("https://vtsports.onrender.com/user", info);
     return newUser;
+  };
+};
+
+export const editUser = (info) => {
+  console.log(info);
+  return async function (dispatch){
+    let editedUser = await axios.put("https://vtsports.onrender.com/user/update", info);
+    return dispatch( {
+      type: EDIT_USER,
+      payload: editedUser.data
+    });
   };
 };
 

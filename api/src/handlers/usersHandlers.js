@@ -50,7 +50,8 @@ const restoreUserHandler = async (req, res) => {
 };
 
 const updateUserHandler = async (req, res) => {
-    const {id, name, surname, mail, image} = req.body;
+    const {id} = req.params
+    const {name, surname, mail, image} = req.body;
     try {
         const userUpdated = await updateUser(id, name, surname, mail, image);
         res.status(200).json(userUpdated);

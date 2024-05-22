@@ -8,7 +8,7 @@ router.post("/", createUserHandler);
 router.post("/id", getUserByIdHandler);
 router.delete("/:id", deleteUserHandler);
 router.put("/:id", restoreUserHandler);
-router.put("/update", updateUserHandler);
+router.put("/update/:id", updateUserHandler);
 router.put("/update/admin", updateUserToAdminHandler);
 
 module.exports = router;
