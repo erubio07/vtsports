@@ -61,7 +61,7 @@ const updateUserHandler = async (req, res) => {
 };
 
 const updateUserToAdminHandler = async (req, res) => {
-    const {id} = req.body;
+    const {id} = req.params;
     try {
         let userAdmin = await updateUserToAdmin(id);
         res.status(200).json(userAdmin);

@@ -147,10 +147,11 @@ export const createUser = (info) => {
   };
 };
 
-export const editUser = (info) => {
+export const editUser = (info, id) => {
   console.log(info);
+  console.log(id);
   return async function (dispatch){
-    let editedUser = await axios.put("https://vtsports.onrender.com/user/update", info);
+    let editedUser = await axios.put(`https://vtsports.onrender.com/user/update/${id}`, info);
     return dispatch( {
       type: EDIT_USER,
       payload: editedUser.data

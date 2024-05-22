@@ -9,6 +9,6 @@ router.post("/id", getUserByIdHandler);
 router.delete("/:id", deleteUserHandler);
 router.put("/:id", restoreUserHandler);
 router.put("/update/:id", updateUserHandler);
-router.put("/update/admin", updateUserToAdminHandler);
+router.put("/update/admin/:id", updateUserToAdminHandler);
 
 module.exports = router;

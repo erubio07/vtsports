@@ -11,13 +11,14 @@ const EditUser = () => {
   // console.log(user);
   const dispatch = useDispatch();
   const [input, setInput] = useState({
-    id: user.id,
     name: user.name,
     surname: user.surname,
     mail: user.mail,
     image: user.image,
   })
   console.log(input);
+  const id = user.id;
+  
 
   const handleChange = (e) => {
     setInput({
@@ -63,19 +64,17 @@ const EditUser = () => {
         }
     };
     try {
-      await dispatch(editUser(input))
+      await dispatch(editUser(input, id))
       setInput({
-        name: "",
-        surname: "",
-        mail: "",
-        image: "",
-        username: "",
-        isAdmin: false,
+        name: user.name,
+        surname: user.surname,
+        mail: user.mail,
+        image: user.image,
       });
       Swal.fire({
         icon: "success",
         title: "OK",
-        text: "Usuario creado con éxito",
+        text: "Usuario modificado con éxito",
       });
     } catch (error) {
       Swal.fire({
