@@ -74,7 +74,7 @@ const handleAdminUpdate = (id) => {
     confirmButtonText: "Sí, Modificar",
   }).then(async (result) => {
     if (result.isConfirmed) {
-      await axios.put("https://vtsports.onrender.com/user/update/admin", {id});
+      await axios.put(`https://vtsports.onrender.com/user/update/admin/${id}`);
       Swal.fire({
         title: "Modificado!",
         text: "Usuario modificado con éxito!",
