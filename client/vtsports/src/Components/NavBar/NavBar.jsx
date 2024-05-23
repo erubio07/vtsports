@@ -36,9 +36,9 @@ function Navbar() {
       <NavLink className={styles.link} to="/products">
         Productos
       </NavLink>
-      <NavLink className={styles.link} to="/about">
+      {/* <NavLink className={styles.link} to="/about">
         Sobre Nosotros
-      </NavLink>
+      </NavLink> */}
       {!user.id && (
         <NavLink className={styles.link} to="/login">
           Login
