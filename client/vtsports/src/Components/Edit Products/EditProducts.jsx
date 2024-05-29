@@ -29,6 +29,7 @@ const EditProducts = ({ productModal, setShow }) => {
     genre: null,
     waists: [],
   });
+  const forceUpdate = React.useReducer((bool) => !bool)[1]
 
   console.log(input);
 
@@ -179,13 +180,14 @@ const EditProducts = ({ productModal, setShow }) => {
             genre: input.genre.id,
           };
           console.log("estos datos se envian al back:", productData);
-          await axios.put("https://vtsports.onrender.com", productData);
+          await axios.put("https://vtsports.onrender.com/products", productData);
           Swal.fire({
             title: "Modificado!",
             text: "Producto modificado con éxito!",
             icon: "success",
           });
           setShow(false);
+          forceUpdate();
         }
       });
     } catch (error) {
