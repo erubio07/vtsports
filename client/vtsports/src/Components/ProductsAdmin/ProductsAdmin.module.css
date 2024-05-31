@@ -1,11 +1,13 @@
 .tableContainer {
     overflow-x: auto;  /* Permite el desplazamiento horizontal si el contenido es demasiado ancho */
     margin-top: 20px;
+    height: 600px;
+    
   }
   
 .table {
     width: 100%;
-    margin-top: 1250px;
+  overflow-y: scroll;
     
     font-size: 12px;
   }
@@ -14,9 +16,11 @@
     padding: 8px;
     border: 1px solid #ddd;
     text-align: center;
+
   }
   
 .th {
+
     padding: 8px;
     border: 1px solid #ddd;
     text-align: left;

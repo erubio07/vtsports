@@ -167,9 +167,10 @@ const CreateProducts = () => {
           placeholder="Descripción"
           onChange={handleChange}
         />
-        <label className={styles.label}>Imagen: </label>
+        <div className={styles.fileUpload}>
+        <label className={styles.label}>Imagen: </label> <br></br>
         <input
-          className={styles.input}
+          className={styles.input2}
           type="file"
           name="image"
           onChange={handleImage}
@@ -180,6 +181,8 @@ const CreateProducts = () => {
             <img src={input.image} alt="Preview" className={styles.img} />
           </div>
         )}
+        <label htmlFor="image" className={styles.fileLabel}>Subir Imagen</label> <br></br>
+        </div>
         <label className={styles.label}>Precio: </label>
         <input
           className={styles.input}
@@ -217,11 +220,12 @@ const CreateProducts = () => {
             </option>
           ))}
         </select>
-        <div>
+        <div className={styles.containerWaists}>
           <ul className={styles.selectedWaists}>
             <li className={styles.selectedWaistsItem}>
               {input.waists.map((w) => (
                 <div key={w.id}>
+                  
                   {w.name}
                   <button
                     className={styles.selectedWaistsButton}
@@ -230,6 +234,7 @@ const CreateProducts = () => {
                   >
                     X
                   </button>
+                  
                 </div>
               ))}
             </li>
