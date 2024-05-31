@@ -1,6 +1,6 @@
-import React, {useState} from 'react'
+import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import {editUser} from "../../Redux/actions";
+import { editUser } from "../../Redux/actions";
 import Button from "react-bootstrap/Button";
 import Swal from "sweetalert2";
 import styles from "./EditUser.module.css";
@@ -15,10 +15,9 @@ const EditUser = () => {
     surname: user.surname,
     mail: user.mail,
     image: user.image,
-  })
+  });
   console.log(input);
   const id = user.id;
-  
 
   const handleChange = (e) => {
     setInput({
@@ -51,20 +50,18 @@ const EditUser = () => {
 
   const handleEditUser = async (e) => {
     e.preventDefault();
-    if(!input.name || 
-      !input.surname || 
-      !input.mail ){
-        {
-          Swal.fire({
-            icon: "error",
-            title: "Oops...",
-            text: "Todos los campos obligatorios deben estar completos!",
-          });
-          return;
-        }
-    };
+    if (!input.name || !input.surname || !input.mail) {
+      {
+        Swal.fire({
+          icon: "error",
+          title: "Oops...",
+          text: "Todos los campos obligatorios deben estar completos!",
+        });
+        return;
+      }
+    }
     try {
-      await dispatch(editUser(input, id))
+      await dispatch(editUser(input, id));
       setInput({
         name: user.name,
         surname: user.surname,
@@ -80,66 +77,70 @@ const EditUser = () => {
       Swal.fire({
         icon: "error",
         title: "Error",
-        text: error.response.data.error || "Algo salió mal. Por favor, inténtalo de nuevo.",
+        text:
+          error.response.data.error ||
+          "Algo salió mal. Por favor, inténtalo de nuevo.",
       });
     }
   };
 
   return (
     <div>
-            <div className={styles.container}>
-      <h3> Crear Nuevo Usuario </h3>
-      <form
-        className={styles.form}
-        onSubmit={ (e) => {handleEditUser(e)}}
-      >
-        <label className={styles.label}>Nombre: </label>
-        <input
-          className={styles.input}
-          type="text"
-          name="name"
-          value={input.name}
-          placeholder="Nombre"
-          onChange={handleChange}
-        />
-        <label className={styles.label}>Apellido: </label>
-        <input
-          className={styles.input}
-          type="text"
-          name="surname"
-          value={input.surname}
-          placeholder="Apellido"
-          onChange={handleChange}
-        />
-        <label className={styles.label}>Imagen: </label>
-        <input
-          className={styles.input}
-          type="file"
-          name="image"
-          onChange={handleImage}
-        />
-        {input.image && (
-          <div className={styles.thumbnailContainer}>
-            <label className={styles.label}>Preview:</label>
-            <img src={input.image} alt="Preview" className={styles.img} />
-          </div>
-        )}
-        <label className={styles.label}>Mail: </label>
-        <input
-          className={styles.input}
-          type="text"
-          name="mail"
-          value={input.mail}
-          placeholder="Mail"
-          onChange={handleChange}
-        />
-        <Button type="submit" variant="primary" className={styles.button}>
-          Modificar Usuario
-        </Button>
-      </form>
-        </div>
+      <div className={styles.container}>
+        <h3> Editar Usuario </h3>
+        <form
+          className={styles.form}
+          onSubmit={(e) => {
+            handleEditUser(e);
+          }}
+        >
+          <label className={styles.label}>Nombre: </label>
+          <input
+            className={styles.input}
+            type="text"
+            name="name"
+            value={input.name}
+            placeholder="Nombre"
+            onChange={handleChange}
+          />
+          <label className={styles.label}>Apellido: </label>
+          <input
+            className={styles.input}
+            type="text"
+            name="surname"
+            value={input.surname}
+            placeholder="Apellido"
+            onChange={handleChange}
+          />
+          <label className={styles.label}>Imagen: </label>
+          <input
+            className={styles.input}
+            type="file"
+            name="image"
+            onChange={handleImage}
+          />
+          {input.image && (
+            <div className={styles.thumbnailContainer}>
+              <label className={styles.label}>Preview:</label>
+              <img src={input.image} alt="Preview" className={styles.img} />
+            </div>
+          )}
+          <label className={styles.label}>Mail: </label>
+          <input
+            className={styles.input}
+            type="text"
+            name="mail"
+            value={input.mail}
+            placeholder="Mail"
+            onChange={handleChange}
+          />
+          <Button type="submit" variant="primary" className={styles.button}>
+            Modificar Usuario
+          </Button>
+        </form>
+      </div>
     </div>
-  )
-}
+  );
+};
 
-export default EditUser
+export default EditUser;
