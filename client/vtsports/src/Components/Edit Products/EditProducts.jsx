@@ -185,9 +185,10 @@ const EditProducts = ({ productModal, setShow }) => {
             title: "Modificado!",
             text: "Producto modificado con éxito!",
             icon: "success",
-          });
-          setShow(false);
-          forceUpdate();
+          }).then(() => {
+            setShow(false);
+            forceUpdate(); // Llama a forceUpdate aquí
+          });          
         }
       });
     } catch (error) {
