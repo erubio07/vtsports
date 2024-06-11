@@ -21,18 +21,8 @@ const Home = () => {
     <div>
       <HomeSLider />
       <Divisor />
-      {!randomProducts || randomProducts.length === 0 ? (
-        <div>
-          <ReactLoading
-            type={"spin"}
-            color={"#03fc4e"}
-            height={100}
-            width={100}
-          />
-        </div>
-      ) : (
-        <Carrousel randomProducts={randomProducts} />
-      )}
+      
+      
       <ComentsSection/>
       <Footer />
     </div>

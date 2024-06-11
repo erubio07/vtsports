@@ -1,123 +1,92 @@
 .container {
-    max-width: 700px;
-    max-height: 840px;
-    width: 500px;
-    background: #333;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    padding: 30px;
-    border-radius: 3px;
-  }
-  
+  margin: auto;
+  width: 500px;
+  max-height: 960px;
+  background: #333;
+  padding: 30px;
+  border-radius: 3px;
+}
+
 .form {
-    width: 100%;
-    height: 100%;
-  }
-  h3{
-    color: #fff;
-  }
+  width: 100%;
+  height: 100%;
+}
+h3 {
+  color: #fff;
+}
 .label {
-    padding-top: 10px;
-    padding-bottom:10px ;
-    font-weight: bold;
-    color: #fff;
-  }
-  
-.input{
-    margin-top: 5px;
-    padding: 5px;
-    border: none;
-    background: #0008;
-    width: 100%;
-    color: #fff8;
-  }
+  padding-top: 10px;
+  padding-bottom: 10px;
+  font-weight: bold;
+  color: #fff;
+}
 
-.select{
-    margin-top: 5px;
-    padding: 8px;
-    width: 100%;
-    background: #0008;
-    border: none;
-    color: #fff8;
+.input {
+  margin-top: 5px;
+  padding: 5px;
+  border: none;
+  background: #0008;
+  width: 100%;
+  color: #fff8;
+}
 
+.select {
+  margin-top: 5px;
+  padding: 8px;
+  width: 100%;
+  background: #0008;
+  border: none;
+  color: #fff8;
 }
 
 .button {
-    margin-top: 5px;
-    border: 2px solid white;
+  display: block;
+  margin: auto;
+  margin-top: 5px;
 }
 
 .selectedWaists {
-    margin-top:5px;
-    list-style: none;
-    padding: 0;
-    color: #ff0000;
-  }
-  
-  .selectedWaistsItem {
-    display: flex;
-    gap: 10px;
-    align-items: center;
-  }
-  
+  margin-top: 5px;
+  list-style: none;
+  padding: 0;
+  color: #ff0000;
+}
+
+.selectedWaistsItem {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
 .selectedWaistsButton {
-    margin-left: 5px;
-    padding: 5px;
-    background-color: red;
-    color: white;
-    border: none;
-    border-radius: 25%; /* Agregamos esto para hacerlo redondo */
-    cursor: pointer;
-  }
+  margin-left: 5px;
+  padding: 5px;
+  background-color: red;
+  color: white;
+  border: none;
+  border-radius: 25%; /* Agregamos esto para hacerlo redondo */
+  cursor: pointer;
+}
 
 .thumbnailContainer {
-    display: flex;
-    align-items: center;
-    margin-top: 10px;
-  }
-  
-.img {
-    width: 100px; /* Ajusta el ancho de la miniatura según tus necesidades */
-    height: auto;
-    margin-right: 10px;
-    margin-left: 250px;
-    border: 2px solid #0d6efd;
-
-  }  
-
-
-
-.fileUpload {
-    position: relative;
-    display: block;
+  display: flex;
+  align-items: center;
+  margin-top: 10px;
 }
+
+.img {
+  width: 100px; /* Ajusta el ancho de la miniatura según tus necesidades */
+  height: auto;
+  margin-left: 250px;
+  border: 2px solid #0d6efd;
+  cursor: pointer;
+}
+
 
 .input2 {
-    position: absolute;
-    opacity: 0;
-    width: 100%;
-    height: 100%;
-    cursor: pointer;
+  cursor: pointer;
+  color: #fff8;
+  background: #0008;
+  padding: 5px;
+  width: 100%;
 }
-
-.fileLabel {
-    display: inline-block;
-    margin-top: 5px;
-    background-color: #0d6efd;
-    border: 2px solid white;
-
-    cursor: pointer;
-    color: white;
-    padding: 10px 10px;
-    border-radius: 4px;
-    cursor: pointer;
-    font-size: 16px;
-    transition: background-color 0.3s;
-}
-
-.fileLabel:hover {
-    background-color: #b4bcc7;
-}
-

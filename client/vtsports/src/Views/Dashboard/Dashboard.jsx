@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, {useState} from "react";
 import { Routes, Route, useLocation, BrowserRouter } from "react-router-dom";
 import styles from "./Dashboard.module.css";
 import { ProtectedRoutes } from "../../Components/ProtectedRoutes/ProtectedRoutes.jsx";
@@ -21,22 +21,22 @@ const Dashboard = () => {
   const userId = localStorage.getItem("userId");
   console.log(userId);
   return (
-
+    
 
     <div className={styles.dashboardContainer}>
-      <SideBar handleOption={handleOption} />
-
+      <SideBar handleOption={handleOption}/>
+      
       <div className={styles.content}>
-        {option === "" && <h2>Bienvenido al Panel de Usuario</h2>}
-        {option === "products" && <ProductsAdmin />}
-        {option === "createProduct" && <CreateProducts />}
-        {option === "editUser" && <EditUser />}
-        {option === "createUser" && <CreateUser />}
-        {option === "viewUsers" && <AllUsers />}
+      {option === "" && <h2>Bienvenido al Panel de Usuario</h2>}
+      {option === "products" && <ProductsAdmin/>}
+      {option === "createProduct" && <CreateProducts/>}
+      {option === "editUser" && <EditUser/>}
+      {option === "createUser" && <CreateUser/>}
+      {option === "viewUsers" && <AllUsers/>}
       </div>
-
+      
     </div>
-
+    
   );
 };
 

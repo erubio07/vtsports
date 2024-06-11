@@ -181,7 +181,7 @@ const CreateProducts = () => {
             <img src={input.image} alt="Preview" className={styles.img} />
           </div>
         )}
-        <label htmlFor="image" className={styles.fileLabel}>Subir Imagen</label> <br></br>
+        
         </div>
         <label className={styles.label}>Precio: </label>
         <input
@@ -220,7 +220,7 @@ const CreateProducts = () => {
             </option>
           ))}
         </select>
-        <div className={styles.containerWaists}>
+        <div>
           <ul className={styles.selectedWaists}>
             <li className={styles.selectedWaistsItem}>
               {input.waists.map((w) => (
