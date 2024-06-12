@@ -1,11 +1,19 @@
-import React from "react";
+import React, {useState} from "react";
 import styles from "./FeaturedProducts.module.css"
+import Pagination from "./Pagination/Pagination"
 
 const FeaturedProducts = ({randomProducts}) => {
-    console.log(randomProducts);
+    //console.log(randomProducts);
+    const totalProducts = randomProducts.length;
+    const [itemsPerPage, setItemsPerPage] = useState(3);
+    const [currentPage, setCurrentPage] = useState(1);
+    const indexOfLastProduct = currentPage * itemsPerPage;
+    const indexOfFirstProduct = indexOfLastProduct - itemsPerPage;
+    const currentProducts = randomProducts.slice(indexOfFirstProduct, indexOfLastProduct);
     return (
         <div className={styles.container}>
-        {randomProducts.map((p) => (
+        <div className={styles.cardsContainer}>
+        {currentProducts.map((p) => (
             <div key={p.id} className={styles.card}>
             <div className={styles.imageContainer}>
             <img src={p.image} alt={p.name} className={styles.image}/>
@@ -16,6 +24,13 @@ const FeaturedProducts = ({randomProducts}) => {
             </div>
             </div>
         ))}
+        </div>
+        <Pagination
+        totalProducts={totalProducts}
+        itemsPerPage={itemsPerPage}
+        currentPage={currentPage}
+        setCurrentPage={setCurrentPage}
+        />
         </div>
     );
 };
