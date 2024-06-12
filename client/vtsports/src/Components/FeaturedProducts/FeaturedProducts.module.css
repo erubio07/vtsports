@@ -1,27 +1,30 @@
 .container {
     display: flex;
-    flex-direction: column; /* Apila los elementos verticalmente */
-    align-items: center; /* Centra horizontalmente los elementos */
+    flex-direction: column;
+    align-items: center;
     padding: 20px;
 }
 
 .cardsContainer {
     display: flex;
     flex-wrap: wrap;
-    gap: 20px;
-    justify-content: center; /* Centrar tarjetas */
+    gap: 30px; /* Aumentar el espacio entre las tarjetas */
+    justify-content: center;
     padding: 20px;
-    width: 100%; /* Asegurar que el contenedor ocupe todo el ancho */
-    max-width: 1200px; /* Limitar el ancho máximo para evitar estiramiento excesivo */
+    width: 100%;
+    max-width: 1200px;
 }
 
 .card {
-    flex: 1 0 calc(33.33% - 40px); /* Tres tarjetas por fila con espacio entre ellas */
+    flex: 1 0 calc(33.33% - 60px); /* Ajustar para el nuevo gap */
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     border-radius: 8px;
     overflow: hidden;
     transition: transform 0.2s;
-    max-width: calc(33.33% - 40px); /* Asegura que no crezcan más de 33.33% del contenedor */
+    max-width: calc(33.33% - 60px); /* Asegura que no crezcan más de 33.33% del contenedor */
+    height: auto;
+    display: flex;
+    flex-direction: column;
 }
 
 .card:hover {
@@ -30,8 +33,9 @@
 
 .imageContainer {
     width: 100%;
-    height: 150px;
+    height: 200px; /* Ajustar la altura para dejar espacio para el título y el precio */
     overflow: hidden;
+    flex: none;
 }
 
 .image {
@@ -43,14 +47,17 @@
 .info {
     padding: 10px;
     text-align: center;
+    background-color: rgba(255, 255, 255, 0.8);
+    flex: 1 0 auto; /* Permitir que el contenedor de información crezca */
 }
 
 .name {
     font-size: 1em;
-    margin: 10px 0;
+    margin: 5px 0;
 }
 
 .price {
     font-size: 0.9em;
     color: #888;
+    margin: 5px 0;
 }
