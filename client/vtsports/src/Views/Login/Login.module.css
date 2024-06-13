@@ -1,7 +1,7 @@
-.formContainer{
-    display: flex;
-    justify-content: center;
-    align-items: center; /* Añade esta línea para centrar verticalmente */
+.formContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center; /* Centrar verticalmente */
   height: 100vh; /* Ajusta la altura para ocupar toda la pantalla */
   background-image: url('https://res.cloudinary.com/dytke2vlw/image/upload/v1701527722/vtsport/e67nfk32rwbwskakjd7s.png'); /* Reemplaza 'URL_DE_TU_IMAGEN' con la URL de tu imagen */
   background-size: cover; /* Ajusta la propiedad background-size para cubrir toda la pantalla */
@@ -30,6 +30,7 @@
   }
   
   .input {
+    
     padding: 8px;
     border: 1px solid #ccc;
     border-radius: 4px;
@@ -40,11 +41,11 @@
     flex-direction: column;
     gap: 10px;
     width: 300px;
-    align-items: center;
+    align-items: stretch; /* Asegura que los elementos hijos ocupen todo el ancho */
     margin: auto;
     margin-top: 10px;
     font-weight: bold;
-    color:black;
+    color: black;
     background-color: rgba(255, 255, 255, 0.9);
     padding: 20px;
     border-radius: 10px;

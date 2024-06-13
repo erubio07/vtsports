@@ -5,12 +5,14 @@ import styles from "./Login.module.css";
 import { useAuth } from "../../AuthProvider/AuthProvider";
 import { useDispatch, useSelector } from "react-redux";
 import axios from "axios";
+import { AiOutlineEyeInvisible, AiOutlineEye } from "react-icons/ai";
 
 const Login = () => {
   const [username, setUsername] = useState("");
   // console.log(username);
   const [password, setPassword] = useState("");
   // console.log(password);
+  const [showPass, setShowPass] = useState(false);
   const auth = useAuth();
   const navigate = useNavigate();
 
@@ -79,6 +81,8 @@ const Login = () => {
             Password:
           </label>
           <div className={styles.inputContainer}>
+          {!showPass ? (
+            <>
             <input
               type="password"
               id="password"
@@ -87,6 +91,45 @@ const Login = () => {
               className={styles.input}
               onChange={(e) => handlePassword(e)}
             />
+            <button
+                type="button"
+                onClick={() => setShowPass(!showPass)}
+                style={{
+                  display: "inline-block",
+                  border: "none",
+                  background: "none",
+                }}
+              >
+                <AiOutlineEyeInvisible
+                  style={{ color: "#120366", fontSize: "18px" }}
+                />
+              </button>
+            </>
+          ) : (
+            <>
+            <input
+              type="text"
+              id="password"
+              name="password"
+              placeholder="Password"
+              className={styles.input}
+              onChange={(e) => handlePassword(e)}
+            />
+            <button
+                type="button"
+                onClick={() => setShowPass(!showPass)}
+                style={{
+                  display: "inline-block",
+                  border: "none",
+                  background: "none",
+                }}
+              >
+                <AiOutlineEye
+                  style={{ color: "#120366", fontSize: "18px" }}
+                />
+              </button>
+            </>
+          )}
           </div>
           <Button type="submit" variant="primary">
             Sing In
