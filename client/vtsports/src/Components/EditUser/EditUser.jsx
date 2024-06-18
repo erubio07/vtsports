@@ -16,7 +16,7 @@ const EditUser = () => {
     mail: user.mail,
     image: user.image,
   });
-  console.log(input);
+  // console.log(input);
   const id = user.id;
 
   const handleChange = (e) => {

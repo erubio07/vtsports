@@ -6,10 +6,10 @@ import styles from "./NavBar.module.css";
 
 function Navbar() {
   const user = useSelector((state) => state.user);
-  console.log(user);
+  // console.log(user);
   const dispacth = useDispatch();
   const id = localStorage.getItem("userId")
-  console.log(id);
+  // console.log(id);
 
   useEffect(() => {
     if(id){
@@ -40,7 +40,7 @@ function Navbar() {
         Sobre Nosotros
       </NavLink> */}
       {!user.id && (
-        <NavLink className={styles.link} to="/login">
+        <NavLink className={`${styles.link} ${styles['link-login']}`} to="/login">
           Login
         </NavLink>
       )}

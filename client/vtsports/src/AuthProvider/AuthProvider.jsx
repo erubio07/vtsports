@@ -4,7 +4,7 @@ import { jwtDecode } from "jwt-decode";
 import { clearUser } from "../Redux/actions";
 import { useDispatch } from "react-redux";
 
-console.log(localStorage);
+// console.log(localStorage);
 
 const AuthContext = createContext({
   isAuthenticated: false,
@@ -20,7 +20,7 @@ export const AuthProvider = ({ children }) => {
   });
   const [userId, setUserId] = useState(null)
   const inactivity = 15 * 60 * 1000;
-  console.log(inactivity);
+  // console.log(inactivity);
 
   useEffect(() => {
     // Actualiza el localStorage cuando cambia el estado de autenticación
@@ -30,14 +30,14 @@ export const AuthProvider = ({ children }) => {
   useEffect(() => {
     const accessToken = localStorage.getItem("accessToken");
     if (accessToken) {
-      console.log(accessToken);
+      // console.log(accessToken);
       setIsAuthenticated(true);
       const decodedToken = jwtDecode(accessToken);
-      console.log(decodedToken);
+      // console.log(decodedToken);
       setUserId(decodedToken.id);
-      console.log(userId);
+      // console.log(userId);
       const currentTime = Date.now() / 1000;
-      console.log(currentTime);
+      // console.log(currentTime);
 
       if (decodedToken.exp < currentTime) {
         localStorage.removeItem("accessToken");

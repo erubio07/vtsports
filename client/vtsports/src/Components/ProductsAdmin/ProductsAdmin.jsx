@@ -14,7 +14,7 @@ import EditProducts from "../Edit Products/EditProducts";
 const ProductsAdmin = () => {
   const dispatch = useDispatch();
   const productsAdmin = useSelector((state) => state.productsFilterAdmin);
-  console.log(productsAdmin);
+  // console.log(productsAdmin);
   const [show, setShow] = useState(false);
   const [productModal, setProductModal] = useState(null);
 

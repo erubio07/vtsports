@@ -7,14 +7,14 @@ import styles from "./EditProducts.module.css";
 import Swal from "sweetalert2";
 
 const EditProducts = ({ productModal, setShow }) => {
-  console.log("componente montado");
-  console.log(setShow);
-  console.log(productModal);
+  // console.log("componente montado");
+  // console.log(setShow);
+  // console.log(productModal);
   const id = productModal.id;
-  console.log(id);
+  // console.log(id);
   const dispacth = useDispatch();
   const genres = useSelector((state) => state.genres);
-  console.log(genres);
+  // console.log(genres);
   const waist = useSelector((state) => state.waist);
   // console.log(waist);
   const types = useSelector((state) => state.types);
@@ -31,13 +31,13 @@ const EditProducts = ({ productModal, setShow }) => {
   });
   const forceUpdate = React.useReducer((bool) => !bool)[1]
 
-  console.log(input);
+  // console.log(input);
 
   const getData = async () => {
     try {
       const data = await axios.get(`https://vtsports.onrender.com/products/${id}`);
       const dataProduct = data.data;
-      console.log(dataProduct);
+      // console.log(dataProduct);
       setInput({
         id: dataProduct.id,
         name: dataProduct.name,
@@ -75,9 +75,9 @@ const EditProducts = ({ productModal, setShow }) => {
   const handleTypes = (e) => {
     // console.log(e.target.value);
     const selectedTypeId = parseInt(e.target.value, 10); // Convertir a número
-    console.log(selectedTypeId);
+    // console.log(selectedTypeId);
     const selectedType = types.find((w) => w.id === selectedTypeId);
-    console.log(selectedType);
+    // console.log(selectedType);
     if (selectedType) {
       setInput({
         ...input,
@@ -91,9 +91,9 @@ const EditProducts = ({ productModal, setShow }) => {
 
   const handleGenre = (e) => {
     const selectedGenreId = parseInt(e.target.value, 10); // Convertir a número
-    console.log(selectedGenreId);
+    // console.log(selectedGenreId);
     const selectedGenre = genres.find((w) => w.id === selectedGenreId);
-    console.log(selectedGenre);
+    // console.log(selectedGenre);
     if (selectedGenre) {
       setInput({
         ...input,
@@ -107,7 +107,7 @@ const EditProducts = ({ productModal, setShow }) => {
 
   const handleWaists = (e) => {
     const selectedWaistId = parseInt(e.target.value, 10); // Convertir a número
-    console.log(selectedWaistId);
+    // console.log(selectedWaistId);
     const selectedWaist = waist.find((w) => w.id === selectedWaistId);
 
     if (selectedWaist) {
@@ -179,7 +179,7 @@ const EditProducts = ({ productModal, setShow }) => {
             type: input.type.id,
             genre: input.genre.id,
           };
-          console.log("estos datos se envian al back:", productData);
+          // console.log("estos datos se envian al back:", productData);
           await axios.put("https://vtsports.onrender.com/products", productData);
           Swal.fire({
             title: "Modificado!",
@@ -197,7 +197,7 @@ const EditProducts = ({ productModal, setShow }) => {
   };
 
   useEffect(() => {
-    console.log("useEffect cargado");
+    // console.log("useEffect cargado");
     getData();
     dispacth(getAllGenres());
     dispacth(getAllWaist());

@@ -27,9 +27,9 @@ const Products = () => {
   const products = useSelector((state) => state.products);
   const productsFilter = useSelector((state) => state.productsFilter);
   const filterMessage = useSelector((state) => state.filterMessage);
-  console.log(filterMessage);
+  // console.log(filterMessage);
   // console.log(products);
-  console.log(productsFilter);
+  // console.log(productsFilter);
   // const navigate = useNavigate();
   const totalProducts = products.length;
   const [itemsPerPage, setItemsPerPage] = useState(12);
@@ -167,7 +167,7 @@ const Products = () => {
                         Close
                       </Button>
                       <Link
-                        to="https://api.whatsapp.com/send?phone=543516237423"
+                        to={`https://api.whatsapp.com/send?phone=543516237423&text=Hola, quisera información sobre el producto ${productModal && productModal.name}`}
                         target="_blank"
                       >
                         <Button variant="primary">Contactar</Button>

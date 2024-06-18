@@ -13,7 +13,7 @@ import Swal from "sweetalert2";
 const AllUsers = () => {
 const dispatch = useDispatch();
 const users = useSelector((state) => state.userList);
-console.log(users);
+// console.log(users);
 
 const handleUserDelete = (id) => {
   Swal.fire({

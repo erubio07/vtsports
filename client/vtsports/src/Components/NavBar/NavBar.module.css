@@ -64,12 +64,21 @@
     margin-top: -29px;
   }
 
+  .link-login {
+    display: none;
+  }
+
   .link {
     margin: 10px 0; /* Espaciado entre los enlaces en dispositivos móviles */
-    display: none;
   }
 
   .mobileMenuButton {
     display: block; /* Muestra el botón del menú hamburguesa en dispositivos móviles */
+  }
+}
+
+@media (min-width: 769px) {
+  .link-login {
+    display: inline-block;
   }
 }

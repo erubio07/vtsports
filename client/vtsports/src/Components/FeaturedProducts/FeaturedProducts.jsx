@@ -1,5 +1,6 @@
 import React, {useState} from "react";
 import styles from "./FeaturedProducts.module.css"
+import { Link } from "react-router-dom";
 import Pagination from "./Pagination/Pagination"
 
 const FeaturedProducts = ({randomProducts}) => {
@@ -12,9 +13,15 @@ const FeaturedProducts = ({randomProducts}) => {
     const currentProducts = randomProducts.slice(indexOfFirstProduct, indexOfLastProduct);
     return (
         <div className={styles.container}>
+        <h1 className={styles.title}>Mira nuestros Productos Destacados</h1>
         <div className={styles.cardsContainer}>
         {currentProducts.map((p) => (
             <div key={p.id} className={styles.card}>
+            <Link
+                to={`https://api.whatsapp.com/send?phone=543516237423&text=Hola, quisera información sobre el producto ${p.name}`}
+                target="_blank"
+                className={styles.a}
+            >
             <div className={styles.imageContainer}>
             <img src={p.image} alt={p.name} className={styles.image}/>
             </div>
@@ -22,6 +29,7 @@ const FeaturedProducts = ({randomProducts}) => {
             <h4 className={styles.name}>{p.name}</h4>
             <p className={styles.price}>$ {p.price}</p>
             </div>
+            </Link>
             </div>
         ))}
         </div>

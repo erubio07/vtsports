@@ -15,11 +15,11 @@ const Dashboard = () => {
     setOption(option)
   }
   const userName = localStorage.getItem("userName");
-  console.log(userName);
+  // console.log(userName);
   const nameUser = localStorage.getItem("name");
-  console.log(nameUser);
+  // console.log(nameUser);
   const userId = localStorage.getItem("userId");
-  console.log(userId);
+  // console.log(userId);
   return (
     
 

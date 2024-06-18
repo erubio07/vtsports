@@ -15,18 +15,18 @@ function Footer() {
         <div className={styles.contact}>
           <p>Contacto: contacto@vtsports.com</p>
           <div className={styles["social-icons"]}>
-            <a href="https://www.facebook.com/vtsports" target="_blank" rel="noopener noreferrer">
+            
               <img
                 src="https://upload.wikimedia.org/wikipedia/commons/5/51/Facebook_f_logo_%282019%29.svg"
                 alt="Facebook"
               />
-            </a>
-            <a href="https://www.instagram.com/vtsports" target="_blank" rel="noopener noreferrer">
+          
+            
               <img
                 src="https://upload.wikimedia.org/wikipedia/commons/a/a5/Instagram_icon.png"
                 alt="Instagram"
               />
-            </a>
+            
           </div>
         </div>
         <div className={styles.creator}>

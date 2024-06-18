@@ -58,7 +58,7 @@ export const getRandomProducts = () => {
 };
 
 export const filterByGenre = (genre) => {
-  console.log(genre);
+  // console.log(genre);
   return {
     type: FILTER_BY_GENRE,
     payload: genre,
@@ -77,7 +77,7 @@ export const getAllWaist = () => {
 };
 
 export const filterByWaist = (waist) => {
-  console.log(waist);
+  // console.log(waist);
   return {
     type: FILTER_BY_WAIST,
     payload: waist,
@@ -85,7 +85,7 @@ export const filterByWaist = (waist) => {
 };
 
 export const sortByPrice = (value) => {
-  console.log(value);
+  // console.log(value);
   return {
     type: SORT_BY_PRICE,
     payload: value,
@@ -114,7 +114,7 @@ export const getAllTypes = () => {
 };
 
 export const createProduct = (info) => {
-  console.log(info);
+  // console.log(info);
   return async function (dispatch) {
     let activity = await axios.post("https://vtsports.onrender.com/products", info);
     return activity;
@@ -122,10 +122,10 @@ export const createProduct = (info) => {
 };
 
 export const getUserById = (id) => {
-  console.log(id);
+  // console.log(id);
   return async function (dispatch) {
     let user = await axios.post("https://vtsports.onrender.com/user/id", {id});
-    console.log(user);
+    // console.log(user);
     return dispatch({
       type: GET_USER_BY_ID,
       payload: user.data,
@@ -148,8 +148,8 @@ export const createUser = (info) => {
 };
 
 export const editUser = (info, id) => {
-  console.log(info);
-  console.log(id);
+  // console.log(info);
+  // console.log(id);
   return async function (dispatch){
     let editedUser = await axios.put(`https://vtsports.onrender.com/user/update/${id}`, info);
     return dispatch( {

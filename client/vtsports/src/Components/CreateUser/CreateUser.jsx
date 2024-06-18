@@ -9,7 +9,7 @@ import axios from "axios";
 const CreateUser = () => {
     const dispatch = useDispatch();
     const user = useSelector((state) => state.user)
-    console.log(user);
+    // console.log(user);
     const [input, setInput] = useState({
         id: user.id,
         name: "",
@@ -20,7 +20,7 @@ const CreateUser = () => {
         password: "",
         isAdmin: false
     });
-    console.log(input);
+    // console.log(input);
 
     const handleChange = (e) => {
         setInput({

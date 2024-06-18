@@ -8,7 +8,6 @@ import NavBar from "./Components/NavBar/NavBar";
 import { AuthProvider } from "./AuthProvider/AuthProvider";
 import { ProtectedRoutes } from "./Components/ProtectedRoutes/ProtectedRoutes";
 import Dashboard from "./Views/Dashboard/Dashboard";
-import EditProducts from "./Views/EditProducts/EditProducts";
 import DetailProducts from "./Views/DetailProducts/DetailProducts";
 
 function App() {
@@ -26,10 +25,6 @@ function App() {
           <Route
             path="/dashboard/*"
             element={<ProtectedRoutes element={<Dashboard />} />}
-          />
-          <Route
-            path="/editproducts"
-            element={<ProtectedRoutes element={<EditProducts />} />}
           />
         </Routes>
       </AuthProvider>

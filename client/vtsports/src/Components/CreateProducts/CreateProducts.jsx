@@ -29,7 +29,7 @@ const CreateProducts = () => {
     waists: [],
   });
 
-  console.log(input);
+  // console.log(input);
 
   const preset_key = "ml_default";
   const cloud_name = "dytke2vlw";
@@ -57,7 +57,7 @@ const CreateProducts = () => {
 
   const handleWaists = (e) => {
     const selectedWaistId = parseInt(e.target.value, 10); // Convertir a número
-    console.log(selectedWaistId);
+    // console.log(selectedWaistId);
     const selectedWaist = waist.find((w) => w.id === selectedWaistId);
 
     if (selectedWaist) {
