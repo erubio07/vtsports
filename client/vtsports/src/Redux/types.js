@@ -1,0 +1,15 @@
+export const GET_ALL_PRODUCTS = "GET_ALL_PRODUCTS";
+export const GET_PRODUCT_DETAIL = "GET_PRODUCT_DETAIL";
+export const GET_PRODUCTS_RANDOM = "GET_PRODUCTS_RANDOM";
+export const FILTER_BY_GENRE = "FILTER_BY_GENRE";
+export const GET_ALL_WAIST = "GET_ALL_WAIST";
+export const FILTER_BY_WAIST = "FILTER_BY_WAIST";
+export const SORT_BY_PRICE = "SORT_BY_PRICE";
+export const GET_PRODUCTS_ADMIN = "GET_PRODUCTS_ADMIN";
+export const GET_ALL_GENRES = "GET_ALL_GENRES";
+export const GET_ALL_TYPES = "GET_ALL_TYPES";
+export const CREATE_PRODUCT = "CREATE_PRODUCT";
+export const GET_USER_BY_ID = "GET_USER_BY_ID";
+export const CLEAR_USER = "CLEAR_USER";
+export const GET_ALL_USER = "GET_ALL_USER";
+export const EDIT_USER = "EDIT_USER";

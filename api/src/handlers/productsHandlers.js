@@ -2,12 +2,26 @@ const {
   getAllProducts,
   getProductById,
   createProduct,
+  deleteProduct,
+  restoreProduct,
+  getAllProductsAddmin,
+  getRamdomProducts,
+  updateProduct,
 } = require("../controllers/productsControllers");
 
 const getAllProductsHandler = async (req, res) => {
   try {
     const allProducts = await getAllProducts();
     res.status(200).json(allProducts);
+  } catch (error) {
+    res.status(400).json({ error: error.message });
+  }
+};
+
+const getAllProductsAdminHandler = async (req, res) => {
+  try {
+    const allProductsAdmin = await getAllProductsAddmin();
+    res.status(200).json(allProductsAdmin);
   } catch (error) {
     res.status(400).json({ error: error.message });
   }
@@ -24,7 +38,7 @@ const getProductByIdHandler = async (req, res) => {
 };
 
 const createProductHandler = async (req, res) => {
-  const { name, description, image, price, type, genre, waist } = req.body;
+  const { name, description, image, price, type, genre, waists } = req.body;
   try {
     const newProduct = await createProduct(
       name,
@@ -33,9 +47,57 @@ const createProductHandler = async (req, res) => {
       price,
       type,
       genre,
-      waist
+      waists
     );
-    res.status(201).json(newProduct);
+    res.status(201).send("created succesfully");
+  } catch (error) {
+    res.status(400).json({ error: error.message });
+  }
+};
+
+const deleteProductHandler = async (req, res) => {
+  const { id } = req.params;
+  try {
+    await deleteProduct(id);
+    res.status(200).send("product deleted succesfully");
+  } catch (error) {
+    res.status(400).json({ error: error.message });
+  }
+};
+
+const restoreProductHandler = async (req, res) => {
+  const { id } = req.params;
+  try {
+    await restoreProduct(id);
+    res.status(200).send("product restore succesfully");
+  } catch (error) {
+    res.status(400).json({ error: error.message });
+  }
+};
+
+const getProductsRandomHandler = async (req, res) => {
+  try {
+    const products = await getRamdomProducts();
+    res.status(200).json(products);
+  } catch (error) {
+    res.status(400).json({ error: error.message });
+  }
+};
+
+const updateProductHandler = async (req, res) => {
+  const { id, name, description, image, price, type, genre, waists } = req.body;
+  try {
+    const productUpdated = await updateProduct(
+      id,
+      name,
+      description,
+      image,
+      price,
+      type,
+      genre,
+      waists
+    );
+    res.status(200).json(productUpdated);
   } catch (error) {
     res.status(400).json({ error: error.message });
   }
@@ -45,4 +107,9 @@ module.exports = {
   getAllProductsHandler,
   getProductByIdHandler,
   createProductHandler,
+  deleteProductHandler,
+  restoreProductHandler,
+  getAllProductsAdminHandler,
+  getProductsRandomHandler,
+  updateProductHandler,
 };

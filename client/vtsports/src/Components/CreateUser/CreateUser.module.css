@@ -1,0 +1,81 @@
+.container {
+  margin: auto;
+  width: 500px;
+  max-height: 960px;
+  background: #333;
+  padding: 30px;
+  border-radius: 3px;
+}
+
+.form {
+    width: 100%;
+    height: 100%;
+}
+  
+.label {
+  padding-top: 10px;
+  padding-bottom: 10px;
+  font-weight: bold;
+  color: #fff;
+}
+.label:nth-child(13){
+  margin-left: calc(50% - 30px);
+}
+.input {
+  margin-top: 5px;
+  padding: 5px;
+  border: none;
+  background: #0008;
+  width: 100%;
+  color: #fff8;
+
+}
+.select{
+    /*margin-top: 5px;*/
+    margin: auto;
+    padding: 8px;
+    width: 100%;
+}
+
+.button {
+  display: block;
+  margin: auto;
+  margin-top: 20px;
+}
+
+.selectedWaists {
+    margin-top:5px;
+    list-style: none;
+    padding: 0;
+  }
+  
+  .selectedWaistsItem {
+    display: flex;
+    align-items: center;
+    margin-bottom: 5px;
+  }
+  
+.selectedWaistsButton {
+    margin-left: 5px;
+    padding: 5px;
+    background-color: red;
+    color: white;
+    border: none;
+    border-radius: 25%; /* Agregamos esto para hacerlo redondo */
+    cursor: pointer;
+  }
+
+.thumbnailContainer {
+    display: flex;
+    align-items: center;
+    margin-top: 10px;
+  }
+  
+.img {
+    width: 100px; /* Ajusta el ancho de la miniatura según tus necesidades */
+    height: auto;
+    margin-right: 10px;
+  border: 2px solid #0d6efd;
+  margin-left: 250px;
+  cursor: pointer;
+  }  

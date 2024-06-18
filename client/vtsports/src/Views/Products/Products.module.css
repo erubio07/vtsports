@@ -1,0 +1,104 @@
+.container {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr 1fr 1;
+  justify-items: center;
+  top: 70px;
+  align-items: center;
+  position: relative;
+}
+.loaderContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background-color: rgba(255, 255, 255, 0.8);
+}
+.paginacion {
+  display: flex;
+  justify-content: center;
+  align-items: end;
+  height: 110px;
+  width: 100%;
+}
+
+/* Contenedor principal de la tarjeta */
+.card {
+  width: 18rem;
+  margin-bottom: 30px;
+}
+
+.card:hover {
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+  transform: scale(1.05);
+}
+
+/* Imagen del producto */
+.productImage {
+  max-width: 286px; /* Asegurar que la imagen no exceda el tamaño del contenedor */
+  max-height: 250px;
+  height: auto;
+}
+
+.modal{
+  opacity: 0.6;
+}
+
+
+/* Estilos para el precio */
+.productPrice {
+  font-size: 1.1em;
+  font-weight: bold;
+  color: #007bff;
+}
+
+
+
+/* Estilos para pantallas móviles */
+@media only screen and (max-width: 600px) {
+  .container {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto;
+    top: 0; /* Ajustar según sea necesario */
+    position: static; /* Ajustar según sea necesario */
+  }
+
+  .loaderContainer {
+    height: 100%; /* O ajustar según sea necesario */
+  }
+
+  .paginacion {
+    height: auto;
+  }
+
+  .card {
+    width: 100%; /* O ajustar según sea necesario */
+    height: auto; /* O ajustar según sea necesario */
+  }
+}
+
+/* Estilos para pantallas Full HD y superiores */
+@media only screen and (min-width: 1920px) {
+  .container {
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: repeat(4, 1fr);
+  }
+
+  .loaderContainer {
+    height: 100vh;
+    position: fixed;
+  }
+
+  .paginacion {
+    height: 110px;
+  }
+
+  .card {
+    width: 200px;
+    height: 310px;
+  }
+}

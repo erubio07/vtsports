@@ -1,0 +1,17 @@
+.dashboardContainer {
+    display: flex;
+    height: 100vh;
+    overflow: hidden;
+  }
+  
+  .content {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    overflow-y: auto;
+    box-sizing: border-box;
+    margin-top: 80px; /* Ajusta el margen superior para evitar solapamiento con la barra de navegación */
+    margin-left: 220px; /* Ajusta el margen izquierdo para evitar solapamiento con la barra lateral */
+  }

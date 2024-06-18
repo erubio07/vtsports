@@ -2,9 +2,9 @@ require("dotenv").config();
 const { Sequelize } = require("sequelize");
 const fs = require("fs");
 const path = require("path");
-const { DB_DEPLOY } = process.env;
+// const { DB_DEPLOY } = process.env;
 
-const sequelize = new Sequelize(DB_DEPLOY, {
+const sequelize = new Sequelize("postgresql://erubio07:DJ9z3GFvhVdO@ep-small-poetry-57455562.us-east-2.aws.neon.tech/neondb?sslmode=require", {
   logging: false, // set to console.log to see the raw SQL queries
   native: false, // lets Sequelize know we can use pg-native for ~30% more speed
 });
@@ -34,14 +34,14 @@ sequelize.models = Object.fromEntries(capsEntries);
 
 // En sequelize.models están todos los modelos importados como propiedades
 // Para relacionarlos hacemos un destructuring
-const { Product, Type, Waist, Genre } = sequelize.models;
+const { Product, Type, Waist, Genre, User } = sequelize.models;
 
 // Aca vendrian las relaciones
 // Product.hasMany(Reviews);
 Product.belongsTo(Type);
 Type.hasMany(Product);
-Product.belongsTo(Waist);
-Waist.hasMany(Product);
+Product.belongsToMany(Waist, { through: "products_waist" });
+Waist.belongsToMany(Product, { through: "products_waist" });
 Product.belongsTo(Genre);
 Genre.hasMany(Product);
 
