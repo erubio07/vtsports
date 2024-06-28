@@ -35,5 +35,5 @@ jobs:
         uses: denoland/deployctl@v1
         with:
           project: "vtsports"
-          entrypoint: "api/index.js"
+          entrypoint: "index.js"
           root: "./api"
