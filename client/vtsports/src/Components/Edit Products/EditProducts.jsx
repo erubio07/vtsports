@@ -35,7 +35,7 @@ const EditProducts = ({ productModal, setShow }) => {
 
   const getData = async () => {
     try {
-      const data = await axios.get(`https://vtsports.onrender.com/products/${id}`);
+      const data = await axios.get(`https://nearby-gilberta-vtsports-7339cb89.koyeb.app/products/${id}`);
       const dataProduct = data.data;
       // console.log(dataProduct);
       setInput({
@@ -180,7 +180,7 @@ const EditProducts = ({ productModal, setShow }) => {
             genre: input.genre.id,
           };
           // console.log("estos datos se envian al back:", productData);
-          await axios.put("https://vtsports.onrender.com/products", productData);
+          await axios.put("https://nearby-gilberta-vtsports-7339cb89.koyeb.app/products", productData);
           Swal.fire({
             title: "Modificado!",
             text: "Producto modificado con éxito!",

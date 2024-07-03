@@ -26,7 +26,7 @@ const handleUserDelete = (id) => {
     confirmButtonText: "Sí, Borrar",
   }).then(async (result) => {
     if (result.isConfirmed) {
-      await axios.delete(`https://vtsports.onrender.com/user/${id}`);
+      await axios.delete(`https://nearby-gilberta-vtsports-7339cb89.koyeb.app/user/${id}`);
       Swal.fire({
         title: "Borrado!",
         text: "Usuario borrado con éxito!",
@@ -50,7 +50,7 @@ const handleUserRestore = (id) => {
     confirmButtonText: "Sí, Restaurar",
   }).then(async (result) => {
     if (result.isConfirmed) {
-      await axios.put(`https://vtsports.onrender.com/user/${id}`);
+      await axios.put(`https://nearby-gilberta-vtsports-7339cb89.koyeb.app/user/${id}`);
       Swal.fire({
         title: "Restaurado!",
         text: "Usuario restaurado con éxito!",
@@ -74,7 +74,7 @@ const handleAdminUpdate = (id) => {
     confirmButtonText: "Sí, Modificar",
   }).then(async (result) => {
     if (result.isConfirmed) {
-      await axios.put(`https://vtsports.onrender.com/user/update/admin/${id}`);
+      await axios.put(`https://nearby-gilberta-vtsports-7339cb89.koyeb.app/user/update/admin/${id}`);
       Swal.fire({
         title: "Modificado!",
         text: "Usuario modificado con éxito!",

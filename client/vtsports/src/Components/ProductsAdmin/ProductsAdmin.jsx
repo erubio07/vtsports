@@ -35,7 +35,7 @@ const ProductsAdmin = () => {
       confirmButtonText: "Sí, Borrar",
     }).then(async (result) => {
       if (result.isConfirmed) {
-        await axios.delete(`https://vtsports.onrender.com/products/${id}`);
+        await axios.delete(`https://nearby-gilberta-vtsports-7339cb89.koyeb.app/products/${id}`);
         Swal.fire({
           title: "Borrado!",
           text: "Producto borrado con éxito!",
@@ -59,7 +59,7 @@ const ProductsAdmin = () => {
       confirmButtonText: "Sí, Restaurar",
     }).then(async (result) => {
       if (result.isConfirmed) {
-        await axios.put(`https://vtsports.onrender.com/products/${id}`);
+        await axios.put(`https://nearby-gilberta-vtsports-7339cb89.koyeb.app/products/${id}`);
         Swal.fire({
           title: "Restaurado!",
           text: "Producto restaurado con éxito!",

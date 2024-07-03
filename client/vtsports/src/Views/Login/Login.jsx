@@ -31,7 +31,7 @@ const Login = () => {
         alert("Todos los campos son necesarios");
       }
       if(username && password){
-        const data = await axios.post("https://vtsports.onrender.com/login", {
+        const data = await axios.post("https://nearby-gilberta-vtsports-7339cb89.koyeb.app/login", {
           username,
           password,
         });
