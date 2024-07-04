@@ -17,6 +17,7 @@ const Sidebar = ({handleOption}) => {
         ) : (
           <FaCircleUser className={styles.profileIcon} />
         )}
+      <div className={styles.userName}>{user.name} {user.surname}</div>
       </div>
         <ul className={styles.ul}>
           <li className={styles.li}>
