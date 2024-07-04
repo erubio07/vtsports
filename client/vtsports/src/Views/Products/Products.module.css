@@ -76,8 +76,8 @@
   }
 
   .card {
-    width: 100%; /* O ajustar según sea necesario */
-    height: auto; /* O ajustar según sea necesario */
+    width: 70%; /* Ajustar el ancho de las tarjetas para pantallas móviles */
+    height: auto; /* Ajustar la altura según sea necesario */
   }
 }
 
