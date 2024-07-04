@@ -75,3 +75,47 @@
     color: #888;
     margin: 5px 0;
 }
+
+/* Media queries para dispositivos medianos */
+@media (max-width: 768px) {
+    .cardsContainer {
+        gap: 20px; /* Reducir el espacio entre las tarjetas */
+    }
+
+    .card {
+        flex: 1 0 calc(50% - 40px); /* Dos tarjetas por fila */
+        max-width: calc(50% - 40px); /* Asegura que no crezcan más de 50% del contenedor */
+    }
+
+    .imageContainer {
+        height: 150px; /* Ajustar la altura de la imagen */
+    }
+}
+
+/* Media queries para dispositivos pequeños */
+@media (max-width: 480px) {
+    .title {
+        font-size: 2em; /* Reducir el tamaño del título */
+    }
+
+    .cardsContainer {
+        gap: 10px; /* Reducir aún más el espacio entre las tarjetas */
+    }
+
+    .card {
+        flex: 1 0 100%; /* Una tarjeta por fila */
+        max-width: 100%; /* Asegura que la tarjeta ocupe el 100% del contenedor */
+    }
+
+    .imageContainer {
+        height: 120px; /* Ajustar la altura de la imagen */
+    }
+
+    .name {
+        font-size: 0.9em; /* Reducir el tamaño del nombre */
+    }
+
+    .price {
+        font-size: 0.8em; /* Reducir el tamaño del precio */
+    }
+}

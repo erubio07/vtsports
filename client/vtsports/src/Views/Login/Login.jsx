@@ -6,6 +6,8 @@ import { useAuth } from "../../AuthProvider/AuthProvider";
 import { useDispatch, useSelector } from "react-redux";
 import axios from "axios";
 import { AiOutlineEyeInvisible, AiOutlineEye } from "react-icons/ai";
+import Swal from "sweetalert2";
+import Spinner from "react-bootstrap/Spinner";
 
 const Login = () => {
   const [username, setUsername] = useState("");
@@ -13,6 +15,7 @@ const Login = () => {
   const [password, setPassword] = useState("");
   // console.log(password);
   const [showPass, setShowPass] = useState(false);
+  const [loading, setLoading] = useState(false);
   const auth = useAuth();
   const navigate = useNavigate();
 
@@ -26,9 +29,12 @@ const Login = () => {
 
   const handleLogin = async (e) => {
     e.preventDefault();
+    setLoading(true);
     try {
       if (!username || !password) {
-        alert("Todos los campos son necesarios");
+        Swal.fire("Debe ingresar un Usuario y Password válidos");
+        setLoading(false);
+        return;
       }
       if(username && password){
         const data = await axios.post("https://nearby-gilberta-vtsports-7339cb89.koyeb.app/login", {
@@ -52,6 +58,20 @@ const Login = () => {
       }
     } catch (error) {
       console.log(error.message);
+      if(error.response && error.response.data && error.response.data.message){
+        Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: error.response.data.message,
+      });
+      }else {
+        Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: "Verificar los datos ingresados.",
+      });
+      setLoading(false);
+      } 
     }
   };
 
@@ -132,7 +152,7 @@ const Login = () => {
           )}
           </div>
           <Button type="submit" variant="primary">
-            Sing In
+            {loading ? <Spinner animation="border" size="sm" /> : "Sign In"}
           </Button>
         </form>
       </div>

@@ -1,16 +1,8 @@
-@import url("https://fonts.googleapis.com/css2?family=Nosifer&family=Outfit:wght@200;300;400;700&family=Overpass:wght@400;700&display=swap");
-* {
-  margin: 0;
-  padding: 0;
-}
-
 .container {
-  display: grid;
-  width: 100%;
-  grid-template-columns: 1fr 5fr 2fr 2fr 1fr;
-  grid-template-rows: 70px;
+  display: flex;
   align-items: center;
-  justify-items: end;
+  justify-content: space-between;
+  width: 100%;
   height: 70px;
   font-family: "Outfit", sans-serif;
   font-size: 1.1rem;
@@ -23,30 +15,14 @@
 }
 
 .logo {
-  justify-self: start;
   padding-left: 20px;
   width: 130px;
   height: 130px;
 }
 
-.link {
-  color: #fff;
-  text-decoration: none;
-  margin: 0 50px; /* Ajusta el espaciado entre los enlaces */
-  transition: color 0.3s ease;
-
-  &:hover {
-    color: #ffe206;
-  }
-}
-
-.globeContainer {
-  cursor: pointer;
-}
-
-.globe {
-  width: 20px;
-  height: 20px;
+.mobileMenuButtonContainer {
+  display: flex;
+  align-items: center;
 }
 
 .mobileMenuButton {
@@ -54,14 +30,37 @@
   cursor: pointer;
 }
 
-/* Media query para pantallas más pequeñas (por ejemplo, dispositivos móviles) */
+.navLinks {
+  display: flex;
+  align-items: center;
+}
+
+.hide {
+  display: none;
+}
+
+.link {
+  color: #fff;
+  text-decoration: none;
+  margin: 0 20px; /* Ajusta el espaciado entre los enlaces */
+  transition: color 0.3s ease;
+
+  &:hover {
+    color: #ffe206;
+  }
+}
+
+.link-login {
+  display: none;
+}
+
 @media (max-width: 768px) {
-  .container {
+  .mobileMenuButton {
+    display: block; /* Muestra el botón del menú hamburguesa en dispositivos móviles */
   }
 
-  .mobileMenuButtonContainer {
-    margin-left: 30px;
-    margin-top: -29px;
+  .logo {
+    display: none;
   }
 
   .link-login {
@@ -69,7 +68,7 @@
   }
 
   .link {
-    margin: 10px 0; /* Espaciado entre los enlaces en dispositivos móviles */
+    display: none;
   }
 
   .mobileMenuButton {

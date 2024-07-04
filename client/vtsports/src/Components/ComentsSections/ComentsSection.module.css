@@ -28,3 +28,24 @@
     color: #777;
     text-align: right;
   }
+
+/* Media Queries */
+@media (max-width: 1200px) {
+  .commentsContainer {
+    flex-direction: column;
+  }
+
+  .commentBox {
+    margin-bottom: 20px;
+  }
+}
+
+@media (max-width: 768px) {
+  .commentText {
+    font-size: 14px;
+  }
+
+  .commentAuthor {
+    font-size: 12px;
+  }
+}

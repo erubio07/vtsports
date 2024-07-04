@@ -51,9 +51,16 @@
 
   .profile {
     display: flex;
+    flex-direction: column; /* Cambia la dirección a columna */
     justify-content: center;
-    align-items: center;
-    margin-bottom: 20px; /* Añadir espacio debajo de la imagen de perfil */
+    align-items: center; /* Centra el contenido horizontalmente */
+    margin-bottom: 20px;
+  }
+
+  .userName {
+    margin-top: 10px; /* Espacio entre la imagen y el nombre */
+    font-size: 16px; /* Tamaño de la fuente */
+    font-weight: bold; /* Grosor de la fuente */
   }
   
   .profileImage, .profileIcon {

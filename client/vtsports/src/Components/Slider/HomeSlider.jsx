@@ -13,24 +13,24 @@ const HomeSLider = () => {
     slidesToScroll: 1,
     autoplay: true,
     autoplaySpeed: 3000,
+    arrows: false,
   };
   return (
     <div>
       <Slider {...settings}>
         <div className={styles.sliderItem}>
           <img
-            src="https://res.cloudinary.com/dytke2vlw/image/upload/v1701613649/vtsport/omowheswuyrhrcr9hm6y.jpg"
+            src="https://res.cloudinary.com/dytke2vlw/image/upload/v1701613649/vtsport/feszvp8l9sstgql2vjtf.jpg"
             alt="imagen1"
             className={styles.image}
           />
           <div className={styles.textContainer}>
             <h1>¡SENTITE COMO EN CASA!</h1>
-            <p>¡CAMPEON!</p>
           </div>
         </div>
         <div className={styles.sliderItem}>
           <img
-            src="https://res.cloudinary.com/dytke2vlw/image/upload/v1701613649/vtsport/feszvp8l9sstgql2vjtf.jpg"
+            src="https://res.cloudinary.com/dytke2vlw/image/upload/v1720119588/vtsport/ormjmonltgnkixdiyydg.jpg"
             alt="imagen2"
             className={styles.image}
           />
@@ -41,7 +41,7 @@ const HomeSLider = () => {
         </div>
         <div className={styles.sliderItem}>
           <img
-            src="https://res.cloudinary.com/dytke2vlw/image/upload/v1701613650/vtsport/y77k4s0sttv4llhenp8t.jpg"
+            src="https://res.cloudinary.com/dytke2vlw/image/upload/v1720118864/vtsport/wp9itym0woyocii8za2g.jpg"
             alt="imagen3"
             className={styles.image}
           />

@@ -9,7 +9,8 @@ import {
   sortByPrice,
 } from "../../Redux/actions";
 import Pagination from "../../Components/Pagination/Pagination";
-import ReactLoading from "react-loading";
+// import ReactLoading from "react-loading";
+import Spinner from 'react-bootstrap/Spinner';
 import HomeSLider from "../../Components/Slider/HomeSlider";
 import Filter from "../../Components/Filter/Filter";
 import Modal from "react-bootstrap/Modal";
@@ -78,12 +79,9 @@ const Products = () => {
       <div className={styles.container}>
         {(!productsFilter || productsFilter.length === 0) && !filterMessage ? (
           <div className={styles.loaderContainer}>
-            <ReactLoading
-              type={"spin"}
-              color={"#03fc4e"}
-              height={100}
-              width={100}
-            />
+            <Spinner 
+            animation="grow"
+            variant="light" />
           </div>
         ) : (
           <>
