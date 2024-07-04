@@ -25,12 +25,12 @@ function Navbar() {
 
   return (
     <div className={styles.container}>
+      <img
+        src="https://res.cloudinary.com/dytke2vlw/image/upload/v1701527722/vtsport/yb2owexc1s5bfmrqpd0c.png"
+        alt="logo VtSports"
+        className={styles.logo}
+      />
       <div className={styles.mobileMenuButtonContainer}>
-        <img
-          src="https://res.cloudinary.com/dytke2vlw/image/upload/v1701527722/vtsport/yb2owexc1s5bfmrqpd0c.png"
-          alt="logo VtSports"
-          className={styles.logo}
-        />
         {isMobileMenuOpen ? (
           <RxCross2
             className={styles.mobileMenuButton}
