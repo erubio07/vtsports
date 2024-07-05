@@ -1,5 +1,6 @@
 import React from 'react';
 import styles from './ComentsSection.module.css';
+import { FaCircleUser } from "react-icons/fa6";
 
 const ComentsSection = () => {
   const comments = [
@@ -24,6 +25,7 @@ const ComentsSection = () => {
     <div className={styles.commentsContainer}>
       {comments.map((comment) => (
         <div key={comment.id} className={styles.commentBox}>
+          <FaCircleUser className={styles.commentImage}/>
           <p className={styles.commentText}>"{comment.text}"</p>
           <p className={styles.commentAuthor}>- {comment.author}</p>
         </div>
