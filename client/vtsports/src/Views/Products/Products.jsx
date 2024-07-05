@@ -13,6 +13,7 @@ import Pagination from "../../Components/Pagination/Pagination";
 import Spinner from 'react-bootstrap/Spinner';
 import HomeSLider from "../../Components/Slider/HomeSlider";
 import Filter from "../../Components/Filter/Filter";
+import Footer from "../../Components/Footer/Footer";
 import Modal from "react-bootstrap/Modal";
 import Button from "react-bootstrap/Button";
 import Card from "react-bootstrap/Card";
@@ -186,6 +187,7 @@ const Products = () => {
           totalProducts={totalProducts}
         />
       </div>
+      <Footer />
     </div>
   );
 };
