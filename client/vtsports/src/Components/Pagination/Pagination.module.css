@@ -2,45 +2,43 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  margin-top: 20px;
 }
 
-.button {
-  background-color: #f4f4f4;
+.buttonPrev, .buttonNext, .button {
+  background-color: #007bff;
+  color: white;
   border: none;
-  border-radius: 5px;
   padding: 8px 12px;
-  margin-left: 2px;
-  margin: 0 2px;
+  margin: 0 4px;
   cursor: pointer;
+  border-radius: 4px;
+  transition: background-color 0.3s;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 40px; /* Asegura que todos los botones tengan la misma altura */
+}
+
+.buttonPrev:disabled, .buttonNext:disabled {
+  background-color: #cccccc;
+  cursor: not-allowed;
+}
+
+.buttonPrev:hover:not(:disabled), .buttonNext:hover:not(:disabled), .button:hover {
+  background-color: #0056b3;
 }
 
 .button.active {
-  background-color: #007bff;
-  color: #fff;
+  background-color: #0056b3;
+  font-weight: bold;
 }
 
-.button.disabled {
-  cursor: not-allowed;
-  opacity: 0.6;
-}
-
-.buttonPrev {
-  background-color: #f4f4f4;
-  border: none;
-  border-radius: 5px;
-  padding: 8px 12px;
-  cursor: pointer;
-  margin-right: 2px;
-}
-
-.buttonNext {
-  background-color: #f4f4f4;
-  border: none;
-  border-radius: 5px;
-  padding: 8px 12px;
-  cursor: pointer;
-
-  margin-left: 2px;
+.ul {
+  display: flex;
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
 }
 
 /* Estilos para pantallas más pequeñas */

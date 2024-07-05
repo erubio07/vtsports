@@ -10,6 +10,7 @@ import { AiFillDelete } from "react-icons/ai";
 import { FaTrashRestore } from "react-icons/fa";
 import Swal from "sweetalert2";
 import EditProducts from "../Edit Products/EditProducts";
+import Pagination from "./Pagination/Pagination";
 
 const ProductsAdmin = () => {
   const dispatch = useDispatch();
@@ -17,6 +18,11 @@ const ProductsAdmin = () => {
   // console.log(productsAdmin);
   const [show, setShow] = useState(false);
   const [productModal, setProductModal] = useState(null);
+  const totalProducts = productsAdmin.length;
+  const [itemsPerPage, setItemsPerPage] = useState(15);
+  const [currentPage, setCurrentPage] = useState(1);
+  const lastIndex = currentPage * itemsPerPage;
+  const firstIndex = lastIndex - itemsPerPage;
 
   const handleClose = () => setShow(false);
   const handleShow = (p) => {
@@ -88,6 +94,7 @@ const ProductsAdmin = () => {
             <th className={styles.th}>Tipo</th>
             <th className={styles.th}>Talles</th>
             <th className={styles.th}>Imagen</th>
+            <th className={styles.th}>Precio</th>
             <th className={styles.th}>Estado</th>
             <th className={styles.th}>Editar</th>
             <th className={styles.th}>Modif. Estado</th>
@@ -95,7 +102,7 @@ const ProductsAdmin = () => {
         </thead>
         <tbody className={styles.tbody}>
           {productsAdmin &&
-            productsAdmin.map((p) => (
+            productsAdmin.slice(firstIndex, lastIndex).map((p) => (
               <tr key={p.id}>
                 <td className={styles.td}>{p.id}</td>
                 <td className={styles.td}>{p.name}</td>
@@ -113,6 +120,7 @@ const ProductsAdmin = () => {
                     style={{ maxWidth: "20px", maxHeight: "20px" }}
                   />
                 </td>
+                <td className={styles.td}>$ {p.price}</td>
                 <td>
                   {p.deletedAt ? (
                     <span>No disponible</span>
@@ -168,6 +176,14 @@ const ProductsAdmin = () => {
           </Modal.Footer>
         </Modal>
       </table>
+      <div>
+      <Pagination
+          itemsPerPage={itemsPerPage}
+          currentPage={currentPage}
+          setCurrentPage={setCurrentPage}
+          totalProducts={totalProducts}
+        />
+      </div>
     </div>
   );
 };
