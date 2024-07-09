@@ -67,11 +67,14 @@ const Sidebar = ({ handleOption }) => {
             </Link>
           </li>
         )}
-        <li className={styles.li}>
-          <Link className={styles.a} onClick={() => handleOption("backup")}>
-            <FcDownload className={styles.icon} /> BackUp{" "}
-          </Link>
-        </li>
+        {user.isAdmin && (
+          <li className={styles.li}>
+            <Link className={styles.a} onClick={() => handleOption("backup")}>
+              <FcDownload className={styles.icon} /> BackUp
+            </Link>
+          </li>
+        )}
+
         {user.isAdmin && (
           <li className={styles.li}>
             <Link onClick={() => auth.logOut()} className={styles.a}>

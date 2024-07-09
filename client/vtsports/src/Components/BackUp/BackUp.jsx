@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import axios from "axios";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
+import Spinner from "react-bootstrap/Spinner";
 
 const BackUp = () => {
   const [backUpOptions, setBackUpOptions] = useState({
@@ -12,11 +13,13 @@ const BackUp = () => {
     users: false,
   });
   console.log(backUpOptions);
+  const [loading, setLoading] = useState(false);
 
-  const backUpData = async () => {
+  const handleBackUp = async () => {
+    setLoading(true);
     try {
       const response = await axios.post(
-        "localhost:3001/backup",
+        "http://localhost:3001/backup",
         backUpOptions,
         {
           responseType: "blob",
@@ -28,6 +31,7 @@ const BackUp = () => {
       link.href = URL.createObjectURL(blob);
       link.download = "BackUp.json";
       link.click();
+      setLoading(false);
     } catch (error) {
       console.log("error: ", error);
     }
@@ -35,8 +39,8 @@ const BackUp = () => {
 
   return (
     <div>
+      <h1>Seleccionar los datos a resguardar</h1>
       <Form>
-        <h1>Seleccionar los datos a resguardar</h1>
         <Form.Check // prettier-ignore
           type="switch"
           id="products"
@@ -92,7 +96,9 @@ const BackUp = () => {
             }));
           }}
         />
-        <Button>Descargar</Button>
+        <Button onClick={handleBackUp}>
+          {loading ? <Spinner animation="border" size="sm" /> : "BackUp"}
+        </Button>
       </Form>
     </div>
   );
