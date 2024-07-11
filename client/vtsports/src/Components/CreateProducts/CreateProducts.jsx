@@ -103,7 +103,7 @@ const CreateProducts = () => {
       !input.price ||
       !input.type ||
       !input.genre ||
-      !input.waists
+      !input.waists.length === 0
     ) {
       Swal.fire({
         icon: "error",

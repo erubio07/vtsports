@@ -3,6 +3,7 @@ import axios from "axios";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import Spinner from "react-bootstrap/Spinner";
+import styles from "./BackUp.module.css";
 
 const BackUp = () => {
   const [backUpOptions, setBackUpOptions] = useState({
@@ -38,9 +39,9 @@ const BackUp = () => {
   };
 
   return (
-    <div>
-      <h1>Seleccionar los datos a resguardar</h1>
-      <Form>
+    <div className={styles.container}>
+      <h1 className={styles.title}>Seleccionar los datos a resguardar</h1>
+      <Form className={styles.form}>
         <Form.Check // prettier-ignore
           type="switch"
           id="products"
@@ -96,8 +97,8 @@ const BackUp = () => {
             }));
           }}
         />
-        <Button onClick={handleBackUp}>
-          {loading ? <Spinner animation="border" size="sm" /> : "BackUp"}
+        <Button className={styles.button} onClick={handleBackUp}>
+          {loading ? <Spinner className={styles.spinner} animation="border" size="sm" /> : "BackUp"}
         </Button>
       </Form>
     </div>
