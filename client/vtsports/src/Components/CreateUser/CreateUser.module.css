@@ -80,3 +80,10 @@
   margin-left: 250px;
   cursor: pointer;
   }  
+
+  .errorText {
+    color: red;
+    font-size: 0.9rem;
+    margin-top: 5px;
+    margin-bottom: 10px;
+  }

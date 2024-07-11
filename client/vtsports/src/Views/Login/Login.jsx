@@ -19,6 +19,16 @@ const Login = () => {
   const auth = useAuth();
   const navigate = useNavigate();
 
+  const [capsLockOn, setCapsLockOn] = useState(false);
+
+    const handleCapsLockOn = (e) => {
+      if(e.getModifierState("CapsLock")){
+        setCapsLockOn(true);
+      }else{
+        setCapsLockOn(false)
+      }
+    }
+
   const handleUsername = (e) => {
     setUsername(e.target.value);
   };
@@ -110,6 +120,7 @@ const Login = () => {
               placeholder="Password"
               className={styles.input}
               onChange={(e) => handlePassword(e)}
+              onKeyUp={(e) => handleCapsLockOn(e)}
             />
             <button
                 type="button"
@@ -134,6 +145,7 @@ const Login = () => {
               placeholder="Password"
               className={styles.input}
               onChange={(e) => handlePassword(e)}
+              onKeyUp={(e) => handleCapsLockOn(e)}
             />
             <button
                 type="button"
@@ -151,6 +163,11 @@ const Login = () => {
             </>
           )}
           </div>
+          {capsLockOn && (
+            <div className={styles.errorText}>
+              <span>¡El bloqueo de mayúsculas está activado!</span>
+            </div>
+          )}
           <Button type="submit" variant="primary">
             {loading ? <Spinner animation="border" size="sm" /> : "Sign In"}
           </Button>

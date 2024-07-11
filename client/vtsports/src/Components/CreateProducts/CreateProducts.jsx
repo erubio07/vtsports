@@ -41,7 +41,7 @@ const CreateProducts = () => {
     waists: true,
   });
 
-  console.log(errors);
+  // console.log(errors);
 
   const preset_key = "ml_default";
   const cloud_name = "dytke2vlw";

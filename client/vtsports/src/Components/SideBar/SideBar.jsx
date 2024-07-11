@@ -75,13 +75,13 @@ const Sidebar = ({ handleOption }) => {
           </li>
         )}
 
-        {user.isAdmin && (
+       
           <li className={styles.li}>
             <Link onClick={() => auth.logOut()} className={styles.a}>
               <RiLogoutCircleLine className={styles.icon} /> Logout
             </Link>
           </li>
-        )}
+        
       </ul>
     </nav>
   );
