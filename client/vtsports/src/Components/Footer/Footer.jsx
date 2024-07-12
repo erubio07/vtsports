@@ -1,5 +1,6 @@
 import React from "react";
 import styles from "./Footer.module.css";
+import { Link } from "react-router-dom";
 
 function Footer() {
   return (
@@ -30,7 +31,13 @@ function Footer() {
           </div>
         </div>
         <div className={styles.creator}>
+          <Link 
+          to={"https://api.whatsapp.com/send?phone=543516237423"}
+          target="_blank"
+          >
           <p>Creado por Ezequiel Rubio</p>
+          </Link>
+          <p>v 1.0.0</p>
         </div>
       </div>
     </div>
