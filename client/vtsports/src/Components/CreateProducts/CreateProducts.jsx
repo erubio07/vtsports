@@ -31,6 +31,18 @@ const CreateProducts = () => {
 
   // console.log(input);
 
+  const [errors, setErrors] = useState({
+    name: true,
+    description: true,
+    image: true,
+    price: true,
+    type: true,
+    genre: true,
+    waists: true,
+  });
+
+  // console.log(errors);
+
   const preset_key = "ml_default";
   const cloud_name = "dytke2vlw";
 
@@ -39,6 +51,10 @@ const CreateProducts = () => {
       ...input,
       [e.target.name]: e.target.value,
     });
+    setErrors({
+      ...errors,
+      [e.target.name]: !e.target.value
+    })
   };
 
   const handleTypes = (e) => {
@@ -46,6 +62,10 @@ const CreateProducts = () => {
       ...input,
       type: e.target.value,
     });
+    setErrors({
+      ...errors,
+      type: false
+    })
   };
 
   const handleGenre = (e) => {
@@ -53,6 +73,10 @@ const CreateProducts = () => {
       ...input,
       genre: e.target.value,
     });
+    setErrors({
+      ...errors,
+      genre: false
+    })
   };
 
   const handleWaists = (e) => {
@@ -65,13 +89,24 @@ const CreateProducts = () => {
         ...input,
         waists: [...input.waists, selectedWaist],
       });
+      setErrors({
+        ...errors,
+        waists: false
+      })
     }
   };
 
   const onClose = (w) => {
+    const updatedWaists = input.waists.filter((i) => i !== w);
+  
     setInput({
       ...input,
-      waists: input.waists.filter((i) => i !== w),
+      waists: updatedWaists,
+    });
+  
+    setErrors({
+      ...errors,
+      waists: updatedWaists.length === 0,
     });
   };
 
@@ -88,10 +123,14 @@ const CreateProducts = () => {
       .then((res) =>
         setInput({
           ...input,
-          image: res.data.secure_url,
+          image: res.data.secure_url
         })
       )
       .catch((err) => console.log(err));
+      setErrors({
+        ...errors,
+        image: false
+      })
   };
 
   const handleCreateProduct = async (e) => {
@@ -103,7 +142,7 @@ const CreateProducts = () => {
       !input.price ||
       !input.type ||
       !input.genre ||
-      !input.waists
+      !input.waists.length === 0
     ) {
       Swal.fire({
         icon: "error",
@@ -127,12 +166,33 @@ const CreateProducts = () => {
       genre: "",
       waists: [],
     });
+    setErrors({
+    name: true,
+    description: true,
+    image: true,
+    price: true,
+    type: true,
+    genre: true,
+    waists: true,
+    })
     Swal.fire({
       icon: "success",
       title: "OK",
       text: "Producto creado con éxito",
     });
   };
+
+  const isFormValid = () => {
+    return (
+      !errors.name &&
+      !errors.description &&
+      !errors.image &&
+      !errors.price &&
+      !errors.type &&
+      !errors.genre &&
+      !errors.waists
+    )
+  }
 
   useEffect(() => {
     dispacth(getAllGenres());
@@ -158,6 +218,7 @@ const CreateProducts = () => {
           placeholder="Nombre"
           onChange={handleChange}
         />
+        {errors.name && <p className={styles.errorText}>El campo es obligatorio.</p>}
         <label className={styles.label}>Descripción: </label>
         <input
           className={styles.input}
@@ -167,6 +228,7 @@ const CreateProducts = () => {
           placeholder="Descripción"
           onChange={handleChange}
         />
+        {errors.description && <p className={styles.errorText}>El campo es obligatorio.</p>}
         <div className={styles.fileUpload}>
         <label className={styles.label}>Imagen: </label> <br></br>
         <input
@@ -175,6 +237,7 @@ const CreateProducts = () => {
           name="image"
           onChange={handleImage}
         />
+        {errors.image && <p className={styles.errorText}>El campo es obligatorio.</p>}
         {input.image && (
           <div className={styles.thumbnailContainer}>
             <label className={styles.label}>Preview:</label>
@@ -192,6 +255,7 @@ const CreateProducts = () => {
           placeholder="Precio"
           onChange={handleChange}
         />
+        {errors.price && <p className={styles.errorText}>El campo es obligatorio.</p>}
         {/* De acá para abajo van Select */}
         <label className={styles.label}>Material: </label>
         <select className={styles.select} onChange={handleTypes}>
@@ -202,6 +266,7 @@ const CreateProducts = () => {
             </option>
           ))}
         </select>
+        {errors.type && <p className={styles.errorText}>El campo es obligatorio.</p>}
         <label className={styles.label}>Género: </label>
         <select className={styles.select} onChange={handleGenre}>
           <option value="vacio">-</option>
@@ -211,6 +276,7 @@ const CreateProducts = () => {
             </option>
           ))}
         </select>
+        {errors.genre && <p className={styles.errorText}>El campo es obligatorio.</p>}
         <label className={styles.label}>Talles: </label>
         <select className={styles.select} onChange={handleWaists}>
           <option value="vacio">-</option>
@@ -220,6 +286,7 @@ const CreateProducts = () => {
             </option>
           ))}
         </select>
+        {errors.waists && <p className={styles.errorText}>El campo es obligatorio.</p>}
         <div>
           <ul className={styles.selectedWaists}>
             <li className={styles.selectedWaistsItem}>
@@ -240,7 +307,7 @@ const CreateProducts = () => {
             </li>
           </ul>
         </div>
-        <Button type="submit" variant="primary" className={styles.button}>
+        <Button type="submit" variant="primary" className={styles.button} disabled={!isFormValid()}>
           Crear Producto
         </Button>
       </form>

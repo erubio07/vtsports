@@ -22,11 +22,23 @@ const CreateUser = () => {
     });
     // console.log(input);
 
+    const [errors, setErrors] = useState({
+      name: true,
+      surname: true,
+      mail: true,
+      username: true,
+      password: true
+    })
+
     const handleChange = (e) => {
         setInput({
           ...input,
           [e.target.name]: e.target.value,
         });
+        setErrors({
+          ...errors,
+          [e.target.name]: !e.target.value
+        })
       };
 
     const handleIsAdmin = (e) => {
@@ -86,6 +98,13 @@ const CreateUser = () => {
           password: "",
           isAdmin: false,
         });
+        setErrors({
+          name: true,
+          surname: true,
+          mail: true,
+          username: true,
+          password: true
+        })
         Swal.fire({
           icon: "success",
           title: "OK",
@@ -99,6 +118,16 @@ const CreateUser = () => {
         });
       }
     };
+
+    const isFormValid = () => {
+      return(
+        !errors.name &&
+        !errors.surname &&
+        !errors.mail &&
+        !errors.username &&
+        !errors.password
+      )
+    }
 
     return(
         <div>
@@ -117,6 +146,7 @@ const CreateUser = () => {
           placeholder="Nombre"
           onChange={handleChange}
         />
+        {errors.name && <p className={styles.errorText}>El campo es obligatorio.</p>}
         <label className={styles.label}>Apellido: </label>
         <input
           className={styles.input}
@@ -126,6 +156,7 @@ const CreateUser = () => {
           placeholder="Apellido"
           onChange={handleChange}
         />
+        {errors.surname && <p className={styles.errorText}>El campo es obligatorio.</p>}
         <label className={styles.label}>Imagen: </label>
         <input
           className={styles.input}
@@ -133,6 +164,7 @@ const CreateUser = () => {
           name="image"
           onChange={handleImage}
         />
+        {errors.image && <p className={styles.errorText}>El campo es obligatorio.</p>}
         {input.image && (
           <div className={styles.thumbnailContainer}>
             <label className={styles.label}>Preview:</label>
@@ -148,6 +180,7 @@ const CreateUser = () => {
           placeholder="Mail"
           onChange={handleChange}
         />
+        {errors.mail && <p className={styles.errorText}>El campo es obligatorio.</p>}
         <label className={styles.label}>Usuario: </label>
         <input
           className={styles.input}
@@ -157,6 +190,7 @@ const CreateUser = () => {
           placeholder="Usuario"
           onChange={handleChange}
         />
+        {errors.username && <p className={styles.errorText}>El campo es obligatorio.</p>}
         <label className={styles.label}>Contraseña: </label>
         <input
           className={styles.input}
@@ -166,6 +200,7 @@ const CreateUser = () => {
           placeholder="Contraseña"
           onChange={handleChange}
         />
+        {errors.password && <p className={styles.errorText}>El campo es obligatorio.</p>}
         <label className={styles.label}>Admin: </label>
           <input
             className={styles.input}
@@ -174,7 +209,7 @@ const CreateUser = () => {
             checked={input.isAdmin}
             onChange={handleIsAdmin}
           />
-        <Button type="submit" variant="primary" className={styles.button}>
+        <Button type="submit" variant="primary" className={styles.button} disabled={!isFormValid()}>
           Crear Usuario
         </Button>
       </form>

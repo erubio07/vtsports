@@ -90,3 +90,10 @@ h3 {
   padding: 5px;
   width: 100%;
 }
+
+.errorText {
+  color: red;
+  font-size: 0.9rem;
+  margin-top: 5px;
+  margin-bottom: 10px;
+}
